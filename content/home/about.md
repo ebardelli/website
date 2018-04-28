@@ -1,40 +1,35 @@
 +++
 # About/Biography widget.
+
+date = "2017-06-25T00:00:00"
+draft = false
+
 widget = "about"
-active = true
-date = 2016-04-20T00:00:00
 
 # Order that this section will appear in.
-weight = 5
+weight = 1
 
 # List your academic interests.
 [interests]
   interests = [
-    "Artificial Intelligence",
-    "Computational Linguistics",
-    "Information Retrieval"
+    "Mathematics Education", 
+    "Teacher Professional Development and Learning",
+    "Instructional Practices"
   ]
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
-  course = "PhD in Artificial Intelligence"
-  institution = "Stanford University"
-  year = 2012
+  course = "MA in Education"
+  institution = "California State University, Los Angeles"
+  year = 2011
 
 [[education.courses]]
-  course = "MEng in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2009
-
-[[education.courses]]
-  course = "BSc in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
+  course = "BSc in Mathematics"
+  institution = "Università di Modena"
   year = 2008
  
 +++
 
-# Biography
+Emanuele Bardelli is a doctorial student in Educational Studies at the University of Michigan and an IES predoctoral fellow.  His research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
 
-Lena Smith is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate. 
+Originally from Italy, Emanuele earned a bachelor of science in mathematics from the Università degli Studi di Modena e Reggio Emilia, and a master of arts in education and a teaching credential from California State University, Los Angeles.  Before beginning his PhD, Emanuele worked both as an instructional coach and as a middle and high school mathematics teacher in Los Angeles and Lodi, California for five years.

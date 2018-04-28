@@ -1,0 +1,20 @@
+# Theme metadata
+name = "Umich"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#00274c" # Michigan Blue
+primary_light = "#40658f"
+primary_dark = "#002a5b"
+
+# Menu
+menu_primary = "#00274c" # Michigan Blue
+menu_text = "#fff"
+menu_text_active = "#ffcb05" # Maize
+menu_title = "#fff"
+
+# Home sections
+home_section_odd = "rgb(255, 255, 255)"
+home_section_even = "#e5e5e5" # 
