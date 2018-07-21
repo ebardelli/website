@@ -1,0 +1,60 @@
+---
+label: Talk
+hide_body: false
+is_partial: false
+fields:
+- name: date
+  label: Date
+  type: datetime
+  hidden: false
+  default: ''
+- name: title
+  label: Title
+  type: textarea
+  hidden: false
+  default: ''
+- name: tags
+  label: Tags
+  type: tag_list
+  hidden: false
+  default: ''
+- name: time_start
+  label: Time start
+  type: datetime
+  hidden: false
+  default: ''
+- name: time_end
+  label: Time end
+  type: datetime
+  hidden: false
+  default: ''
+- name: abstract
+  label: Abstract
+  type: textarea
+  hidden: false
+  default: ''
+- name: abstract_short
+  label: Abstract short
+  type: text
+  hidden: false
+  default: ''
+- name: event
+  label: Event
+  type: text
+  hidden: false
+  default: ''
+- name: event_url
+  label: Event url
+  type: text
+  hidden: false
+  default: ''
+- name: location
+  label: Location
+  type: text
+  hidden: false
+  default: ''
+- name: projects
+  label: Projects
+  type: list
+  hidden: false
+  default: ''
