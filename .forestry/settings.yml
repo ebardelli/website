@@ -19,8 +19,8 @@ sections:
 - path: content/publication
   label: Publication
   create: all
-upload_dir: static/uploads
-public_path: "/uploads"
+upload_dir: static/files
+public_path: "/files"
 front_matter_path: ''
 use_front_matter_path: false
 file_template: ":filename:"
