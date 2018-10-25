@@ -38,7 +38,7 @@ tags = ["Practical Rationality", "Machine Learning"]
 
 # Links (optional).
 url_pdf = ""
-url_slides = "/pdfs/2018_MIDAS_Poster.pdf"
+url_slides = "2018_MIDAS_Poster.pdf"
 url_video = ""
 url_code = ""
 url_news = ""
