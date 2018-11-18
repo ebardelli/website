@@ -37,8 +37,8 @@ projects = ["grip"]
 tags = ["Practical Rationality", "Machine Learning"]
 
 # Links (optional).
-url_pdf = ""
-url_slides = "2018_MIDAS_Poster.pdf"
+url_pdf = "2018_MIDAS_Poster.pdf"
+url_slides = ""
 url_video = ""
 url_code = ""
 url_news = ""
