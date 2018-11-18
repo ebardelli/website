@@ -38,7 +38,7 @@ projects = ["grip"]
 tags = ["Practical Rationality", "Teacher Decision Making"]
 
 # Links (optional).
-url_pdf = "2018_PMENA_Poster.pdf"
+url_pdf = ""
 url_slides = ""
 url_video = ""
 url_code = ""
