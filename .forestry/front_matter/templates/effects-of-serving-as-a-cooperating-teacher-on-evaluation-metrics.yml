@@ -58,3 +58,5 @@ fields:
   type: list
   hidden: false
   default: ''
+pages:
+- content/talk/RUME19.md
