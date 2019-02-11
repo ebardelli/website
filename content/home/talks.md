@@ -16,7 +16,7 @@ count = 10
 # List format.
 #   0 = Simple
 #   1 = Detailed
-list_format = 0
+view = 0
 
 +++
 
