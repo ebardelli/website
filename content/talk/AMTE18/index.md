@@ -3,6 +3,8 @@ title = "Using Virtual Spaces to Promote Teacher Professional Growth: Acting to 
 date = 2018-01-15T18:17:53-05:00  # Schedule page publish date.
 draft = false
 
+authors = ["Amanda Milewski", "Emanuele Bardelli", "Patricio Herbst"]
+
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
 time_start = 2018-02-09T10:30:00-06:00

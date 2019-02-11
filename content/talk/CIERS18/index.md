@@ -3,6 +3,8 @@ title = "Effects of Serving as a Cooperating Teacher on Evaluation Metrics"
 date = 2018-07-09T12:18:05-04:00
 draft = false
 
+authors = ["Emanuele Bardelli", "Matthew Ronfeldt"]
+
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
 time_start = 2018-07-10T11:30:00-04:00
