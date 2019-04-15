@@ -1,6 +1,7 @@
 +++
 # About/Biography widget.
 widget = "about"  # Do not modify this line!
+headless = true
 active = true  # Activate this widget? true/false
 weight = 5  # Order that this section will appear in.
 
