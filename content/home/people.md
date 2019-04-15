@@ -1,6 +1,7 @@
 +++
 # People widget.
 widget = "people"  # Do not modify this line!
+headless = true
 active = false  # Activate this widget? true/false
 
 title = "People"
