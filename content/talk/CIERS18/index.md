@@ -1,14 +1,14 @@
 +++
-title = "Effects of Serving as a Cooperating Teacher on Evaluation Metrics"
-date = 2018-07-09T12:18:05-04:00
+title = "Effects of serving as a cooperating teacher on evaluation metrics"
+publishDate = 2018-07-09T12:18:05-04:00
 draft = false
 
 authors = ["Emanuele Bardelli", "Matthew Ronfeldt"]
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2018-07-10T11:30:00-04:00
-time_end = 2018-07-10T13:00:00-04:00
+date = 2018-07-10T11:30:00-04:00
+date_end = 2018-07-10T13:00:00-04:00
 
 # Abstract and optional shortened version.
 abstract = "Pre-service clinical experiences, like student teaching, remain one of the most effective ways to train teacher candidates. A new body of evidence shows that preservice teachers are more instructionally effective when they are paired with more instructionally effective cooperating teachers (CT) during initial preparation. However, there is some concern that agreeing to be a CT could negatively impact a teacher’s evaluations and student test scores. We examine whether the concerns about serving as a CT are warranted. Specifically, we share the results of a quasi-experimental analysis of the effects of serving as a CT on evaluation metrics. We found that teachers’ observation rating increase and that value-added scores do not change in years that teachers serve as CTs."

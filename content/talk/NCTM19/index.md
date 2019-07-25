@@ -1,12 +1,12 @@
 +++
 title = "Framing a task as both construction and proof: How do teachers manage?"
-date = "2019-01-18"  # Schedule page publish date.
+publishDate = "2019-01-18"  # Schedule page publish date.
 draft = false
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2019-04-01T10:30:00-05:00
-time_end = 2019-04-03T11:30:00-05:00
+date = 2019-04-01T10:30:00-05:00
+date_end = 2019-04-03T11:30:00-05:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Amanda Milewsky", "Emanuele Bardelli", "Patricio Herbst"]

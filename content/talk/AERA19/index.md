@@ -1,12 +1,12 @@
 +++
-title = "Labor Market Outcomes for Teachers Endorsed in High Needs Areas"
-date = "2019-01-18"  # Schedule page publish date.
+title = "Labor market outcomes for teachers endorsed in high needs areas"
+publishDate = "2019-01-18"  # Schedule page publish date.
 draft = false
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2019-04-05T10:30:00-05:00
-time_end = 2019-04-09T11:30:00-05:00
+date = 2019-04-05T10:30:00-05:00
+date_end = 2019-04-09T11:30:00-05:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Emanuele Bardelli", "Matthew Ronfeldt"]

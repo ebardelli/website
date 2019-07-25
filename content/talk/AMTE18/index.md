@@ -1,14 +1,14 @@
 +++
-title = "Using Virtual Spaces to Promote Teacher Professional Growth: Acting to Believing"
-date = 2018-01-15T18:17:53-05:00  # Schedule page publish date.
+title = "Using virtual spaces to promote teacher professional growth: Acting to believing"
+publishDate = 2018-01-15T18:17:53-05:00  # Schedule page publish date.
 draft = false
 
 authors = ["Amanda Milewski", "Emanuele Bardelli", "Patricio Herbst"]
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2018-02-09T10:30:00-06:00
-time_end = 2018-02-09T11:45:00-06:00
+date = 2018-02-09T10:30:00-06:00
+date_end = 2018-02-09T11:45:00-06:00
 
 # Abstract and optional shortened version.
 abstract = "We examine the use of virtual spaces for supporting mathematics teacher education. We detail the problems of practice that led to the development of three different virtual environments for supporting both inservice and preservice teachers’ engagement in professional experimentation."

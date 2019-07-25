@@ -1,12 +1,12 @@
 +++
-title = "Teacher Decision Making In Instructional Situations In Algebra And Geometry: Do Teachers Follow Instructional Norms?"
-date = 2018-11-17T16:30:00-05:00  # Schedule page publish date.
+title = "Teacher decision making in instructional situations in algebra and geometry: Do teachers follow instructional norms?"
+publishDate = 2018-11-17T16:30:00-05:00  # Schedule page publish date.
 draft = false
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2018-11-17T16:30:00-05:00
-time_end = 2018-11-17T17:30:00-05:00
+date = 2018-11-17T16:30:00-05:00
+date_end = 2018-11-17T17:30:00-05:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Emanuele Bardelli", "Patricio Herbst"]

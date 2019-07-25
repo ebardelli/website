@@ -4,7 +4,7 @@
 title: "Modeling teacher preparation programs' effects on graduates' evaluation scores"
 event: "CIERS"
 event_url: "http://edpolicy.umich.edu/ciers/"
-location: Ford School, University of Michigan
+location: Weill Hall 3240 - School of Public Policy - University of Michigan
 summary:
 abstract:
 

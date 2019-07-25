@@ -1,12 +1,12 @@
 +++
-title = "An Exploratory Factor Analysis of EQIPM, a Video Coding Protocol to Assess the Quality of Community College Algebra Instruction\t"
-date = "2019-01-18"
+title = "An exploratory factor analysis of EQIPM, a video coding protocol to assess the quality of community college algebra instruction"
+publishDate = "2019-01-18"
 draft = false
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2019-03-02T15:30:00-05:00
-time_end = 2019-03-02T16:00:00-05:00
+date = 2019-03-02T15:30:00-05:00
+date_end = 2019-03-02T16:00:00-05:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Vilma Mesa", "Irene Duranczyk", "Emanuele Bardelli", "AI@CC Research Group"]

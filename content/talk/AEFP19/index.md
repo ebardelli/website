@@ -1,12 +1,12 @@
 +++
 title = "Can administrative data help identify promising clinical placements? Evidence from a randomized control trial in a teacher preparation program"
-date = "2019-01-18"  # Schedule page publish date.
+publishDate = "2019-01-18"  # Schedule page publish date.
 draft = false
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2019-03-22T9:45:00-05:00
-time_end = 2019-03-22T11:15:00-05:00
+date = 2019-03-22T9:45:00-05:00
+date_end = 2019-03-22T11:15:00-05:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Matthew Ronfeldt", "Emanuele Bardelli", "Hannah Mullman", "Matthew Truwit"]
