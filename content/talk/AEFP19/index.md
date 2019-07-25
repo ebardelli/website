@@ -1,5 +1,5 @@
 +++
-title = "Can Administrative Data Help Identify Promising Clinical Placements? Evidence from a Randomized Control Trial in a Teacher Preparation Program"
+title = "Can administrative data help identify promising clinical placements? Evidence from a randomized control trial in a teacher preparation program"
 date = "2019-01-18"  # Schedule page publish date.
 draft = false
 
