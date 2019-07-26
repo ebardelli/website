@@ -1,6 +1,6 @@
 
 .dark a,
-h3.article-title a:hover {
+h3.article-title {
   color: #fff;
 }
 
@@ -8,6 +8,10 @@ h3.article-title a:hover {
   border-color: #ffcb05;
 }
 
-.dark .featurette-icon {
+.dark a:hover {
+  color: #ffcb05;
+}
+
+.dark h3.article-title a:hover {
   color: #ffcb05;
 }

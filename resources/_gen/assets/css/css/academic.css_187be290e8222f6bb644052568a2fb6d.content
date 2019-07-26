@@ -1,2 +1,2 @@
 /* Source Themes Academic v4.4.0 | https://sourcethemes.com/academic/ */
-.dark a,h3.article-title a:hover{color:#fff}.dark .form-control:focus{border-color:#ffcb05}.dark .featurette-icon{color:#ffcb05}
+.dark a,h3.article-title{color:#fff}.dark .form-control:focus{border-color:#ffcb05}.dark a:hover{color:#ffcb05}.dark h3.article-title a:hover{color:#ffcb05}
