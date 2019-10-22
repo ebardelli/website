@@ -163,7 +163,7 @@ sharing = true
 # Load CSS and JS plugins
 #   E.g. To load `/assets/css/custom.css`, set `plugins_css = ["custom"]`.
 #   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
-plugins_css = ["custom_dark"]
+# plugins_css = ["custom_dark"]
 plugins_js  = []
 
 # Configuration of publication pages.
@@ -243,3 +243,10 @@ plugins_js  = []
   engine = 2
   api_key = ""
   zoom = 15
+
+############################
+## Marketing
+############################
+[marketing]
+  google_analytics = "UA-101618137-1"
+  google_tag_manager = ""

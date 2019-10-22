@@ -1,0 +1,28 @@
+$color_1: #fff;
+$color_2: #ffcb05;
+$border_color_1: #ffcb05;
+
+.dark {
+    a {
+        color: $color_1;
+        &:hover {
+            color: $color_2;
+        }
+    }
+    .form-control {
+        &:focus {
+            border-color: $border_color_1;
+        }
+    }
+    h3.article-title {
+        a {
+            &:hover {
+                color: $color_2;
+            }
+        }
+    }
+}
+h3.article-title {
+    color: $color_1;
+}
+

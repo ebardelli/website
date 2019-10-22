@@ -9011,3 +9011,17 @@ div.mermaid {
   width: 100%;
   text-align: center;
   margin-bottom: 1rem; }
+
+.dark a {
+  color: #fff; }
+  .dark a:hover {
+    color: #ffcb05; }
+
+.dark .form-control:focus {
+  border-color: #ffcb05; }
+
+.dark h3.article-title a:hover {
+  color: #ffcb05; }
+
+h3.article-title {
+  color: #fff; }

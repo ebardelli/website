@@ -16,7 +16,7 @@ baseurl = "//bardelli.netlify.com/"
 copyright = "&copy; 2016-2019 Emanuele Bardelli"
 
 # Enable analytics by entering your Google Analytics tracking ID
-googleAnalytics = "UA-101618137-1"
+#googleAnalytics = "UA-101618137-1"
 
 # Enable comments by entering your Disqus shortname
 disqusShortname = ""
