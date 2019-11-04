@@ -1,9 +1,16 @@
 $color_1: #fff;
 $color_2: #ffcb05;
 $border_color_1: #ffcb05;
+$background_color: #282a36;
 
 .dark {
     a {
+        color: $color_1;
+        &:hover {
+            color: $color_2;
+        }
+    }
+    button {
         color: $color_1;
         &:hover {
             color: $color_2;
@@ -20,6 +27,9 @@ $border_color_1: #ffcb05;
                 color: $color_2;
             }
         }
+    }
+    .modal-content {
+        background: $background_color;
     }
 }
 h3.article-title {

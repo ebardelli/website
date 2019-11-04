@@ -9017,11 +9017,19 @@ div.mermaid {
   .dark a:hover {
     color: #ffcb05; }
 
+.dark button {
+  color: #fff; }
+  .dark button:hover {
+    color: #ffcb05; }
+
 .dark .form-control:focus {
   border-color: #ffcb05; }
 
 .dark h3.article-title a:hover {
   color: #ffcb05; }
+
+.dark .modal-content {
+  background: #282a36; }
 
 h3.article-title {
   color: #fff; }
