@@ -9,7 +9,7 @@ date = 2019-04-01T10:30:00-05:00
 date_end = 2019-04-03T11:30:00-05:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Amanda Milewsky", "Emanuele Bardelli", "Patricio Herbst"]
+authors = ["Amanda Milewski", "Emanuele Bardelli", "Patricio Herbst"]
 
 # Abstract and optional shortened version.
 abstract = ""
