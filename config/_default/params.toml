@@ -166,6 +166,9 @@ sharing = true
 # plugins_css = ["custom_dark"]
 plugins_js  = []
 
+# Link authors to their profile page? (true/false)
+link_authors = false
+
 # Configuration of publication pages.
 [publications]
   # Date format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
@@ -250,3 +253,4 @@ plugins_js  = []
 [marketing]
   google_analytics = "UA-101618137-1"
   google_tag_manager = ""
+
