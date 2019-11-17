@@ -92,6 +92,9 @@ phone = "(734) 926-8171"
 # For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
 address = {street = "610 East University Ave.", city = "Ann Arbor", region = "MI", postcode = "48109", country = "United States", country_code = "US"}
 
+# Address format (choose from the [address_formats] list below or add you own to the list).
+address_format = "en-us"
+
 # Geographic coordinates48109
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
 #coordinates = {latitude = "37.4275", longitude = "-122.1697"}
@@ -147,8 +150,8 @@ list_delimiter = ", "
 # Get user avatars from Gravatar.com? (true/false)
 gravatar = false
 
-# Align the main menu to the right of the page? (true/false)
-menu_align_right = false
+# Main menu alignment (l = left, c = center, r = right) and logo options.
+main_menu = {align = "l", show_logo = true}
 
 # Show estimated reading time for posts? (true/false)
 reading_time = true
@@ -254,3 +257,8 @@ link_authors = false
   google_analytics = "UA-101618137-1"
   google_tag_manager = ""
 
+# Available address formats.
+[address_formats]
+  en-us = {order = ['street', 'city', 'region', 'postcode'], delimiters = [', ', ', ', ' ', '']}
+  en-gb = {order = ['street', 'city', 'region', 'postcode'], delimiters = [', ', ', ', ', ', '']}
+  zh = {order = ['postcode', 'region', 'city', 'street'], delimiters = [' ', ' ', ' ', '']}
