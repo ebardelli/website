@@ -24,7 +24,8 @@ email = ""
 # List (academic) interests or hobbies
 interests = [
     "Mathematics Education",
-    "Teacher Professional Development and Learning",
+    "Teacher Learning",
+    "Teacher Induction", 
     "Instructional Practices"
 ]
 
