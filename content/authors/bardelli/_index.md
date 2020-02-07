@@ -81,3 +81,5 @@ interests = [
 Emanuele Bardelli is a doctoral candidate in Educational Studies at the University of Michigan and an IES predoctoral fellow.  His research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
 
 Originally from Italy, Emanuele earned a bachelor of science in mathematics from the Università degli Studi di Modena e Reggio Emilia, and a master of arts in education and a teaching credential from California State University, Los Angeles.  Before beginning his PhD, Emanuele worked both as an instructional coach and as a middle and high school mathematics teacher in Los Angeles and Lodi, California for five years.
+
+Emanuele uses the pronouns he, him, his.
