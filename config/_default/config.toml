@@ -13,7 +13,7 @@ baseurl = "//bardelli.netlify.com/"
 
 # Enter a copyright notice to display in the site footer.
 # To display a copyright symbol, type `&copy;`.
-copyright = "&copy; 2016-2019 Emanuele Bardelli"
+copyright = "&copy; 2016-{year} Emanuele Bardelli"
 
 # Enable analytics by entering your Google Analytics tracking ID
 #googleAnalytics = "UA-101618137-1"
