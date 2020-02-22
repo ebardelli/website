@@ -1,5 +1,5 @@
 +++
-title = "Mentors Matter Recruitment Initiative: Can Mentor Teacher Recruitment Increase Student Teacher Feelings of Preparedness?"
+title = "Mentors Matter Recruitment initiative: Can mentor teacher recruitment increase student teacher feelings of preparedness?"
 publishDate = "2020-02-17"  # Schedule page publish date.
 draft = false
 
