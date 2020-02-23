@@ -63,4 +63,3 @@ preserveTaxonomyNames = true
 
 [permalinks]
   talk = "/:year/:month/:slug/"
-  publication = "/:year/:month/:slug/"
