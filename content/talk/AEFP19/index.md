@@ -2,6 +2,7 @@
 title = "Can administrative data help identify promising clinical placements? Evidence from a randomized control trial in a teacher preparation program"
 publishDate = "2019-01-18"  # Schedule page publish date.
 draft = false
+slug = "placements-rcts"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

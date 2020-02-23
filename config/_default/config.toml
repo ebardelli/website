@@ -60,3 +60,7 @@ preserveTaxonomyNames = true
   category = "categories"
   publication_type = "publication_types"
   author = "authors"
+
+[permalinks]
+  talk = "/:year/:month/:slug/"
+  publication = "/:year/:month/:slug/"

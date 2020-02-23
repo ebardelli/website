@@ -2,6 +2,7 @@
 title = "Using virtual spaces to promote teacher professional growth: Acting to believing"
 publishDate = 2018-01-15T18:17:53-05:00  # Schedule page publish date.
 draft = false
+slug = "virtual-pd"
 
 authors = ["Amanda Milewski", "Emanuele Bardelli", "Patricio Herbst"]
 

@@ -2,6 +2,7 @@
 title = "Who benefits from mathematics courses for teachers? An analysis of MKT-G growth during geometry for teachers courses"
 publishDate = "2020-02-01"  # Schedule page publish date.
 draft = false
+slug = "mkt-growth"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

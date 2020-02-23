@@ -7,6 +7,7 @@ event_url: "http://edpolicy.umich.edu/ciers/"
 location: Weill Hall 3240 - School of Public Policy - University of Michigan
 summary:
 abstract:
+slug: "pc-growth"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

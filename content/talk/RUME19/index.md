@@ -2,6 +2,7 @@
 title = "An exploratory factor analysis of EQIPM, a video coding protocol to assess the quality of community college algebra instruction"
 publishDate = "2019-01-18"
 draft = false
+slug = "equipm"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

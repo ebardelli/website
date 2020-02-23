@@ -2,6 +2,7 @@
 title = "Effects of using administrative data to guide the recruitment of instructionally effective and experienced cooperating teachers: Results from a randomized control trial"
 publishDate = "2020-02-01"  # Schedule page publish date.
 draft = false
+slug = "recruitment-rct"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

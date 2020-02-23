@@ -2,6 +2,7 @@
 title = "Effects of serving as a cooperating teacher on evaluation metrics"
 publishDate = 2018-07-09T12:18:05-04:00
 draft = false
+slug = "ct-effects"
 
 authors = ["Emanuele Bardelli", "Matthew Ronfeldt"]
 

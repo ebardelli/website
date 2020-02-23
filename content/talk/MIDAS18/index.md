@@ -2,6 +2,7 @@
 title = "Learning about the norms of teaching practice: How can machine learning help analyze teachers’ reactions to scenarios?"
 publishDate = 2018-10-11T09:00:00-04:00  # Schedule page publish date.
 draft = false
+slug = "ml-appraisal"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

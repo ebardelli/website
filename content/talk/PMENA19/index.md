@@ -2,6 +2,7 @@
 title = "The role of emotions in simulations of practice"
 publishDate = 2019-11-11T00:00:00-05:00  # Schedule page publish date.
 draft = false
+slug = "teacher-emotions"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

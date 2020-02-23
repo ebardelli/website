@@ -2,6 +2,7 @@
 title = "Framing a task as both construction and proof: How do teachers manage?"
 publishDate = "2019-01-18"  # Schedule page publish date.
 draft = false
+slug = "framing"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

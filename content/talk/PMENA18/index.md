@@ -2,6 +2,7 @@
 title = "Teacher decision making in instructional situations in algebra and geometry: Do teachers follow instructional norms?"
 publishDate = 2018-11-17T16:30:00-05:00  # Schedule page publish date.
 draft = false
+slug = "teacher-decisions"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

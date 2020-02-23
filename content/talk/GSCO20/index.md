@@ -2,6 +2,7 @@
 title = "Mentors Matter Recruitment initiative: Can mentor teacher recruitment increase student teacher feelings of preparedness?"
 publishDate = "2020-02-17"  # Schedule page publish date.
 draft = false
+slug = "mmr"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
