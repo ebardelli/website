@@ -25,7 +25,7 @@ email = ""
 interests = [
     "Mathematics Education",
     "Teacher Learning",
-    "Teacher Induction", 
+    "Teacher Induction",
     "Instructional Practices"
 ]
 
@@ -74,7 +74,7 @@ interests = [
 [[social]]
    icon = "cv"
    icon_pack = "ai"
-   link = "files/cv.pdf"
+   link = "files/bardelli-cv.pdf"
 
 +++
 
