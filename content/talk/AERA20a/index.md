@@ -55,6 +55,8 @@ url_code = ""
   focal_point = ""
 +++
 
+**[This talk has been cancelled](https://www.aera.net/Newsroom/AERA-Announces-2020-Annual-Meeting-Change)**
+
 In order to receive initial teacher certification, teacher candidates complete
 clinical training, often referred to as “student teaching” or “residency,” in
 the classroom of a cooperating teacher (CT) – a P-12 teacher who mentors them

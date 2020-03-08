@@ -55,6 +55,8 @@ url_code = ""
   focal_point = ""
 +++
 
+**[This talk has been cancelled](https://www.aera.net/Newsroom/AERA-Announces-2020-Annual-Meeting-Change)**
+
 While mathematics content courses are expected to provide future teachers with
 the needed content knowledge to become an effective educator, little is known
 about the effects of these courses on content knowledge development. In this
