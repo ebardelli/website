@@ -32,3 +32,8 @@
   name = "Contact"
   url = "#contact"
   weight = 6
+
+[[main]]
+  name = "Ed News"
+  url = "http://umich.edu/~bardelli/ed-news/"
+  weight = 7
