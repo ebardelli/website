@@ -35,5 +35,5 @@
 
 [[main]]
   name = "Ed News"
-  url = "http://umich.edu/~bardelli/ed-news/"
+  url = "/ed-news/"
   weight = 7
