@@ -70,3 +70,5 @@ average mentor teachers' evaluation scores and improved student teachers’
 feelings of preparedness at the end of their student teaching placement. I will
 also discuss preliminary results from a replication study and plans for an
 upcoming scale-up study.
+
+[Link to talk](https://bluejeans.com/450972201)
