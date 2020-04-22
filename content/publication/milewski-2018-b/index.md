@@ -1,7 +1,7 @@
 ---
 title: "The Role of Simulations for Supporting Professional Growth: Teachers’ Engagement in Virtual Professional Experimentation"
 date: 2018-01-01
-publishDate: 2020-04-19T02:20:04.206905Z
+publishDate: 2020-04-22T16:24:38.651491Z
 authors: ["Amanda Milewski", "Patricio Herbst", "Emanuele Bardelli", "Carolyn Hetrick"]
 publication_types: ["2"]
 abstract: ""

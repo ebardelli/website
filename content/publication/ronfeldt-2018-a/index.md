@@ -1,7 +1,7 @@
 ---
 title: "Identifying Promising Clinical Placements Using Administrative Data: Preliminary Results from ISTI Placement Initiative Pilot"
 date: 2018-04-01
-publishDate: 2020-04-19T02:20:04.207328Z
+publishDate: 2020-04-22T16:24:38.652825Z
 authors: ["Matthew Ronfeldt", "Dan Goldhaber", "James Cowan", "Emanuele Bardelli", "Joy Johnson", "Christopher Daniel Tien"]
 publication_types: ["3"]
 abstract: ""
