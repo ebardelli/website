@@ -22,3 +22,9 @@ jobs:
 
       - name: Build
         run: hugo --minify --gc
+
+      - name: Create artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: website
+          path: public/
