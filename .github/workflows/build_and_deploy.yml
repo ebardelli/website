@@ -1,4 +1,4 @@
-name: Build preview
+name: Build and deploy
 
 on:
   push:
@@ -22,6 +22,15 @@ jobs:
 
       - name: Build
         run: hugo --minify --gc
+
+      - name: Deploy to netlify
+        uses: jsmrcaga/action-netlify-deploy@v1.0.1
+        with:
+          NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_API_ID }}
+          NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: public/
 
       - name: Create artifact
         uses: actions/upload-artifact@v1
