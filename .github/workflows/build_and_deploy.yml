@@ -20,7 +20,7 @@ jobs:
           hugo-version: latest
           # extended: true
 
-      - name: Build
+      - name: Build website
         run: hugo --minify --gc
 
       - name: Deploy to netlify
@@ -32,7 +32,15 @@ jobs:
           NETLIFY_DEPLOY_TO_PROD: true
           build_directory: public/
 
-      - name: Create artifact
+      - name: Upload to Github pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.GH_TOKEN_SECRET }}
+          BRANCH: gh-pages
+          FOLDER: public/
+          commit_message: ${{ github.event.head_commit.message }}
+
+      - name: Create website archive
         uses: actions/upload-artifact@v1
         with:
           name: website
