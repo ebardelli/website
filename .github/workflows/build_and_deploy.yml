@@ -18,19 +18,10 @@ jobs:
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: latest
-          # extended: true
+          extended: true
 
       - name: Build website
         run: hugo --minify --gc
-
-      - name: Deploy to netlify
-        uses: jsmrcaga/action-netlify-deploy@v1.0.1
-        with:
-          NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_API_ID }}
-          NETLIFY_DEPLOY_TO_PROD: true
-          build_directory: public/
 
       - name: Upload to Github pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -39,10 +30,4 @@ jobs:
           BRANCH: master
           FOLDER: public/
           commit_message: ${{ github.event.head_commit.message }}
-
-      - name: Upload website to artifacts 
-        uses: actions/upload-artifact@v1
-        with:
-          name: website
-          path: public/
 
