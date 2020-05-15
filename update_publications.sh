@@ -1,5 +1,7 @@
 #!/bin/sh
 
+rm -rf content/publication/*
+
 tmpfile=$(mktemp /tmp/publications.XXXXXX)
 
 sed 's/  keywords = {My Work\/Papers}.*$//' publications.bib |

@@ -9124,6 +9124,12 @@ div.mermaid {
   text-align: center;
   margin-bottom: 1rem; }
 
+/*************************************************
+ *  Style for right to left (RTL) languages.
+ **************************************************/
+html[dir="rtl"] body {
+  text-align: right; }
+
 .dark a {
   color: #fff; }
   .dark a:hover {
