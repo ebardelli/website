@@ -61,5 +61,9 @@ preserveTaxonomyNames = true
   publication_type = "publication_types"
   author = "authors"
 
+# Workaround Hugo publishing taxonomy URLs as plurals - consistently use singular across Academic.
 [permalinks]
-  talk = "/:year/:month/:slug/"
+  authors = "/author/:slug/"
+  tags = "/tag/:slug/"
+  categories = "/category/:slug/"
+  publication_types = "/publication-type/:slug/"
