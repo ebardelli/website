@@ -28,6 +28,6 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.GH_TOKEN_SECRET }}
           BRANCH: master
-          FOLDER: public/
+          FOLDER: public
           commit_message: ${{ github.event.head_commit.message }}
 
