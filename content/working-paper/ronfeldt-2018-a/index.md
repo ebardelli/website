@@ -1,10 +1,10 @@
 ---
 title: "Identifying Promising Clinical Placements Using Administrative Data: Preliminary Results from ISTI Placement Initiative Pilot"
 date: 2018-04-01
-publishDate: 2020-06-16T17:23:05.554750Z
+publishDate: 2020-06-16T17:28:45.172446Z
 authors: ["Matthew Ronfeldt", "Dan Goldhaber", "James Cowan", "Emanuele Bardelli", "Joy Johnson", "Christopher Daniel Tien"]
 publication_types: ["3"]
-abstract: ""
+abstract: "Improving the skill set of new teachers is a potentially important policy lever to increase student achievement. There are, however, doubts about the extent to which teacher education programs contribute to the development of teachers’ skills. In this paper, we describe findings from an experiment designed to test whether one aspect of teacher education – the assignment of teacher candidates to student teaching internships – has a causal impact on the type of coaching they receive and their feelings of preparedness to teach. Specifically, we use administrative data on potential student teaching placements to predict those placements more likely to be promising, and then we randomly assign teacher candidates from one large program from Tennessee into either more promising (high index) or less promising (low index) internships. Based on data from a post-student teaching survey, we find consistently strong evidence of large effects of being assigned to high versus low index placements, particularly in terms of teacher candidates’ perceptions of the quality of instruction of their cooperating teachers and the quantity and quality of the coaching that they received. And while not as large or consistently significant, we also found that teacher candidates in high versus low placements are more likely to report better working conditions in their placement schools, higher quality collaboration among teachers, more opportunities to learn to teach, and feeling better prepared to teach. Our findings provide evidence that teacher education can have a causal effect on the development of teacher candidates and it offers practical implications for programs and districts about how to use administrative data to inform internship placement decisions."
 featured: false
 publication: ""
 url_pdf: "https://caldercenter.org/publications/identifying-promising-clinical-placements-using-administrative-data-preliminary-results"
