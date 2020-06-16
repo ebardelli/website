@@ -1,7 +1,7 @@
 ---
 title: "Will Mentoring a Student Teacher Harm My Evaluation Scores? Effects of Serving as a Cooperating Teacher on Evaluation Metrics"
 date: 2019-01-01
-publishDate: 2020-06-16T17:15:05.599392Z
+publishDate: 2020-06-16T17:23:05.555490Z
 authors: ["Matthew Ronfeldt", "Emanuele Bardelli", "Stacey Brockman", "Hannah Mullman"]
 publication_types: ["3"]
 abstract: ""
