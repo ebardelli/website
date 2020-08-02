@@ -48,7 +48,7 @@ education:
 #   form "mailto:your-email@example.com" or "#contact" for contact widget.
 social:
     - icon: envelope
-      icon_pack: fa
+      icon_pack: fas
       link: mailto:bardelli@umich.edu
     - icon: google-scholar
       icon_pack: ai
@@ -59,6 +59,9 @@ social:
     - icon: orcid
       icon_pack: ai
       link: //orcid.org/0000-0003-3383-9315
+    - icon: github
+      icon_pack: fab
+      link: https://github.com/ebardelli
     - icon: cv
       icon_pack: ai
       link: files/bardelli-cv.pdf
