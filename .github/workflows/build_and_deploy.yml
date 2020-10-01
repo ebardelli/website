@@ -27,7 +27,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.GH_TOKEN_SECRET }}
-          BRANCH: master
+          BRANCH: html
           FOLDER: public
           commit_message: ${{ github.event.head_commit.message }}
 
