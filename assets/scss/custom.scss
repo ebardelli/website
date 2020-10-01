@@ -10,6 +10,18 @@ $background_color: #282a36;
             color: $color_2;
         }
     }
+    a.summary-link {
+        color: $color_1;
+        &:hover {
+            color: $color_2;
+        }
+    }
+    a:not(.btn) {
+        color: $color_1;
+        &:hover {
+            color: $color_2;
+        }
+    }
     button {
         color: $color_1;
         &:hover {

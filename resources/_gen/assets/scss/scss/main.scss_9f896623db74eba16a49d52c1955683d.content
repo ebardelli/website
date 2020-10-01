@@ -8190,8 +8190,10 @@ article .article-metadata {
 
 .article-metadata .author-notes {
   cursor: help;
-  vertical-align: super;
-  font-size: 0.7em; }
+  padding-left: 3px; }
+
+.article-metadata .author-highlighted {
+  font-weight: bold; }
 
 .article-categories {
   white-space: nowrap;
@@ -9243,6 +9245,16 @@ html[dir="rtl"] body {
 .dark a {
   color: #fff; }
   .dark a:hover {
+    color: #ffcb05; }
+
+.dark a.summary-link {
+  color: #fff; }
+  .dark a.summary-link:hover {
+    color: #ffcb05; }
+
+.dark a:not(.btn) {
+  color: #fff; }
+  .dark a:not(.btn):hover {
     color: #ffcb05; }
 
 .dark button {
