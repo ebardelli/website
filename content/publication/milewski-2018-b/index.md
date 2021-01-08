@@ -1,13 +1,41 @@
 ---
-title: "The Role of Simulations for Supporting Professional Growth: Teachers’ Engagement in Virtual Professional Experimentation"
-date: 2018-01-01
-publishDate: 2020-11-30T14:32:20.885609Z
-authors: ["Amanda Milewski", "Patricio Herbst", "Emanuele Bardelli", "Carolyn Hetrick"]
-publication_types: ["2"]
-abstract: ""
-featured: false
-publication: "*Journal of Technology and Teacher Education*"
-tags: ["my work/papers"]
-url_pdf: "https://www.learntechlib.org/p/181094/"
----
+# Documentation: https://wowchemy.com/docs/managing-content/
 
+title: 'The Role of Simulations for Supporting Professional Growth: Teachers’ Engagement
+  in Virtual Professional Experimentation'
+subtitle: ''
+summary: ''
+authors:
+- Amanda Milewski
+- Patricio Herbst
+- Emanuele Bardelli
+- Carolyn Hetrick
+tags:
+- '"my work/papers"'
+categories: []
+date: '2018-01-01'
+lastmod: 2021-01-08T11:26:20-05:00
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
+publishDate: '2021-01-08T16:26:20.621858Z'
+publication_types:
+- '2'
+abstract: ''
+publication: '*Journal of Technology and Teacher Education*'
+url_pdf: https://www.learntechlib.org/p/181094/
+---

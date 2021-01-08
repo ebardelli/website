@@ -1,5 +1,8 @@
-.PHONY=update-publications
+.PHONY=update-theme
+update-theme:
+	hugo mod get -u && hugo mod clean
 
+.PHONY=update-publications
 update-publications:
 	rm -rf content/publication/*; \
 	academic import --bibtex publications.bib --overwrite --publication-dir=publication --normalize; \
@@ -9,6 +12,3 @@ update-publications:
 	academic import --bibtex "$tmpfile" --overwrite --publication-dir=working-paper --normalize; \
 	rm "$tmpfile"
 
-.PHONY=update-theme
-update-theme:
-	hugo mod get -u && hugo mod clean
