@@ -1,9 +1,9 @@
-.PHONY=update-theme
-update-theme:
+.PHONY=theme
+theme:
 	hugo mod get -u && hugo mod clean
 
-.PHONY=update-publications
-update-publications:
+.PHONY=publications
+publications:
 	rm -rf content/publication/*; \
 	academic import --bibtex publications.bib --overwrite --publication-dir=publication --normalize; \
 	rm -rf content/working-paper/*; \
