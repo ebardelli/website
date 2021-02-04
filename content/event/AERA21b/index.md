@@ -6,8 +6,8 @@ slug = "epp-growth-features"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date = 2021-04-20T08:15:00-08:00
-#date_end = 2020-04-20T9:45:00-08:00
+date = 2021-04-09T10:00:00-05:00
+date_end = 2020-04-20T11:00:00-05:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Emanuele Bardelli", "Matthew Ronfeldt", "John Papay"]
