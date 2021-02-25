@@ -1,6 +1,12 @@
+current_dir:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+
+build:
+	docker run --rm -v $(current_dir):/src klakegg/hugo:ext-alpine build
+
 .PHONY=theme
 theme:
-	hugo mod get -u && hugo mod clean
+	docker run --rm -v $(current_dir):/src klakegg/hugo:ext-alpine mod get -u
+	docker run --rm -v $(current_dir):/src klakegg/hugo:ext-alpine mod clean
 
 .PHONY=publications
 publications:
