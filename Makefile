@@ -1,5 +1,9 @@
 current_dir:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
+.PHONY=all
+all: theme build
+
+.PHONY=build
 build:
 	docker run --rm -v $(current_dir):/src klakegg/hugo:ext-alpine build
 
