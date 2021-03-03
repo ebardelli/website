@@ -5,12 +5,12 @@ all: theme build
 
 .PHONY=build
 build:
-	docker run --rm -v $(current_dir):/src klakegg/hugo:ext-alpine build
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-full --gc --minify --cleanDestinationDir
 
 .PHONY=theme
 theme:
-	docker run --rm -v $(current_dir):/src klakegg/hugo:ext-alpine mod get -u
-	docker run --rm -v $(current_dir):/src klakegg/hugo:ext-alpine mod clean
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-full mod get -u
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-full mod clean
 
 .PHONY=publications
 publications:
