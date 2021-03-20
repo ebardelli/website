@@ -12,6 +12,10 @@ theme:
 	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod mod get -u
 	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod mod clean
 
+.PHONY=server
+serve:
+	docker run --rm -p 1313:1313 -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod serve --bind "0.0.0.0"
+
 .PHONY=publications
 publications:
 	rm -rf content/publication/*; \
