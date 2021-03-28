@@ -1,11 +1,15 @@
 current_dir:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 .PHONY=all
-all: theme build
+all: theme build deploy
 
 .PHONY=build
 build:
-	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod --gc --minify --cleanDestinationDir
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod --gc --minify --cleanDestinationDir --baseURL="http://umich.edu/~bardelli/"
+
+.PHONY=deploy
+deploy:
+	rsync -azP --delete public/* bardelli@sftp.itd.umich.edu:~/Public/html
 
 .PHONY=theme
 theme:
