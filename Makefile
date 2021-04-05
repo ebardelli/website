@@ -5,7 +5,7 @@ all: theme build deploy
 
 .PHONY=build
 build:
-	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod --gc --minify --cleanDestinationDir --baseURL="http://umich.edu/~bardelli/"
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:latest-mod --gc --minify --cleanDestinationDir --baseURL="http://umich.edu/~bardelli/"
 
 .PHONY=deploy
 deploy:
@@ -13,12 +13,12 @@ deploy:
 
 .PHONY=theme
 theme:
-	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod mod get -u
-	docker run --rm -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod mod clean
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:latest-mod mod get -u
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:latest-mod mod clean
 
 .PHONY=server
 serve:
-	docker run --rm -p 1313:1313 -v $(current_dir):/src peaceiris/hugo:v0.81.0-mod serve --bind "0.0.0.0"
+	docker run --rm -p 1313:1313 -v $(current_dir):/src peaceiris/hugo:latest-mod serve --bind "0.0.0.0"
 
 .PHONY=publications
 publications:
