@@ -24,12 +24,11 @@ jobs:
         run: hugo --minify --gc
 
       - name: Upload to Github pages
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          ACCESS_TOKEN: ${{ secrets.GH_TOKEN_SECRET }}
-          BRANCH: html
-          FOLDER: public
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_SECRET }}
-          REPOSITORY_NAME: ebardelli/ebardelli.github.io
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          branch: html
+          folder: public
+          repository-name: ebardelli/ebardelli.github.io
+          token: ${{ secrets.GH_TOKEN_SECRET }}
+          commit-message: ${{ github.event.head_commit.message }}
 
