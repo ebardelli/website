@@ -29,6 +29,7 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.GH_TOKEN_SECRET }}
           BRANCH: html
           FOLDER: public
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_SECRET }}
           REPOSITORY_NAME: ebardelli/ebardelli.github.io
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
 
