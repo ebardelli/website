@@ -9,17 +9,26 @@ $background_color: #282a36;
         &:hover {
             color: $color_2;
         }
+        &:visited {
+            color: $color_1;
+        }
     }
     a.summary-link {
         color: $color_1;
         &:hover {
             color: $color_2;
         }
+        &:visited {
+            color: $color_1;
+        }
     }
     a:not(.btn) {
         color: $color_1;
         &:hover {
             color: $color_2;
+        }
+        &:visited {
+            color: $color_1;
         }
     }
     button {
@@ -37,6 +46,9 @@ $background_color: #282a36;
         a {
             &:hover {
                 color: $color_2;
+            }
+            &:visited {
+                color: $color_1;
             }
         }
     }
