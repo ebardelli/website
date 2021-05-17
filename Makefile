@@ -9,6 +9,7 @@ build:
 
 .PHONY=deploy
 deploy:
+	git push
 	rsync -azP --delete public/* bardelli@sftp.itd.umich.edu:~/Public/html
 
 .PHONY=theme
