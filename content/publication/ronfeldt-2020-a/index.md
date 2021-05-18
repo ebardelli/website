@@ -16,7 +16,7 @@ authors:
 tags: []
 categories: []
 date: '2020-09-01'
-lastmod: 2021-01-08T11:26:21-05:00
+lastmod: 2021-05-18T13:50:04Z
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-01-08T16:26:21.247596Z'
+publishDate: '2021-05-18T13:50:03.911264Z'
 publication_types:
 - '2'
 abstract: New studies show that the instructional effectiveness of preservice candidates
@@ -50,5 +50,5 @@ abstract: New studies show that the instructional effectiveness of preservice ca
   that more effective/experienced cooperating teachers improve candidates’ preparedness
   to teach.
 publication: '*Educational Evaluation and Policy Analysis*'
-doi: 10.3102/0162373720954183
+doi: 10/gjksg7
 ---
