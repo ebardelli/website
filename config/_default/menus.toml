@@ -40,5 +40,5 @@
 
 [[main]]
   name = "Ed News"
-  url = "https://ed-news.netlify.app"
+  url = "/ed-news/"
   weight = 7
