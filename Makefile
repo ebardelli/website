@@ -1,7 +1,7 @@
 current_dir:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 .PHONY=all
-all: theme build deploy
+all: build deploy
 
 .PHONY=build
 build:
