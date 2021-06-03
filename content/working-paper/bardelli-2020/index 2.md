@@ -10,7 +10,7 @@ authors:
 tags: []
 categories: []
 date: '2020-04-01'
-lastmod: 2021-05-18T13:50:09Z
+lastmod: 2021-05-31T16:32:18Z
 featured: false
 draft: false
 
@@ -28,7 +28,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-05-18T13:50:06.775765Z'
+publishDate: '2021-05-31T16:32:15.942820Z'
 publication_types:
 - '3'
 abstract: For decades, federal and state agencies have identified teacher shortages

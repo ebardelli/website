@@ -8,12 +8,13 @@ summary: ''
 authors:
 - Matthew Ronfeldt
 - Emanuele Bardelli
-- Stacey Brockman
+- Stacey L Brockman
 - Hannah Mullman
-tags: []
+tags:
+- '"my work/papers"'
 categories: []
-date: '2019-01-01'
-lastmod: 2021-05-18T13:50:12Z
+date: '2020-01-01'
+lastmod: 2021-05-31T16:32:12Z
 featured: false
 draft: false
 
@@ -31,19 +32,20 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-05-18T13:50:11.460279Z'
+publishDate: '2021-05-31T16:32:11.013809Z'
 publication_types:
-- '3'
+- '2'
 abstract: Growing evidence suggests that preservice candidates receive better coaching
   and are more instructionally effective when they are mentored by more instructionally
-  effective cooperating teachers (CTs). Yet, teacher education program leaders indicate
+  effective cooperating teachers (CTs). Yet teacher education program leaders indicate
   it can be difficult to recruit instructionally effective teachers to serve as CTs,
   in part because teachers worry that serving may negatively impact district evaluation
-  scores. Using a unique dataset on over 4,500 CTs, we compare evaluation scores during
-  years these teachers served as CTs to years they did not. In years they served as
-  CTs, teachers had significantly better observation ratings and somewhat better achievement
-  gains, though not always at significant levels. These results suggest that concerns
-  over lowered evaluations should not prevent teachers from serving as CTs.
-publication: ''
-doi: 10.26300/PZ55-9N48
+  scores. Using a unique data set on over 4,500 CTs, we compare evaluation scores
+  during years these teachers served as CTs with years they did not. In years they
+  served as CTs, teachers had significantly better observation ratings and somewhat
+  better achievement gains, though not always at significant levels. These results
+  suggest that concerns over lowered evaluations should not prevent teachers from
+  serving as CTs.
+publication: '*American Educational Research Journal*'
+doi: 10.3102/0002831219872952
 ---
