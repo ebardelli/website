@@ -1,0 +1,25 @@
+---
+kind: pipeline
+type: docker
+name: build
+
+steps:
+  - name: build
+    image: peaceiris/hugo:latest-mod 
+    commands:
+        - hugo --gc --minify --cleanDestinationDir --baseURL="https://ebardelli.duckdns.org/"
+
+  - name: publish
+    image: drillster/drone-rsync
+    volumes:
+      - name: www_dir
+        path: /www
+    commands:
+      - rsync -rltvzc --delete --omit-dir-times --no-o --no-g public/ /www/
+
+volumes:
+- name: www_dir
+  host:
+    path: /data/www/ebardelli.duckdns.org/public
+
+...
