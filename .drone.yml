@@ -1,13 +1,13 @@
 ---
 kind: pipeline
 type: docker
-name: build
+name: deploy locally
 
 steps:
   - name: build
     image: peaceiris/hugo:latest-mod 
     commands:
-        - hugo --gc --minify --cleanDestinationDir --baseURL="https://ebardelli.duckdns.org/"
+      - hugo --gc --minify --cleanDestinationDir --baseURL="https://ebardelli.duckdns.org/"
 
   - name: publish
     image: drillster/drone-rsync
@@ -15,11 +15,35 @@ steps:
       - name: www_dir
         path: /www
     commands:
-      - rsync -rltvzc --delete --omit-dir-times --no-o --no-g public/ /www/
+      - rsync -az --delete --omit-dir-times --no-o --no-g public/ /www/
 
 volumes:
 - name: www_dir
   host:
     path: /data/www/ebardelli.duckdns.org/public
+
+---
+kind: pipeline
+type: docker
+name: deploy UMich
+
+steps:
+  - name: build
+    image: peaceiris/hugo:latest-mod 
+    commands:
+      - hugo --gc --minify --cleanDestinationDir --baseURL="http://www-personal.umich.edu/~bardelli/"
+
+  - name: publish 
+    image: drillster/drone-rsync
+    environment:
+      SERVER:
+        from_secret: server
+      USERNAME:
+        from_secret: username
+      PASSWORD:
+        from_secret: password
+    commands:
+      - apk add --update --no-cache sshpass
+      - sshpass -p "$PASSWORD" rsync -e "ssh -o StrictHostKeyChecking=no" -az --delete --omit-dir-times --no-o --no-g public/* $USERNAME@$SERVER:~/Public/html
 
 ...
