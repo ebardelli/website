@@ -15,7 +15,7 @@ steps:
       - name: www_dir
         path: /www
     commands:
-      - rsync -az --delete --omit-dir-times --no-o --no-g public/ /www/
+      - rsync -rltvzc --delete --omit-dir-times --no-o --no-g public/ /www/
 
   - name: publish UMich
     image: drillster/drone-rsync
@@ -28,7 +28,7 @@ steps:
         from_secret: password
     commands:
       - apk add --update --no-cache sshpass
-      - sshpass -p "$PASSWORD" rsync -e "ssh -o StrictHostKeyChecking=no" -az --delete --omit-dir-times --no-o --no-g public/* $USERNAME@$SERVER:~/Public/html
+      - sshpass -p "$PASSWORD" rsync -e "ssh -o StrictHostKeyChecking=no" -rltvzc --delete --omit-dir-times --no-o --no-g public/* $USERNAME@$SERVER:~/Public/html
 
   - name: publish gh pages
     image: plugins/gh-pages
