@@ -1,4 +1,4 @@
-[![Build and deploy](https://github.com/ebardelli/website/actions/workflows/build_and_deploy.yml/badge.svg)](https://github.com/ebardelli/website/actions/workflows/build_and_deploy.yml) [![Build Status](https://drone.pacbard.duckdns.org/api/badges/ebardelli/website/status.svg)](https://drone.pacbard.duckdns.org/ebardelli/website)
+[![Build Status](https://img.shields.io/drone/build/ebardelli/website?logo=drone&server=https%3A%2F%2Fdrone.pacbard.duckdns.org)](https://drone.pacbard.duckdns.org/ebardelli/website)
 
 This is the source for my personal website.
 
