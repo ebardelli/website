@@ -1,15 +1,15 @@
 ---
 kind: pipeline
 type: docker
-name: deploy locally
+name: build and deploy
 
 steps:
   - name: build
     image: peaceiris/hugo:latest-mod 
     commands:
-      - hugo --gc --minify --cleanDestinationDir --baseURL="https://ebardelli.duckdns.org/"
+      - hugo --gc --minify --cleanDestinationDir --baseURL="/"
 
-  - name: publish
+  - name: publish local
     image: drillster/drone-rsync
     volumes:
       - name: www_dir
@@ -17,23 +17,7 @@ steps:
     commands:
       - rsync -az --delete --omit-dir-times --no-o --no-g public/ /www/
 
-volumes:
-- name: www_dir
-  host:
-    path: /data/www/ebardelli.duckdns.org/public
-
----
-kind: pipeline
-type: docker
-name: deploy UMich
-
-steps:
-  - name: build
-    image: peaceiris/hugo:latest-mod 
-    commands:
-      - hugo --gc --minify --cleanDestinationDir --baseURL="http://www-personal.umich.edu/~bardelli/"
-
-  - name: publish 
+  - name: publish UMich
     image: drillster/drone-rsync
     environment:
       SERVER:
@@ -46,18 +30,7 @@ steps:
       - apk add --update --no-cache sshpass
       - sshpass -p "$PASSWORD" rsync -e "ssh -o StrictHostKeyChecking=no" -az --delete --omit-dir-times --no-o --no-g public/* $USERNAME@$SERVER:~/Public/html
 
----
-kind: pipeline
-type: docker
-name: deploy GH pages
-
-steps:
-  - name: build
-    image: peaceiris/hugo:latest-mod 
-    commands:
-      - hugo --gc --minify --cleanDestinationDir --baseURL="https://ebardelli.github.io/"
-
-  - name: publish
+  - name: publish gh pages
     image: plugins/gh-pages
     settings:
       username:
@@ -68,5 +41,10 @@ steps:
         from_secret: gh_repo
       target_branch: html
       pages_directory: public/
+
+volumes:
+- name: www_dir
+  host:
+    path: /data/www/ebardelli.duckdns.org/public
 
 ...
