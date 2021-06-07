@@ -46,4 +46,27 @@ steps:
       - apk add --update --no-cache sshpass
       - sshpass -p "$PASSWORD" rsync -e "ssh -o StrictHostKeyChecking=no" -az --delete --omit-dir-times --no-o --no-g public/* $USERNAME@$SERVER:~/Public/html
 
+---
+kind: pipeline
+type: docker
+name: deploy GH pages
+
+steps:
+  - name: build
+    image: peaceiris/hugo:latest-mod 
+    commands:
+      - hugo --gc --minify --cleanDestinationDir --baseURL="https://ebardelli.github.io/"
+
+  - name: publish
+    image: plugins/gh-pages
+    settings:
+      username:
+        from_secret: gh_username
+      password:
+        from_secret: gh_token
+      remote_url:
+        from_secret: gh_repo
+      target_branch: html
+      pages_directory: public/
+
 ...
