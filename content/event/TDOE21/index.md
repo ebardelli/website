@@ -1,13 +1,13 @@
 +++
 title = "Exploring the Relationship Between Teacher Growth Trajectories and Teacher Preparation Program Features"
-publishDate = "2021-02-01"  # Schedule page publish date.
+publishDate = "2021-06-08"  # Schedule page publish date.
 draft = false
 slug = "epp-growth-features"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date = 2021-04-09T10:00:00-05:00
-date_end = 2021-04-09T11:40:00-05:00
+date = 2021-06-10T15:00:00-05:00
+date_end = 2021-06-10T16:00:00-05:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Emanuele Bardelli", "Matthew Ronfeldt", "John Papay"]
@@ -17,11 +17,11 @@ abstract = "Research has found variation across teacher preparation programs (TP
 abstract_short = ""
 
 # Name of event and optional event URL.
-event = "AERA 2021"
-event_url = "www.aera21.net"
+event = ""
+event_url = ""
 
 # Location of event.
-location = "Online"
+location = "Tennessee Department of Education - Human Capital Division"
 
 # Is this a selected talk? (true/false)
 selected = false
@@ -54,4 +54,3 @@ url_code = ""
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
   focal_point = ""
 +++
-

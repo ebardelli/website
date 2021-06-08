@@ -13,7 +13,7 @@ date_end = 2020-05-14T13:30:00-05:00
 authors = ["Emanuele Bardelli", "Matthew Truwit"]
 
 # Abstract and optional shortened version.
-abstract = ""
+abstract = "As the prevalence of teacher accountability measures has risen over the past decade since the introduction of Race to the Top, so too has the evidence base about their potential bias against teachers of color. In this study, we seek to contribute to this growing literature by investigating the potential bias in teacher evaluation systems against teachers with minoritized racial and ethnic as well as gender identities. Employing data from the Measures of Effective Teaching (MET) data, we propose to use item response theory (IRT) to assess whether teachers of different identities but comparable teaching expertise receive systematically biased observation ratings on specific items across the continuum of instructional effectiveness. Given the use of these measures in high-stakes decisions around educators’ careers, the repercussions of structural bias in teacher evaluations not only are of direct harm to teachers (and students) of marginalized identities but also reinforce the dominant cultural hegemony in our educational system."
 abstract_short = ""
 
 # Name of event and optional event URL.
@@ -54,6 +54,3 @@ url_code = ""
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
   focal_point = ""
 +++
-
-As the prevalence of teacher accountability measures has risen over the past decade since the introduction of Race to the Top, so too has the evidence base about their potential bias against teachers of color. In this study, we seek to contribute to this growing literature by investigating the potential bias in teacher evaluation systems against teachers with minoritized racial and ethnic as well as gender identities. Employing data from the Measures of Effective Teaching (MET) data, we propose to use item response theory (IRT) to assess whether teachers of different identities but comparable teaching expertise receive systematically biased observation ratings on specific items across the continuum of instructional effectiveness. Given the use of these measures in high-stakes decisions around educators’ careers, the repercussions of structural bias in teacher evaluations not only are of direct harm to teachers (and students) of marginalized identities but also reinforce the dominant cultural hegemony in our educational system.
-
