@@ -21,9 +21,7 @@ serve:
 publications:
 	rm -rf content/publication/*; \
 	docker run --rm -v $(current_dir):/hugo ebardelli/hugo-academic:latest import --bibtex publications.bib --overwrite --publication-dir=publication --normalize; \
-	rm -rf content/working-paper/*; \
 	tmpfile=$(mktemp /tmp/publications.XXXXXX); \
 	sed 's/  keywords = {My Work\/Papers}.*$$//' working-papers.bib | sed 's/  file =.*$$//' | sed 's/techreport/unpublished/' > "$tmpfile";\
-	docker run --rm -v $(current_dir):/hugo ebardelli/hugo-academic:latest import --bibtex "$tmpfile" --overwrite --publication-dir=working-paper --normalize; \
+	docker run --rm -v $(current_dir):/hugo ebardelli/hugo-academic:latest import --bibtex "$tmpfile" --overwrite --publication-dir=publication --normalize; \
 	rm "$tmpfile"
-

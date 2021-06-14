@@ -13,7 +13,7 @@ authors:
 tags: []
 categories: []
 date: '2020-04-01'
-lastmod: 2021-06-11T18:24:44Z
+lastmod: 2021-06-14T15:40:48Z
 featured: false
 draft: false
 
@@ -31,7 +31,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-06-11T18:24:43.076293Z'
+publishDate: '2021-06-14T15:40:47.840235Z'
 publication_types:
 - '4'
 abstract: Educator preparation programs (EPPs) across Tennessee train teacher candidates

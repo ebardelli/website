@@ -10,7 +10,7 @@ authors:
 tags: []
 categories: []
 date: '2019-09-01'
-lastmod: 2021-06-11T18:25:00Z
+lastmod: 2021-06-14T15:41:00Z
 featured: false
 draft: false
 
@@ -28,7 +28,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-06-11T18:24:59.529272Z'
+publishDate: '2021-06-14T15:40:59.632319Z'
 publication_types:
 - '3'
 abstract: 'Value-added (VA) scores signal teacher quality and are designed to be used,
