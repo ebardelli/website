@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: build and deploy
+name: publish
 
 steps:
   - name: build
@@ -16,19 +16,6 @@ steps:
         path: /www
     commands:
       - rsync -rltvzc --delete --omit-dir-times --no-o --no-g public/ /www/
-
-  - name: publish UMich
-    image: drillster/drone-rsync
-    environment:
-      SERVER:
-        from_secret: server
-      USERNAME:
-        from_secret: username
-      PASSWORD:
-        from_secret: password
-    commands:
-      - apk add --update --no-cache sshpass
-      - sshpass -p "$PASSWORD" rsync -e "ssh -o StrictHostKeyChecking=no" -rltvzc --delete --omit-dir-times --no-o --no-g public/* $USERNAME@$SERVER:~/Public/html
 
   - name: publish gh pages
     image: plugins/gh-pages
@@ -46,5 +33,29 @@ volumes:
 - name: www_dir
   host:
     path: /data/www/ebardelli.duckdns.org/public
+
+---
+kind: pipeline
+type: docker
+name: publish to UMich hosting
+
+steps:
+  - name: build
+    image: peaceiris/hugo:latest-mod 
+    commands:
+      - hugo --gc --minify --cleanDestinationDir --baseURL="http://www-personal.umich.edu/~bardelli/"
+
+  - name: publish UMich
+    image: drillster/drone-rsync
+    environment:
+      SERVER:
+        from_secret: server
+      USERNAME:
+        from_secret: username
+      PASSWORD:
+        from_secret: password
+    commands:
+      - apk add --update --no-cache sshpass
+      - sshpass -p "$PASSWORD" rsync -e "ssh -o StrictHostKeyChecking=no" -rltvzc --delete --omit-dir-times --no-o --no-g public/* $USERNAME@$SERVER:~/Public/html
 
 ...
