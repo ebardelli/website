@@ -16,22 +16,17 @@
 [[main]]
   name = "Working Papers"
   url = "#working-papers"
-  weight = 2
+  weight = 3
+
+[[main]]
+  name = "Policy Briefs"
+  url = "#policy-briefs"
+  weight = 4
 
 [[main]]
   name = "Talks"
   url = "#events"
-  weight = 3
-
-#[[main]]
-#  name = "Projects"
-#  url = "#projects"
-#  weight = 4
-
-#[[main]]
-#  name = "Teaching"
-#  url = "#teaching"
-#  weight = 5
+  weight = 5
 
 [[main]]
   name = "Contact"
