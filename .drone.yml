@@ -32,7 +32,7 @@ steps:
 volumes:
 - name: www_dir
   host:
-    path: /data/www/ebardelli.duckdns.org/public
+    path: /data/www/ebardelli.com/public
 
 ---
 kind: pipeline
