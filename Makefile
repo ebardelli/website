@@ -10,8 +10,9 @@ deploy:
 
 .PHONY=theme
 theme:
-	docker run --rm -v $(current_dir):/src peaceiris/hugo:latest-mod mod get -u
 	docker run --rm -v $(current_dir):/src peaceiris/hugo:latest-mod mod clean
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:latest-mod mod get -u
+	docker run --rm -v $(current_dir):/src peaceiris/hugo:latest-mod mod tidy
 
 .PHONY=server
 serve:
