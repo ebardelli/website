@@ -10,11 +10,10 @@ authors:
 - Emanuele Bardelli
 - Stacey L Brockman
 - Hannah Mullman
-tags:
-- '"my work/papers"'
+tags: []
 categories: []
 date: '2020-01-01'
-lastmod: 2021-06-14T15:40:49Z
+lastmod: 2021-06-22T00:40:53Z
 featured: false
 draft: false
 
@@ -32,7 +31,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-06-14T15:40:48.675955Z'
+publishDate: '2021-06-22T00:40:53.387973Z'
 publication_types:
 - '2'
 abstract: Growing evidence suggests that preservice candidates receive better coaching
