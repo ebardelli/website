@@ -16,7 +16,7 @@ authors:
 tags: []
 categories: []
 date: '2020-09-01'
-lastmod: 2021-06-22T00:45:52Z
+lastmod: 2021-06-23T16:36:12Z
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-06-22T00:45:52.087665Z'
+publishDate: '2021-06-23T16:36:11.717943Z'
 publication_types:
 - '2'
 abstract: New studies show that the instructional effectiveness of preservice candidates

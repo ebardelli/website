@@ -11,7 +11,7 @@ authors:
 tags: []
 categories: []
 date: '2021-06-01'
-lastmod: 2021-06-22T00:45:58Z
+lastmod: 2021-06-23T16:36:17Z
 featured: false
 draft: false
 
@@ -29,7 +29,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-06-22T00:45:58.344962Z'
+publishDate: '2021-06-23T16:36:17.171235Z'
 publication_types:
 - '3'
 abstract: Many prior studies have examined whether there are average differences in
@@ -46,4 +46,5 @@ abstract: Many prior studies have examined whether there are average differences
   that predict initial teaching effectiveness are not the same features that predict
   growth.
 publication: ''
+url_pdf: https://peabody.vanderbilt.edu/TERA/files/TERA_Working_Paper_2021-01.pdf
 ---
