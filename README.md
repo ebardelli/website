@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/drone/build/ebardelli/website?logo=drone&server=https%3A%2F%2Fdrone.pacbard.duckdns.org)](https://drone.pacbard.duckdns.org/ebardelli/website)
+[![Build Status](https://img.shields.io/drone/build/ebardelli/website?logo=drone&server=https%3A%2F%2Fdrone.ebardelli.com)](https://drone.ebardelli.com/ebardelli/website)
 
 This is the source for my personal website.
 
