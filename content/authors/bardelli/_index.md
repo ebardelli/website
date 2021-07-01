@@ -71,7 +71,7 @@ email: ""
 
 ---
 
-I am a doctoral candidate in Educational Studies at the University of Michigan and an IES predoctoral fellow.  My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
+I am a doctoral candidate in Educational Studies at the University of Michigan and a pre-doctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
 
 My dissertation focuses on the instructional supports that mathematics teachers experience at the beginning of their careers and their relationship with instructional growth and employment decisions.
 
