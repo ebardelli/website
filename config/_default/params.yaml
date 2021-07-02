@@ -35,7 +35,7 @@ appointment_url: 'https://calendly.com/ebardelli/meet'
 
 main_menu:
   enable: true
-  align: l
+  align: r
   show_logo: true
   show_language: false
   show_day_night: true
