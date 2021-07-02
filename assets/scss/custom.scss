@@ -55,6 +55,19 @@ $background_color: #282a36;
     .modal-content {
         background: $background_color;
     }
+    .navbar {
+        .navbar-nav {
+            .nav-link.active {
+                color: $color_2 !important;
+            }
+        }
+        .dropdown-item.active {
+            color: $color_2 !important;
+        }
+        .dropdown-item-active {
+            color: $color_2 !important;
+        }
+    }
 }
 h3.article-title {
     color: $color_1;
