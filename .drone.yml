@@ -5,7 +5,7 @@ name: publish
 
 steps:
   - name: build
-    image: peaceiris/hugo:v0.84.3-mod 
+    image: peaceiris/hugo:v0.86.1-mod
     commands:
       - hugo --gc --minify --cleanDestinationDir --baseURL="/"
 
@@ -41,7 +41,7 @@ name: publish to UMich hosting
 
 steps:
   - name: build
-    image: peaceiris/hugo:v0.84.3-mod 
+    image: peaceiris/hugo:v0.86.1-mod 
     commands:
       - hugo --gc --minify --cleanDestinationDir --baseURL="http://www-personal.umich.edu/~bardelli/"
 
