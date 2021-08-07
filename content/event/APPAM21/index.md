@@ -7,6 +7,7 @@ event: "Association for Public Policy and Managament annual conference"
 location: Room 311, JW Marriott, Austin, TX
 summary:
 abstract: 
+slug: "teacher-pipeline-appam-21"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
