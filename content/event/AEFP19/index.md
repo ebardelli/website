@@ -6,8 +6,8 @@ slug = "placements-rcts"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date = 2019-03-22T9:45:00-05:00
-date_end = 2019-03-22T11:15:00-05:00
+date = "2019-03-22T9:45:00-05:00"
+date_end = "2019-03-22T11:15:00-05:00"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Matthew Ronfeldt", "Emanuele Bardelli", "Hannah Mullman", "Matthew Truwit"]

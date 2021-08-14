@@ -6,8 +6,8 @@ slug = "recruitment-rct"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date = 2020-04-20T08:15:00-08:00
-date_end = 2020-04-20T9:45:00-08:00
+date = "2020-04-20T08:15:00-08:00"
+date_end = "2020-04-20T9:45:00-08:00"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Emanuele Bardelli", "Matthew Ronfeldt", "Hannah Mullman", "Matthew Truwit", "Kevin Schaaf"]
