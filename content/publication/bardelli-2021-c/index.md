@@ -10,8 +10,8 @@ authors:
 - John P Papay
 tags: []
 categories: []
-date: '2021-06-01'
-lastmod: 2021-06-23T16:36:17Z
+date: '2021-08-01'
+lastmod: 2021-08-18T14:07:05Z
 featured: false
 draft: false
 
@@ -29,7 +29,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-06-23T16:36:17.171235Z'
+publishDate: '2021-08-18T14:07:04.328890Z'
 publication_types:
 - '3'
 abstract: Many prior studies have examined whether there are average differences in
@@ -46,5 +46,5 @@ abstract: Many prior studies have examined whether there are average differences
   that predict initial teaching effectiveness are not the same features that predict
   growth.
 publication: ''
-url_pdf: https://peabody.vanderbilt.edu/TERA/files/TERA_Working_Paper_2021-01.pdf
+doi: 10.26300/120j-qb52
 ---

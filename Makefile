@@ -21,8 +21,8 @@ serve:
 .PHONY=publications
 publications:
 	rm -rf content/publication/*; \
-	docker run --rm -v $(current_dir):/hugo ebardelli/hugo-academic:ext-alpine import --bibtex publications.bib --overwrite --publication-dir=publication --normalize; \
+	docker run --rm -v $(current_dir):/hugo ebardelli/hugo-academic:latest import --bibtex publications.bib --overwrite --publication-dir=publication --normalize; \
 	tmpfile=$(mktemp /tmp/publications.XXXXXX); \
 	sed 's/  keywords = {My Work\/Papers}.*$$//' working-papers.bib | sed 's/  file =.*$$//' | sed 's/techreport/unpublished/' > "$tmpfile";\
-	docker run --rm -v $(current_dir):/hugo ebardelli/hugo-academic:ext-alpine import --bibtex "$tmpfile" --overwrite --publication-dir=publication --normalize; \
+	docker run --rm -v $(current_dir):/hugo ebardelli/hugo-academic:latest import --bibtex "$tmpfile" --overwrite --publication-dir=publication --normalize; \
 	rm "$tmpfile"
