@@ -4,15 +4,15 @@
 title: "In-Depth Look at the Pipeline into Teaching: Insights from a State Longitudinal Data System"
 event: "Association for Public Policy and Managament annual conference"
 #event_url: https://appam.confex.com/appam/2020/meetingapp.cgi/Paper/37677
-location: Room 311, JW Marriott, Austin, TX
+location: "Session 15551, Room 311, JW Marriott, Austin, TX"
 summary:
 abstract: 
 slug: "teacher-pipeline-appam-21"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date: 2021-11-11T10:15:00-06:00
-date_end: 2021-11-11T11:45:00-06:00
+date: 2022-03-27T10:15:00-06:00
+date_end: 2022-03-27T11:45:00-06:00
 all_day: false
 
 # Schedule page publish date (NOT talk date).
