@@ -10,7 +10,7 @@ authors:
 tags: []
 categories: []
 date: '2021-01-01'
-lastmod: 2021-08-18T14:06:51Z
+lastmod: 2021-10-09T13:04:43Z
 featured: false
 draft: false
 
@@ -28,7 +28,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-08-18T14:06:46.472856Z'
+publishDate: '2021-10-09T13:04:35.154256Z'
 publication_types:
 - '2'
 abstract: For decades, federal and state agencies have identified teacher shortages
@@ -45,4 +45,5 @@ abstract: For decades, federal and state agencies have identified teacher shorta
   subsequently. Overall, we offer suggestive evidence that efforts in Tennessee to
   recruit, prepare, and retain teachers with HNEA endorsements have mostly been successful.
 publication: '*American Journal of Education*'
+doi: 10.1086/716486
 ---

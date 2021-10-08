@@ -11,7 +11,7 @@ authors:
 tags: []
 categories: []
 date: '2021-08-01'
-lastmod: 2021-08-18T14:07:05Z
+lastmod: 2021-10-09T13:05:09Z
 featured: false
 draft: false
 
@@ -29,14 +29,14 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-08-18T14:07:04.328890Z'
+publishDate: '2021-10-09T13:05:08.033993Z'
 publication_types:
 - '3'
 abstract: Many prior studies have examined whether there are average differences in
   levels of teaching effectiveness among graduates from different teacher preparation
   programs (TPPs); other studies have investigated which features of preparation predict
-  graduates’ average levels of teaching effectiveness. This is the first study to
-  examine whether there are average differences between TPPs in terms of graduates’
+  graduates' average levels of teaching effectiveness. This is the first study to
+  examine whether there are average differences between TPPs in terms of graduates'
   average growth, rather than levels, in teaching effectiveness, and to consider which
   features predict this growth. Examining all graduates from Tennessee TPPs from 2010
   to 2018, we find meaningful differences between TPPs in terms of both levels and

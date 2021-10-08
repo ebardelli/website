@@ -15,7 +15,7 @@ authors:
 tags: []
 categories: []
 date: '2018-04-01'
-lastmod: 2021-08-18T14:07:08Z
+lastmod: 2021-10-09T13:05:15Z
 featured: false
 draft: false
 
@@ -33,12 +33,12 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-08-18T14:07:06.492233Z'
+publishDate: '2021-10-09T13:05:12.658810Z'
 publication_types:
 - '3'
 abstract: Improving the skill set of new teachers is a potentially important policy
   lever to increase student achievement. There are, however, doubts about the extent
-  to which teacher education programs contribute to the development of teachers’ skills.
+  to which teacher education programs contribute to the development of teachers' skills.
   In this paper, we describe findings from an experiment designed to test whether
   one aspect of teacher education – the assignment of teacher candidates to student
   teaching internships – has a causal impact on the type of coaching they receive
@@ -48,7 +48,7 @@ abstract: Improving the skill set of new teachers is a potentially important pol
   from Tennessee into either more promising (high index) or less promising (low index)
   internships. Based on data from a post-student teaching survey, we find consistently
   strong evidence of large effects of being assigned to high versus low index placements,
-  particularly in terms of teacher candidates’ perceptions of the quality of instruction
+  particularly in terms of teacher candidates' perceptions of the quality of instruction
   of their cooperating teachers and the quantity and quality of the coaching that
   they received. And while not as large or consistently significant, we also found
   that teacher candidates in high versus low placements are more likely to report

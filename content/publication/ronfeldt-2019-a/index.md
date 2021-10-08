@@ -1,9 +1,9 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: 'Improving Student Teachers’ Feelings of Preparedness to Teach through Recruitment
-  of Instructionally Effective and Experienced Cooperating Teachers: A Randomized
-  Experiment'
+title: "Improving Student Teachers' Feelings of Preparedness to Teach through Recruitment\
+  \ of Instructionally Effective and Experienced Cooperating Teachers: A Randomized\
+  \ Experiment"
 subtitle: ''
 summary: ''
 authors:
@@ -16,7 +16,7 @@ authors:
 tags: []
 categories: []
 date: '2019-10-01'
-lastmod: 2021-08-18T14:07:10Z
+lastmod: 2021-10-09T13:05:19Z
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-08-18T14:07:08.891321Z'
+publishDate: '2021-10-09T13:05:17.188849Z'
 publication_types:
 - '3'
 abstract: Prior work suggests that recent graduates from teacher education programs

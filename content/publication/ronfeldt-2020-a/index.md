@@ -1,9 +1,9 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: 'Improving Preservice Teachers’ Feelings of Preparedness to Teach through Recruitment
-  of Instructionally Effective and Experienced Cooperating Teachers: A Randomized
-  Experiment'
+title: "Improving Preservice Teachers' Feelings of Preparedness to Teach through Recruitment\
+  \ of Instructionally Effective and Experienced Cooperating Teachers: A Randomized\
+  \ Experiment"
 subtitle: ''
 summary: ''
 authors:
@@ -16,7 +16,7 @@ authors:
 tags: []
 categories: []
 date: '2020-09-01'
-lastmod: 2021-08-18T14:06:56Z
+lastmod: 2021-10-09T13:04:53Z
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-08-18T14:06:55.804086Z'
+publishDate: '2021-10-09T13:04:51.897704Z'
 publication_types:
 - '2'
 abstract: New studies show that the instructional effectiveness of preservice candidates
@@ -47,7 +47,7 @@ abstract: New studies show that the instructional effectiveness of preservice ca
   teachers, while candidates placed in these districts felt significantly better prepared
   to teach. As a result, this study offers an innovative, low-cost strategy for recruiting
   effective/experienced cooperating teachers and presents the first causal estimates
-  that more effective/experienced cooperating teachers improve candidates’ preparedness
+  that more effective/experienced cooperating teachers improve candidates' preparedness
   to teach.
 publication: '*Educational Evaluation and Policy Analysis*'
 doi: 10/gjksg7

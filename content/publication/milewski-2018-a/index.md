@@ -1,8 +1,8 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: 'The Role of Simulations for Supporting Professional Growth: Teachers’ Engagement
-  in Virtual Professional Experimentation'
+title: "The Role of Simulations for Supporting Professional Growth: Teachers' Engagement\
+  \ in Virtual Professional Experimentation"
 subtitle: ''
 summary: ''
 authors:
@@ -13,7 +13,7 @@ authors:
 tags: []
 categories: []
 date: '2018-01-01'
-lastmod: 2021-08-18T14:06:52Z
+lastmod: 2021-10-09T13:04:47Z
 featured: false
 draft: false
 
@@ -31,7 +31,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-08-18T14:06:51.887993Z'
+publishDate: '2021-10-09T13:04:45.996949Z'
 publication_types:
 - '2'
 abstract: ''
