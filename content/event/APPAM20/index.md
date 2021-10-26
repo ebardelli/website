@@ -2,6 +2,7 @@
 # Documentation: https://wowchemy.com/docs/managing-content/
 
 title: "Effects of using administrative data to guide the recruitment of instructionally effective & experienced clinical mentors: Results from a randomized control trial"
+slug: "APPAM20-MMR"
 event: "Association for Public Policy and Managament annual conference"
 event_url: https://appam.confex.com/appam/2020/meetingapp.cgi/Paper/37677
 location: Virtual
