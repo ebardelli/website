@@ -15,7 +15,7 @@ authors:
 tags: []
 categories: []
 date: '2018-04-01'
-lastmod: 2021-10-09T13:05:15Z
+lastmod: 2021-10-26T11:04:46-04:00
 featured: false
 draft: false
 
@@ -33,7 +33,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-10-09T13:05:12.658810Z'
+publishDate: '2021-10-26T15:04:45.762320Z'
 publication_types:
 - '3'
 abstract: Improving the skill set of new teachers is a potentially important policy

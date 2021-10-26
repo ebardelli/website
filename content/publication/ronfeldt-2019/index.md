@@ -13,7 +13,7 @@ authors:
 tags: []
 categories: []
 date: '2019-01-01'
-lastmod: 2021-10-09T13:05:16Z
+lastmod: 2021-10-26T11:04:46-04:00
 featured: false
 draft: false
 
@@ -31,7 +31,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-10-09T13:05:15.787974Z'
+publishDate: '2021-10-26T15:04:46.192500Z'
 publication_types:
 - '3'
 abstract: Growing evidence suggests that preservice candidates receive better coaching
