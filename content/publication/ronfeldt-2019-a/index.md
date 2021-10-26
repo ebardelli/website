@@ -16,7 +16,7 @@ authors:
 tags: []
 categories: []
 date: '2019-10-01'
-lastmod: 2021-10-26T11:04:46-04:00
+lastmod: 2021-10-26T11:17:48-04:00
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-10-26T15:04:46.614958Z'
+publishDate: '2021-10-26T15:17:47.707105Z'
 publication_types:
 - '3'
 abstract: Prior work suggests that recent graduates from teacher education programs

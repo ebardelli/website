@@ -11,7 +11,7 @@ authors:
 tags: []
 categories: []
 date: '2021-08-01'
-lastmod: 2021-10-26T11:04:45-04:00
+lastmod: 2021-10-26T11:17:46-04:00
 featured: false
 draft: false
 
@@ -29,7 +29,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-10-26T15:04:44.904308Z'
+publishDate: '2021-10-26T15:17:45.928738Z'
 publication_types:
 - '3'
 abstract: Many prior studies have examined whether there are average differences in
