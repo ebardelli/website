@@ -18,7 +18,7 @@ all_day: false
 # Schedule page publish date (NOT talk date).
 publishDate: 2021-08-07T00:00:00-05:00
 
-authors: ["Emanuele Bardelli", "Matt Ronfeldt", "Matt Truwit"]
+authors: ["Emanuele Bardelli", "Matthew Ronfeldt", "Matthew Truwit"]
 tags: ["P-20"]
 
 # Is this a featured talk? (true/false)
