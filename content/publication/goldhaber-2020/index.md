@@ -16,7 +16,7 @@ authors:
 tags: []
 categories: []
 date: '2020-06-01'
-lastmod: 2021-10-26T11:17:46-04:00
+lastmod: 2021-11-19T09:06:22-05:00
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-10-26T15:17:46.370460Z'
+publishDate: '2021-11-19T14:06:22.177560Z'
 publication_types:
 - '3'
 abstract: The clinical teaching experience is one of the most important components
