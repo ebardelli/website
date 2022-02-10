@@ -13,7 +13,7 @@ authors:
 tags: []
 categories: []
 date: '2018-01-01'
-lastmod: 2021-11-19T09:06:18-05:00
+lastmod: 2022-02-10T11:30:31-05:00
 featured: false
 draft: false
 
@@ -31,10 +31,12 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-11-19T14:06:18.577552Z'
+publishDate: '2022-02-10T16:30:31.315401Z'
 publication_types:
 - '2'
 abstract: ''
 publication: '*Journal of Technology and Teacher Education*'
-url_pdf: https://www.learntechlib.org/p/181094/
+links:
+- name: URL
+  url: https://www.learntechlib.org/p/181094/
 ---

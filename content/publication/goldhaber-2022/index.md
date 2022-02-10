@@ -12,11 +12,10 @@ authors:
 - Trevor Gratz
 - Emanuele Bardelli
 - Matthew Truwit
-- Hannah Mullman
 tags: []
 categories: []
-date: '2020-06-01'
-lastmod: 2022-02-10T11:30:34-05:00
+date: '2022-02-01'
+lastmod: 2022-02-10T11:30:31-05:00
 featured: false
 draft: false
 
@@ -34,18 +33,18 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-02-10T16:30:33.783028Z'
+publishDate: '2022-02-10T16:30:30.762944Z'
 publication_types:
-- '3'
+- '2'
 abstract: The clinical teaching experience is one of the most important components
   of teacher preparation. Prior observational research has found that more effective
   mentors and schools with better professional climates are associated with better
   preparation for teacher candidates. We test these findings using an experimental
   assignment of teacher candidates to placement sites in two states. Candidates who
   were randomly assigned to higher quality placement sites experienced larger improvements
-  in performance over the course of the clinical experience, as evaluated by university
-  instructors. The findings suggest that improving clinical placement procedures can
-  improve the teaching quality of candidates.
-publication: ''
-url_pdf: https://caldercenter.org/sites/default/files/CALDER%20WP%20239-0620.pdf
+  in performance over the course of the clinical experience, as evaluated by field
+  instructors (a.k.a university instructors). The findings suggest that improving
+  clinical placement procedures can improve the teaching quality of candidates.
+publication: '*American Educational Research Journal*'
+doi: 10/gpfg8q
 ---

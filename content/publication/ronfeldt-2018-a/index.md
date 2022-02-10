@@ -15,7 +15,7 @@ authors:
 tags: []
 categories: []
 date: '2018-04-01'
-lastmod: 2021-11-19T09:06:22-05:00
+lastmod: 2022-02-10T11:30:34-05:00
 featured: false
 draft: false
 
@@ -33,7 +33,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2021-11-19T14:06:22.499087Z'
+publishDate: '2022-02-10T16:30:34.092310Z'
 publication_types:
 - '3'
 abstract: Improving the skill set of new teachers is a potentially important policy
@@ -59,5 +59,7 @@ abstract: Improving the skill set of new teachers is a potentially important pol
   for programs and districts about how to use administrative data to inform internship
   placement decisions.
 publication: ''
-url_pdf: https://caldercenter.org/publications/identifying-promising-clinical-placements-using-administrative-data-preliminary-results
+links:
+- name: URL
+  url: https://caldercenter.org/publications/identifying-promising-clinical-placements-using-administrative-data-preliminary-results
 ---
