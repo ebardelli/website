@@ -73,3 +73,11 @@ related:
       weight: 100
     - name: categories
       weight: 70
+
+# Fix security error
+# https://github.com/wowchemy/wowchemy-hugo-themes/discussions/2559#discussioncomment-1840591
+security:
+  funcs:
+    getenv:
+      - ^HUGO_
+      - ^WC_
