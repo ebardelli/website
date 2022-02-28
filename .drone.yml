@@ -5,7 +5,7 @@ name: publish
 
 steps:
   - name: build
-    image: klakegg/hugo:ext-alpine
+    image: klakegg/hugo:ext
     commands:
       - hugo --gc --minify --cleanDestinationDir --baseURL="/"
 
