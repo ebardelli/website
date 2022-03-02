@@ -15,9 +15,9 @@ deploy:
 
 .PHONY=theme
 theme:
-	# $(HUGO) mod clean
+	$(HUGO) mod clean
 	$(HUGO) mod get -u ./...
-	# $(HUGO) mod tidy
+	$(HUGO) mod tidy
 
 .PHONY=server
 serve:
