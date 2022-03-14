@@ -2,4 +2,4 @@ module my-site
 
 go 1.15
 
-require github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5 v5.0.0-20220227104500-381a6c2073d7 // indirect
+require github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5 v5.0.0-20220313124820-c0d0690a83dc // indirect
