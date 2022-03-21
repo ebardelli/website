@@ -62,8 +62,6 @@ slides: ""
 projects: ["IES"]
 ---
 
-**This talk has been delayed until March 2022.**
-
 As the number of people enrolling in teacher certification programs have steadily declined across the United States, many are now predicting a teacher shortage crisis nationwide. Consistent with national trends, between 2010-11 and 2015-16, State has experienced substantial statewide declines in educator preparation program (EPP) enrollment (48 percent) and completion (32 percent). During this time, State has also consistently reported teacher shortages in certain high-needs subject areas (e.g., STEM, special education, English as a second language) and schools (e.g., low-income, rural). During this time, the state has seen a steeper decline among students of color enrolling and completing (about 3% percent) preparation programs. Given growing evidence for academic and non-academic benefits of having teachers of color for all students, and especially students of color, understanding where in the pipeline we are losing potential teachers of color is especially critical.
 
 While the state has implemented a number of policies and practices to offset teacher shortages, national trends suggest that State needs to continue to be proactive about assessing and addressing current and future shortages.  In this paper, we report on longitudinal trends over the past 15 years, when enrollments in EPPs have declined, to examine whether or not there have been changes in the kinds of individuals going through the State’s P-20 system, entering EPPs, and becoming teachers. Though we consider trends across all teachers, we focus particularly on students of color. 
