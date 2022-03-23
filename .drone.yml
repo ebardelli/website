@@ -5,7 +5,7 @@ name: publish
 
 steps:
   - name: build
-    image: klakegg/hugo:ext
+    image: klakegg/hugo:0.95.0-ext
     commands:
       - hugo --gc --minify --cleanDestinationDir --baseURL="/"
 
@@ -41,7 +41,7 @@ name: publish to UMich hosting
 
 steps:
   - name: build
-    image: klakegg/hugo:ext-alpine 
+    image: klakegg/hugo:0.95.0-ext
     commands:
       - hugo --gc --minify --cleanDestinationDir --baseURL="http://www-personal.umich.edu/~bardelli/"
 
