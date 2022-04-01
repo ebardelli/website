@@ -14,7 +14,7 @@ authors:
 tags: []
 categories: []
 date: '2021-11-01'
-lastmod: 2022-04-01T09:12:47-04:00
+lastmod: 2022-04-01T10:05:45-04:00
 featured: false
 draft: false
 
@@ -32,7 +32,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-04-01T13:12:47.447276Z'
+publishDate: '2022-04-01T14:05:44.878552Z'
 publication_types:
 - '2'
 abstract: 'The investigation at scale of the tensions that teachers need to manage

@@ -16,7 +16,7 @@ authors:
 tags: []
 categories: []
 date: '2020-10-01'
-lastmod: 2022-04-01T09:12:47-04:00
+lastmod: 2022-04-01T10:05:44-04:00
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-04-01T13:12:46.688059Z'
+publishDate: '2022-04-01T14:05:44.371983Z'
 publication_types:
 - '2'
 abstract: Critical consciousness represents the analysis and critique of structural
