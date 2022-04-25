@@ -36,7 +36,7 @@ projects = ["IES-Predoc"]
 
 # Tags (optional).
 #   Set `tags = []` for no tags, or use the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["Teacher Pipeline""]
+tags = ["Teacher Pipeline"]
 
 # Links (optional).
 url_pdf = ""
