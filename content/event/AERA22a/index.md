@@ -6,7 +6,7 @@ slug = "p20-pipeline-aera22"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date = 2022-04-23T14:45:00-08:00
+date = 2022-04-23T14:30:00-08:00
 date_end = 2022-04-23T16:00:00-08:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -54,3 +54,6 @@ url_code = ""
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
   focal_point = ""
 +++
+
+This paper uses statewide, longitudinal data on  postsecondary students across public colleges and universities in Tennessee to examine the Black teacher pipeline and stages along that pipeline where we may be losing potential Black educators. At the undergraduate level, Black and White students in Tennessee declare and complete teaching-related majors at similar rates, suggesting similar levels of initial interest in pursuing teaching as a career. However, Black students are substantially less likely to become licensed in the state. Among those individuals who become licensed in the state, newly certified Black teachers are more likely than newly certified White teachers to gain employment in the state. At the graduate level, Black students are less likely than White students to (1) complete a master’s degree in a teaching field and (2) receive a teaching license. Among individuals who do receive a license at the graduate level, newly certified Black teachers are more likely to gain employment than newly certified White teachers.
+

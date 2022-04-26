@@ -6,11 +6,11 @@ slug = "met-bias-aera22"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date = 2022-04-24T14:45:00-08:00
+date = 2022-04-24T14:30:00-08:00
 date_end = 2022-04-24T16:00:00-08:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Emanuele Bardelli", "Matthew Truwit", "Matthew Ronfeldt"]
+authors = ["Matthew Truwit", "Emanuele Bardelli", "Matthew Ronfeldt"]
 
 # Abstract and optional shortened version.
 abstract = ""
@@ -54,3 +54,7 @@ url_code = ""
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
   focal_point = ""
 +++
+
+As the prevalence of teacher accountability measures has risen over the past decade so too has the evidence base about their potential bias against teachers of color. In this paper, we use item response theory (IRT) to build on this base of evidence, finding that teachers of different identities with comparable teaching expertise receive systematically biased observation ratings on specific items across the continuum of instructional effectiveness. Given the use of these measures in high-stakes decisions around educators’ careers, the repercussions of structural bias in teacher evaluations not only are of direct harm to teachers (and students) of marginalized identities but also reinforce the dominant cultural hegemony in our educational system.
+
+
