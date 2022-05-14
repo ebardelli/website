@@ -1,8 +1,9 @@
 [![Build Status](https://img.shields.io/drone/build/ebardelli/website?logo=drone&server=https%3A%2F%2Fdrone.ebardelli.com)](https://drone.ebardelli.com/ebardelli/website)
 
-This is the source for my personal website.
+This is the source for my personal website. It is available at
+[ebardelli.com](https://ebardelli.com)
 
-# Links
+# Mirrors
 
 - [UMich Personal Page](http://umich.edu/~bardelli/)
 - [Netlify Mirror](https://bardelli.netlify.app)
