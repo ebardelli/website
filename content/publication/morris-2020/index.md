@@ -13,7 +13,7 @@ authors:
 tags: []
 categories: []
 date: '2020-01-01'
-lastmod: 2022-05-18T17:20:30-07:00
+lastmod: 2022-05-18T17:32:55-07:00
 featured: false
 draft: false
 
@@ -31,12 +31,10 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:20:30.211428Z'
+publishDate: '2022-05-19T00:32:55.484909Z'
 publication_types:
-- '3'
+- '4'
 abstract: ''
 publication: ''
-links:
-- name: URL
-  url: https://peabody.vanderbilt.edu/TERA/files/
+url_pdf: https://peabody.vanderbilt.edu/TERA/files/Mentors_Matter_FINAL.pdf
 ---
