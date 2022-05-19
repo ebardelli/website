@@ -5,18 +5,18 @@ title: Development of the Short Critical Consciousness Scale (ShoCCS
 subtitle: ''
 summary: ''
 authors:
-- M.A. Diemer
-- M.B. Frisby
-- A. Pinedo
-- E. Bardelli
-- E. Elliot
-- E. Harris
-- S. McAlister
-- A.M. Voight
+- Matt Diemer
+- Michael Frisby
+- Andy Pinedo
+- Emanuele Bardelli
+- Erin Elliot
+- Elise Harris
+- Sarah McAlister
+- Adam Voight
 tags: []
 categories: []
 date: '2020-01-01'
-lastmod: 2022-05-18T17:32:52-07:00
+lastmod: 2022-05-18T17:47:55-07:00
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:52.463744Z'
+publishDate: '2022-05-19T00:47:55.089308Z'
 publication_types:
 - '2'
 abstract: ''

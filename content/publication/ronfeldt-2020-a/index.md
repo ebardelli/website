@@ -6,14 +6,14 @@ title: Will mentoring a student teacher harm my evaluation scores? Effects of se
 subtitle: ''
 summary: ''
 authors:
-- M. Ronfeldt
-- E. Bardelli
-- S.L. Brockman
-- H. Mullman
+- Matt Ronfeldt
+- Emanuele Bardelli
+- Stacey Brockman
+- Hannah Mullman
 tags: []
 categories: []
 date: '2020-01-01'
-lastmod: 2022-05-18T17:32:53-07:00
+lastmod: 2022-05-18T17:47:55-07:00
 featured: false
 draft: false
 
@@ -31,7 +31,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:52.948834Z'
+publishDate: '2022-05-19T00:47:55.582746Z'
 publication_types:
 - '2'
 abstract: ''

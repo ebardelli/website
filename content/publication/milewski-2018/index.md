@@ -6,14 +6,14 @@ title: 'The role of simulations for supporting professional growth: Teachers’ 
 subtitle: ''
 summary: ''
 authors:
-- A. Milewski
-- P. Herbst
-- E. Bardelli
-- C. Hetrick
+- Amanda Mileswki
+- Pat Herbst
+- Emanuele Bardelli
+- Carolyn Hetrick
 tags: []
 categories: []
 date: '2018-01-01'
-lastmod: 2022-05-18T17:32:53-07:00
+lastmod: 2022-05-18T17:47:56-07:00
 featured: false
 draft: false
 
@@ -31,7 +31,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:53.188552Z'
+publishDate: '2022-05-19T00:47:55.821315Z'
 publication_types:
 - '2'
 abstract: ''

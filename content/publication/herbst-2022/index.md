@@ -6,15 +6,15 @@ title: How can teaching simulations help us study at scale the tensions mathemat
 subtitle: ''
 summary: ''
 authors:
-- P. Herbst
-- M. Shultz
-- E. Bardelli
-- N. Boileau
-- A. Milewski
+- Pat Herbst
+- Mollee Shultz
+- Emanuele Bardelli
+- Nic Boileau
+- Amanda Mileswki
 tags: []
 categories: []
 date: '2022-01-01'
-lastmod: 2022-05-18T17:32:52-07:00
+lastmod: 2022-05-18T17:47:54-07:00
 featured: false
 draft: false
 
@@ -32,7 +32,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:52.050780Z'
+publishDate: '2022-05-19T00:47:54.648890Z'
 publication_types:
 - '2'
 abstract: ''

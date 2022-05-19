@@ -7,16 +7,16 @@ title: 'Improving student teachers’ feelings of preparedness to teach through 
 subtitle: ''
 summary: ''
 authors:
-- M. Ronfeldt
-- E. Bardelli
-- H. Mullman
-- M. Truwit
-- K. Schaaf
-- J.C. Baker
+- Matt Ronfeldt
+- Emanuele Bardelli
+- Hannah Mullman
+- Matt Truwit
+- Kevin Schaaf
+- Julie Baker
 tags: []
 categories: []
 date: '2019-10-01'
-lastmod: 2022-05-18T17:32:54-07:00
+lastmod: 2022-05-18T17:47:57-07:00
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:54.692221Z'
+publishDate: '2022-05-19T00:47:57.381542Z'
 publication_types:
 - '3'
 abstract: ''

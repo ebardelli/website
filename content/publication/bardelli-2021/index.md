@@ -5,12 +5,12 @@ title: Workforce outcomes of program completers in high needs areas
 subtitle: ''
 summary: ''
 authors:
-- E. Bardelli
-- M. Ronfeldt
+- Emanuele Bardelli
+- Matt Ronfeldt
 tags: []
 categories: []
 date: '2021-01-01'
-lastmod: 2022-05-18T17:32:52-07:00
+lastmod: 2022-05-18T17:47:55-07:00
 featured: false
 draft: false
 
@@ -28,7 +28,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:52.262006Z'
+publishDate: '2022-05-19T00:47:54.867048Z'
 publication_types:
 - '2'
 abstract: ''

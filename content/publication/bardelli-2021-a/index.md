@@ -5,13 +5,13 @@ title: Teacher preparation programs and graduates’ growth in instructional eff
 subtitle: ''
 summary: ''
 authors:
-- E. Bardelli
-- M. Ronfeldt
-- J.P. Papay
+- Emanuele Bardelli
+- Matt Ronfeldt
+- John Papay
 tags: []
 categories: []
 date: '2021-08-01'
-lastmod: 2022-05-18T17:32:54-07:00
+lastmod: 2022-05-18T17:47:56-07:00
 featured: false
 draft: false
 
@@ -29,7 +29,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:54.032942Z'
+publishDate: '2022-05-19T00:47:56.652164Z'
 publication_types:
 - '3'
 abstract: ''

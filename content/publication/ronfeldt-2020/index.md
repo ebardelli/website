@@ -7,16 +7,16 @@ title: 'Improving preservice teachers’ feelings of preparedness to teach throu
 subtitle: ''
 summary: ''
 authors:
-- M. Ronfeldt
-- E. Bardelli
-- M. Truwit
-- H. Mullman
-- K. Schaaf
-- J.C. Baker
+- Matt Ronfeldt
+- Emanuele Bardelli
+- Matt Truwit
+- Hannah Mullman
+- Kevin Schaaf
+- Julie Baker
 tags: []
 categories: []
 date: '2020-01-01'
-lastmod: 2022-05-18T17:32:52-07:00
+lastmod: 2022-05-18T17:47:55-07:00
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:52.716551Z'
+publishDate: '2022-05-19T00:47:55.326140Z'
 publication_types:
 - '2'
 abstract: ''

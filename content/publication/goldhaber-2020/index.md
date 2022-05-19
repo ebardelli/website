@@ -6,17 +6,17 @@ title: Room for Improvement? Mentor Teachers and the Evolution of Teacher Preser
 subtitle: ''
 summary: ''
 authors:
-- D. Goldhaber
-- M. Ronfeldt
-- J. Cowan
-- T. Gratz
-- E. Bardelli
-- M. Truwit
-- H. Mullman
+- Dan Goldhaber
+- Matt Ronfeldt
+- James Cowan
+- Trevor Gratz
+- Emanuele Bardelli
+- Matt Truwit
+- Hannah Mullman
 tags: []
 categories: []
 date: '2020-01-01'
-lastmod: 2022-05-18T17:32:54-07:00
+lastmod: 2022-05-18T17:47:57-07:00
 featured: false
 draft: false
 
@@ -34,7 +34,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:54.492267Z'
+publishDate: '2022-05-19T00:47:57.130469Z'
 publication_types:
 - '3'
 abstract: ''

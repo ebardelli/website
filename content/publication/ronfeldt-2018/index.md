@@ -6,16 +6,16 @@ title: 'Identifying promising clinical placements using administrative data: Pre
 subtitle: ''
 summary: ''
 authors:
-- M. Ronfeldt
-- D. Goldhaber
-- J. Cowan
-- E. Bardelli
+- Matt Ronfeldt
+- Dan Goldhaber
+- James Cowan
+- Emanuele Bardelli
 - J. Johnson
-- C.D. Tien
+- Chris Tien
 tags: []
 categories: []
 date: '2018-04-01'
-lastmod: 2022-05-18T17:32:55-07:00
+lastmod: 2022-05-18T17:47:58-07:00
 featured: false
 draft: false
 
@@ -33,7 +33,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:32:55.300721Z'
+publishDate: '2022-05-19T00:47:58.044025Z'
 publication_types:
 - '3'
 abstract: ''
