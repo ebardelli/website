@@ -1,16 +1,16 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: Criterion-Referenced Value-Added Scores
+title: Criterion-referenced value-added scores
 subtitle: ''
 summary: ''
 authors:
-- Mark White
-- Emanuele Bardelli
+- M. White
+- E. Bardelli
 tags: []
 categories: []
 date: '2019-09-01'
-lastmod: 2022-04-18T06:33:10-07:00
+lastmod: 2022-05-18T17:20:29-07:00
 featured: false
 draft: false
 
@@ -28,18 +28,13 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-04-18T13:33:09.948594Z'
+publishDate: '2022-05-19T00:20:29.654956Z'
 publication_types:
 - '3'
-abstract: 'Value-added (VA) scores signal teacher quality and are designed to be used,
-  with other data, to make employment decisions. However, this usefulness is hampered
-  by: 1) their normative nature, which promotes competition among teachers, 2) their
-  difficulty to interpret and incorporate with other data, which makes using VA scores
-  as one data source among many difficult, and 3) a lack of trust in scores. We show
-  how to create (model-based) non-normative and more interpretable VA scores, which
-  winds up being a simple rescaling of traditional VA scores. Our approach more closely
-  links VA scores to data-based decision making efforts and enables the creation of
-  clear and objective criterion of effectiveness for teachers.'
+abstract: ''
 publication: ''
 doi: 10.35542/osf.io/28t65
+links:
+- name: URL
+  url: https://doi.org/10.35542/osf.io/28t65
 ---

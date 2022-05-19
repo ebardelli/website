@@ -1,19 +1,22 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: Will Mentoring a Student Teacher Harm My Evaluation Scores? Effects of Serving
-  as a Cooperating Teacher on Evaluation Metrics
+title: 'Improving student teachers’ feelings of preparedness to teach through recruitment
+  of instructionally effective and experienced cooperating teachers: A randomized
+  experiment'
 subtitle: ''
 summary: ''
 authors:
-- Matthew Ronfeldt
-- Emanuele Bardelli
-- Stacey Brockman
-- Hannah Mullman
+- M. Ronfeldt
+- E. Bardelli
+- H. Mullman
+- M. Truwit
+- K. Schaaf
+- J.C. Baker
 tags: []
 categories: []
-date: '2019-01-01'
-lastmod: 2022-04-18T06:33:09-07:00
+date: '2019-10-01'
+lastmod: 2022-05-18T17:20:29-07:00
 featured: false
 draft: false
 
@@ -31,19 +34,13 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-04-18T13:33:09.210092Z'
+publishDate: '2022-05-19T00:20:29.461859Z'
 publication_types:
 - '3'
-abstract: Growing evidence suggests that preservice candidates receive better coaching
-  and are more instructionally effective when they are mentored by more instructionally
-  effective cooperating teachers (CTs). Yet, teacher education program leaders indicate
-  it can be difficult to recruit instructionally effective teachers to serve as CTs,
-  in part because teachers worry that serving may negatively impact district evaluation
-  scores. Using a unique dataset on over 4,500 CTs, we compare evaluation scores during
-  years these teachers served as CTs to years they did not. In years they served as
-  CTs, teachers had significantly better observation ratings and somewhat better achievement
-  gains, though not always at significant levels. These results suggest that concerns
-  over lowered evaluations should not prevent teachers from serving as CTs.
+abstract: ''
 publication: ''
-doi: 10.26300/PZ55-9N48
+doi: 10.26300/vst6-j842
+links:
+- name: URL
+  url: https://doi.org/10.26300/vst6-j842
 ---

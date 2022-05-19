@@ -1,21 +1,15 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: 'Improving preservice teachers’ feelings of preparedness to teach through recruitment
-  of instructionally effective and experienced cooperating teachers: A randomized
-  experiment'
+title: Workforce outcomes of program completers in high needs areas
 subtitle: ''
 summary: ''
 authors:
-- M. Ronfeldt
 - E. Bardelli
-- M. Truwit
-- H. Mullman
-- K. Schaaf
-- J.C. Baker
+- M. Ronfeldt
 tags: []
 categories: []
-date: '2020-01-01'
+date: '2021-01-01'
 lastmod: 2022-05-18T17:20:27-07:00
 featured: false
 draft: false
@@ -34,13 +28,13 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T00:20:27.759026Z'
+publishDate: '2022-05-19T00:20:27.418203Z'
 publication_types:
 - '2'
 abstract: ''
-publication: '*Educational Evaluation and Policy Analysis*'
-doi: 10.3102/0162373720954183
+publication: '*American Journal of Education*'
+doi: 10.1086/716486
 links:
 - name: URL
-  url: https://doi.org/10.3102/0162373720954183
+  url: https://doi.org/10.1086/716486
 ---

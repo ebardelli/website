@@ -1,19 +1,21 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: "The Role of Simulations for Supporting Professional Growth: Teachers' Engagement\
-  \ in Virtual Professional Experimentation"
+title: 'Identifying promising clinical placements using administrative data: Preliminary
+  results from ISTI placement initiative pilot'
 subtitle: ''
 summary: ''
 authors:
-- Amanda Milewski
-- Patricio Herbst
-- Emanuele Bardelli
-- Carolyn Hetrick
+- M. Ronfeldt
+- D. Goldhaber
+- J. Cowan
+- E. Bardelli
+- J. Johnson
+- C.D. Tien
 tags: []
 categories: []
-date: '2018-01-01'
-lastmod: 2022-04-18T06:33:06-07:00
+date: '2018-04-01'
+lastmod: 2022-05-18T17:20:30-07:00
 featured: false
 draft: false
 
@@ -31,12 +33,10 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-04-18T13:33:06.172791Z'
+publishDate: '2022-05-19T00:20:30.023344Z'
 publication_types:
-- '2'
+- '3'
 abstract: ''
-publication: '*Journal of Technology and Teacher Education*'
-links:
-- name: URL
-  url: https://www.learntechlib.org/p/181094/
+publication: ''
+url_pdf: https://caldercenter.org/sites/default/files/WP%20189.pdf
 ---

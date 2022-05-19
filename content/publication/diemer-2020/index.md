@@ -1,22 +1,22 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: Development of the Short Critical Consciousness Scale (ShoCCS)
+title: Development of the Short Critical Consciousness Scale (ShoCCS
 subtitle: ''
 summary: ''
 authors:
-- Matthew A. Diemer
-- Michael B. Frisby
-- Andres Pinedo
-- Emanuele Bardelli
-- Erin Elliot
-- Elise Harris
-- Sara McAlister
-- Adam M. Voight
+- M.A. Diemer
+- M.B. Frisby
+- A. Pinedo
+- E. Bardelli
+- E. Elliot
+- E. Harris
+- S. McAlister
+- A.M. Voight
 tags: []
 categories: []
-date: '2020-10-01'
-lastmod: 2022-04-18T06:33:05-07:00
+date: '2020-01-01'
+lastmod: 2022-05-18T17:20:27-07:00
 featured: false
 draft: false
 
@@ -34,23 +34,13 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-04-18T13:33:05.398096Z'
+publishDate: '2022-05-19T00:20:27.584694Z'
 publication_types:
 - '2'
-abstract: Critical consciousness represents the analysis and critique of structural
-  inequalities, the motivation and perceived capacity to effect change, and social
-  action to redress inequity. A wave of recent instruments measuring critical consciousness
-  has been rigorously validated. Yet, whether these measures efficiently assess different
-  levels of critical consciousness or contain redundant, or non-informative, items
-  remain unknown. This research develops a short version (Short CCS, or ShoCCS) of
-  the previously validated Critical Consciousness Scale. Using Item Response Theory
-  methods, the long-form CCS is scrutinized for redundant items to efficiently measure
-  critical reflection, critical motivation, and critical action. The resulting 13-item
-  ShoCCS yields an internally consistent instrument with similar information distributions
-  as the longer measure. Since the ShoCCS places less financial and time burden on
-  investigators and respondents in comparison to the original CCS, and includes a
-  new measure of critical motivation, it may streamline CC measurement in scholarship,
-  practice, and policy.
+abstract: ''
 publication: '*Applied Developmental Science*'
 doi: 10.1080/10888691.2020.1834394
+links:
+- name: URL
+  url: https://doi.org/10.1080/10888691.2020.1834394
 ---

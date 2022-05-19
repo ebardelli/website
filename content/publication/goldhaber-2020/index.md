@@ -6,17 +6,17 @@ title: Room for Improvement? Mentor Teachers and the Evolution of Teacher Preser
 subtitle: ''
 summary: ''
 authors:
-- Dan Goldhaber
-- Matthew Ronfeldt
-- James Cowan
-- Trevor Gratz
-- Emanuele Bardelli
-- Matthew Truwit
-- Hannah Mullman
+- D. Goldhaber
+- M. Ronfeldt
+- J. Cowan
+- T. Gratz
+- E. Bardelli
+- M. Truwit
+- H. Mullman
 tags: []
 categories: []
-date: '2020-06-01'
-lastmod: 2022-04-18T06:33:08-07:00
+date: '2020-01-01'
+lastmod: 2022-05-18T17:20:29-07:00
 featured: false
 draft: false
 
@@ -34,18 +34,10 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-04-18T13:33:08.573864Z'
+publishDate: '2022-05-19T00:20:29.184150Z'
 publication_types:
 - '3'
-abstract: The clinical teaching experience is one of the most important components
-  of teacher preparation. Prior observational research has found that more effective
-  mentors and schools with better professional climates are associated with better
-  preparation for teacher candidates. We test these findings using an experimental
-  assignment of teacher candidates to placement sites in two states. Candidates who
-  were randomly assigned to higher quality placement sites experienced larger improvements
-  in performance over the course of the clinical experience, as evaluated by university
-  instructors. The findings suggest that improving clinical placement procedures can
-  improve the teaching quality of candidates.
+abstract: ''
 publication: ''
 url_pdf: https://caldercenter.org/sites/default/files/CALDER%20WP%20239-0620.pdf
 ---
