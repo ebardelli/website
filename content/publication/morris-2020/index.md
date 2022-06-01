@@ -6,14 +6,14 @@ title: 'Learning from the best: Promising practices in preparing Tennessee’s f
 subtitle: ''
 summary: ''
 authors:
-- W. Morris
+- Wesley Morris
 - Matt Ronfeldt
 - Emanuele Bardelli
 - Matt Truwit
 tags: []
 categories: []
 date: '2020-01-01'
-lastmod: 2022-05-18T19:16:50-07:00
+lastmod: 2022-06-01T10:15:20-07:00
 featured: false
 draft: false
 
@@ -31,7 +31,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-05-19T02:16:50.752214Z'
+publishDate: '2022-06-01T17:15:20.046431Z'
 publication_types:
 - '4'
 abstract: ''
