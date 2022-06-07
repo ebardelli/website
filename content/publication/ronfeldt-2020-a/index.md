@@ -13,7 +13,7 @@ authors:
 tags: []
 categories: []
 date: '2020-01-01'
-lastmod: 2022-06-01T10:15:16-07:00
+lastmod: 2022-06-07T14:17:29-07:00
 featured: false
 draft: false
 
@@ -31,7 +31,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-06-01T17:15:16.265748Z'
+publishDate: '2022-06-07T21:17:29.768190Z'
 publication_types:
 - '2'
 abstract: ''
@@ -39,5 +39,5 @@ publication: '*American Educational Research Journal*'
 doi: 10.3102/0002831219872952
 links:
 - name: URL
-  url: https://doi.org/10.3102/0002831219872952
+  url: https://doi.org/10/gjkx2w
 ---
