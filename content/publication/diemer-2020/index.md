@@ -1,7 +1,7 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: Development of the Short Critical Consciousness Scale (ShoCCS
+title: Development of the Short Critical Consciousness Scale (ShoCCS)
 subtitle: ''
 summary: ''
 authors:
