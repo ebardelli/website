@@ -108,6 +108,7 @@ map:
   api_key: ''
   zoom: 15
 marketing:
+  goatcounter_id: 'ID59js8gme0'
   google_analytics: ''
   google_tag_manager: ''
   google_site_verification: ''

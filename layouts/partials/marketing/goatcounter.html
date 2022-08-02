@@ -1,0 +1,6 @@
+{{ $goatcounter_id := site.Params.marketing.goatcounter_id | default "" }}
+
+{{ if $goatcounter_id }}
+<script data-goatcounter="https://{{ $goatcounter_id }}.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+{{ end }}
