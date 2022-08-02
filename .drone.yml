@@ -7,7 +7,7 @@ steps:
   - name: build
     image: klakegg/hugo:0.95.0-ext
     commands:
-      - hugo --gc --minify --cleanDestinationDir --baseURL="/"
+      - hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
 
   - name: publish local
     image: drillster/drone-rsync
@@ -43,7 +43,7 @@ steps:
   - name: build
     image: klakegg/hugo:0.95.0-ext
     commands:
-      - hugo --gc --minify --cleanDestinationDir --baseURL="http://www-personal.umich.edu/~bardelli/"
+      - hugo -e production --gc --minify --cleanDestinationDir --baseURL="http://www-personal.umich.edu/~bardelli/"
 
   - name: publish UMich
     image: drillster/drone-rsync
