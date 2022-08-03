@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Doctoral Candidate
+role: Post-Doctoral Research Associate
 
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
@@ -35,6 +35,9 @@ interests:
 # List qualifications (such as academic degrees)
 education:
     courses:
+    - course: PhD in Education
+      institution: University of Michigan—Ann Arbor
+      year: 2022
     - course: MA in Education
       institution: California State University, Los Angeles
       year: 2011
@@ -71,7 +74,9 @@ email: ""
 
 ---
 
-I am a doctoral candidate in Educational Studies at the University of Michigan and a pre-doctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
+I am a post-doctoral research associate at the Annenberg Institute at Brown University.
+
+I received a doctorate in Educational Studies from the University of Michigan and I was a pre-doctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
 
 My dissertation focuses on the teaching supports that mathematics teachers experience at the beginning of their careers and their relationship with instructional growth and employment decisions.
 
