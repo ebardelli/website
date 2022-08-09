@@ -25,3 +25,6 @@ main:
   - name: Ed News
     url: /ed-news/
     weight: 70
+  - name: CV
+    url: /files/bardelli-cv.pdf
+    weight: 80
