@@ -1,7 +1,5 @@
-module my-site
+module my-website
 
 go 1.15
 
-require (
-	github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5 v5.0.0-20220423180919-17d5d3f0ca43 // indirect
-)
+require github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy/v5 v5.6.0 // indirect
