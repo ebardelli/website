@@ -76,11 +76,11 @@ email: ""
 
 I am a post-doctoral research associate in education policy at the Annenberg Institute at Brown University.
 
-I received a doctorate in Educational Studies from the University of Michigan and I was a pre-doctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
+I received a doctorate in Educational Studies from the University of Michigan where I was a pre-doctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). 
 
-My dissertation focuses on the teaching supports that mathematics teachers experience at the beginning of their careers and their relationship with instructional growth and employment decisions.
+My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education. My dissertation studied how teaching supports to early career teachers relate to their instructional effectiveness growth and employment decisions.
 
-Originally from Italy, I earned a bachelor of science in mathematics from the Università degli Studi di Modena e Reggio Emilia, and a master of arts in education and a teaching credential from California State University, Los Angeles.  Before beginning my PhD program, I worked both as an instructional coach and as a middle and high school mathematics teacher in Los Angeles and Lodi, California for five years.
+Originally from Italy, I earned a bachelor of science in mathematics from the Università degli Studi di Modena e Reggio Emilia, and a master of arts in education and a teaching credential from California State University, Los Angeles.  I also worked as an instructional coach and middle and high school mathematics teacher in Los Angeles and Lodi, California for five years.
 
 I use the pronouns he, him, his.
 
