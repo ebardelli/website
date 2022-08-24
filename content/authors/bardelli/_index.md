@@ -23,7 +23,6 @@ bio: My research interests include teacher professional development, teacher lea
 
 # List (academic) interests or hobbies
 interests:
-    - Mathematics Education
     - Teacher Learning
     - Teacher Induction
     - Instructional Practices
