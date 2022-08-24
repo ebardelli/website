@@ -52,7 +52,7 @@ education:
 social:
     - icon: envelope
       icon_pack: fas
-      link: mailto:bardelli@umich.edu
+      link: mailto:bardelli@brown.edu
     - icon: google-scholar
       icon_pack: ai
       link: https://scholar.google.com/citations?user=kQCgQzwAAAAJ&hl=en
@@ -74,7 +74,7 @@ email: ""
 
 ---
 
-I am a post-doctoral research associate at the Annenberg Institute at Brown University.
+I am a post-doctoral research associate in education policy at the Annenberg Institute at Brown University.
 
 I received a doctorate in Educational Studies from the University of Michigan and I was a pre-doctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
 
