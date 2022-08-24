@@ -16,15 +16,15 @@ content:
   autolink: true
 
   # Contact details (edit or remove options as required)
-  email: bardelli@umich.edu
-  phone: (734) 926-8171
-  address:
-    street: 610 East University Ave.
-    city: Ann Arbor
-    region: MI
-    postcode: '48109'
-    country: United States
-    country_code: US
+  email: bardelli@brown.edu
+  #phone: (734) 926-8171
+  #address:
+  #  street: 610 East University Ave.
+  #  city: Ann Arbor
+  #  region: MI
+  #  postcode: '48109'
+  #  country: United States
+  #  country_code: US
   appointment_url: 'https://calendly.com/ebardelli/meet'
   contact_links:
     - icon: video
