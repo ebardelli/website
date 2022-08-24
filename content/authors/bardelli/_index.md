@@ -78,7 +78,7 @@ I am a post-doctoral research associate in education policy at the Annenberg Ins
 
 I received a doctorate in Educational Studies from the University of Michigan where I was a pre-doctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). 
 
-My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education. My dissertation studied how teaching supports to early career teachers relate to their instructional effectiveness growth and employment decisions.
+My research interests include teacher professional development, teacher learning, and instructional practices. My dissertation studied how teaching supports to early career teachers relate to their instructional effectiveness growth and employment decisions.
 
 Originally from Italy, I earned a bachelor of science in mathematics from the Università degli Studi di Modena e Reggio Emilia, and a master of arts in education and a teaching credential from California State University, Los Angeles.  I also worked as an instructional coach and middle and high school mathematics teacher in Los Angeles and Lodi, California for five years.
 
