@@ -54,7 +54,7 @@ social:
       link: mailto:bardelli@brown.edu
     - icon: google-scholar
       icon_pack: ai
-      link: https://scholar.google.com/citations?user=kQCgQzwAAAAJ&hl=en
+      link: https://scholar.google.com/citations?user=2fqqWlkAAAAJ
     - icon: researchgate
       icon_pack: ai
       link: https://www.researchgate.net/profile/Emanuele_Bardelli
