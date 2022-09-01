@@ -30,7 +30,7 @@ content:
     - icon: video
       icon_pack: fas
       name: Zoom Me
-      link: 'https://umich.zoom.us/my/bardelli'
+      link: 'https://brown.zoom.us/my/bardelli'
 
 design:
   columns: '2'
