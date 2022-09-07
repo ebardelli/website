@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Post-Doctoral Research Associate
+role: Postdoctoral Research Associate
 
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
@@ -73,9 +73,9 @@ email: ""
 
 ---
 
-I am a post-doctoral research associate in education policy at the Annenberg Institute at Brown University.
+I am a postdoctoral research associate in education policy at the Annenberg Institute at Brown University.
 
-I received a doctorate in Educational Studies from the University of Michigan where I was a pre-doctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). 
+I received a doctorate in Educational Studies from the University of Michigan where I was a predoctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). 
 
 My research interests include teacher professional development, teacher learning, and instructional practices. My dissertation studied how teaching supports to early career teachers relate to their instructional effectiveness growth and employment decisions.
 
