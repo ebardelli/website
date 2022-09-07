@@ -58,9 +58,6 @@ social:
     - icon: google-scholar
       icon_pack: ai
       link: https://scholar.google.com/citations?user=2fqqWlkAAAAJ
-    - icon: researchgate
-      icon_pack: ai
-      link: https://www.researchgate.net/profile/Emanuele_Bardelli
     - icon: orcid
       icon_pack: ai
       link: //orcid.org/0000-0003-3383-9315
