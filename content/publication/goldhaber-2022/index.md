@@ -43,3 +43,6 @@ links:
 - name: URL
   url: https://doi.org/10/gpfg8q
 ---
+
+The clinical teaching experience is one of the most important components of teacher preparation. Prior observational research has found that more effective mentors and schools with better professional climates are associated with better preparation for teacher candidates. We test these findings using an experimental assignment of teacher candidates to placement sites in two states. Candidates who were randomly assigned to higher quality placement sites experienced larger improvements in performance over the course of the clinical experience, as evaluated by field instructors (a.k.a university instructors). The findings suggest that improving clinical placement procedures can improve the teaching quality of candidates.
+
