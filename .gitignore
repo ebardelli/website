@@ -5,3 +5,5 @@ assets/jsconfig.json
 resources/_gen/
 
 .hugo_build.lock
+
+.DS_Store

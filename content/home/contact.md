@@ -25,7 +25,7 @@ content:
   #  postcode: '48109'
   #  country: United States
   #  country_code: US
-  appointment_url: 'https://calendly.com/ebardelli/meet'
+  appointment_url: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3RirtC3YQotFKfU2OBZQpcAAIeQkg8sl5QW8_ojwn3F-CBixRV5f2DU3LLHmNs4v2_ubT_QJts'
   contact_links:
     - icon: video
       icon_pack: fas
