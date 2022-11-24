@@ -52,9 +52,9 @@ social:
     - icon: envelope
       icon_pack: fas
       link: mailto:bardelli@brown.edu
-    - icon: twitter
+    - icon: mastodon
       icon_pack: fab
-      link: https://twitter.com/e_bardelli
+      link: https://social.ebardelli.com/@emanuele
     - icon: google-scholar
       icon_pack: ai
       link: https://scholar.google.com/citations?user=2fqqWlkAAAAJ
