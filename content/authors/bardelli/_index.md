@@ -10,13 +10,13 @@ authors:
 superuser: true
 
 # Role/position
-role: Postdoctoral Research Associate
+role: Director of Information and Evaluation
 
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
 organizations:
-    - name: Annenberg Institute at Brown University
-      url: ""
+    - name: Santa Rosa City Schools
+      url: "https://www.srcschools.org/"
 
 # Short bio (displayed in user profile at end of posts)
 bio: My research interests include teacher professional development, teacher learning, and instructional practices in mathematics education.
@@ -73,9 +73,9 @@ email: ""
 
 ---
 
-I am a postdoctoral research associate in education policy at the Annenberg Institute at Brown University.
+I am the director of information and evaluation for Santa Rosa City Schools.
 
-I received a doctorate in Educational Studies from the University of Michigan where I was a predoctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). 
+I received a doctorate in Educational Studies from the University of Michigan where I was a predoctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). I was a postdoctoral research associate in education policy at the Annenberg Institute at Brown University.
 
 My research interests include teacher professional development, teacher learning, and instructional practices. My dissertation studied how teaching supports to early career teachers relate to their instructional effectiveness growth and employment decisions.
 
