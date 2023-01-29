@@ -34,28 +34,4 @@ volumes:
   host:
     path: /data/www/ebardelli.com/public
 
----
-kind: pipeline
-type: docker
-name: publish to UMich hosting
-
-steps:
-  - name: build
-    image: klakegg/hugo:0.101.0-ext
-    commands:
-      - hugo -e production --gc --minify --cleanDestinationDir --baseURL="http://www-personal.umich.edu/~bardelli/"
-
-  - name: publish UMich
-    image: drillster/drone-rsync
-    environment:
-      SERVER:
-        from_secret: server
-      USERNAME:
-        from_secret: username
-      PASSWORD:
-        from_secret: password
-    commands:
-      - apk add --update --no-cache sshpass
-      - sshpass -p "$PASSWORD" rsync -e "ssh -o StrictHostKeyChecking=no" -rltvzc --delete --omit-dir-times --no-o --no-g public/* $USERNAME@$SERVER:~/Public/html
-
 ...
