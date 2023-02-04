@@ -15,7 +15,7 @@ authors:
 tags: []
 categories: []
 date: '2022-01-01'
-lastmod: 2022-06-07T14:17:29-07:00
+lastmod: 2023-02-04T13:57:18-08:00
 featured: false
 draft: false
 
@@ -33,7 +33,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-06-07T21:17:28.785098Z'
+publishDate: '2023-02-04T21:57:18.696222Z'
 publication_types:
 - '2'
 abstract: ''
@@ -41,8 +41,5 @@ publication: '*American Educational Research Journal*'
 doi: 10/gpfg8q
 links:
 - name: URL
-  url: https://doi.org/10/gpfg8q
+  url: //doi.org/10/gpfg8q
 ---
-
-The clinical teaching experience is one of the most important components of teacher preparation. Prior observational research has found that more effective mentors and schools with better professional climates are associated with better preparation for teacher candidates. We test these findings using an experimental assignment of teacher candidates to placement sites in two states. Candidates who were randomly assigned to higher quality placement sites experienced larger improvements in performance over the course of the clinical experience, as evaluated by field instructors (a.k.a university instructors). The findings suggest that improving clinical placement procedures can improve the teaching quality of candidates.
-

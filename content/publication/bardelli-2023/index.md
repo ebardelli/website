@@ -1,19 +1,17 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: Will mentoring a student teacher harm my evaluation scores? Effects of serving
-  as a cooperating teacher on evaluation metrics
+title: Teacher Preparation Programs and Graduates’ Growth in Instructional Effectiveness
 subtitle: ''
 summary: ''
 authors:
-- Matt Ronfeldt
 - Emanuele Bardelli
-- Stacey Brockman
-- Hannah Mullman
+- Matthew Ronfeldt
+- John P. Papay
 tags: []
 categories: []
-date: '2020-01-01'
-lastmod: 2023-02-04T13:57:19-08:00
+date: '2023-01-01'
+lastmod: 2023-02-04T13:57:18-08:00
 featured: false
 draft: false
 
@@ -31,13 +29,13 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2023-02-04T21:57:19.450132Z'
+publishDate: '2023-02-04T21:57:17.676284Z'
 publication_types:
 - '2'
 abstract: ''
 publication: '*American Educational Research Journal*'
-doi: 10.3102/0002831219872952
+doi: 10.3102/00028312221137798
 links:
 - name: URL
-  url: //doi.org/10/gjkx2w
+  url: https://journals.sagepub.com/doi/10.3102/00028312221137798
 ---

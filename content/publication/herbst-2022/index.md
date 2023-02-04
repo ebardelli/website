@@ -14,7 +14,7 @@ authors:
 tags: []
 categories: []
 date: '2022-01-01'
-lastmod: 2022-06-07T14:17:29-07:00
+lastmod: 2023-02-04T13:57:19-08:00
 featured: false
 draft: false
 
@@ -32,7 +32,7 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2022-06-07T21:17:29.030751Z'
+publishDate: '2023-02-04T21:57:18.886804Z'
 publication_types:
 - '2'
 abstract: ''
@@ -40,7 +40,5 @@ publication: '*Educational Studies in Mathematics*'
 doi: 10/gnh8p9
 links:
 - name: URL
-  url: https://doi.org/10/gnh8p9
+  url: //doi.org/10/gnh8p9
 ---
-
-The investigation at scale of the tensions that teachers need to manage when deciding to follow recommendations for practice has been hampered by the problem of occurrence: The conditions in which those decisions could be made need to occur during an observation in order for observers to document how teachers handle them. Simulations have been recommended as a way to immerse teachers in instructional contexts in which they have the opportunity to follow such recommendations and observe what teachers choose to do in response. In this article, we show an example of how a teaching simulation may be used to support such investigation, in the context of policy recommendations to open up classroom discussion and consider multiple solutions and in the instructional situation of doing proofs in geometry. A contrast between the decisions made by expert and novice teachers (n=59) in the simulation, analyzed using multiple regression, adds empirical evidence to earlier conjectures based on qualitative analysis of classroom teaching experiments that revealed teachers to be particularly attentive to epistemological and temporal constraints. We found that expert and novice teachers differed in how likely they were to prefer practices recommended by policymakers. Specifically, expert teachers were significantly more likely than novice teachers to open up classroom discussions when they had the knowledge resources to correct a student error. Similarly, expert teachers were significantly more likely than novice teachers to explore multiple solutions when there were no time constraints.
