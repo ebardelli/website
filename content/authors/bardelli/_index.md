@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Director of Information and Evaluation
+role: Executive Director of Information and Evaluation
 
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
@@ -51,7 +51,7 @@ education:
 social:
     - icon: envelope
       icon_pack: fas
-      link: mailto:bardelli@brown.edu
+      link: mailto:ebardelli@srcs.k12.ca.us
     - icon: mastodon
       icon_pack: fab
       link: https://social.ebardelli.com/@emanuele
@@ -73,7 +73,7 @@ email: ""
 
 ---
 
-I am the director of information and evaluation for Santa Rosa City Schools.
+I am the executive director of information and evaluation for Santa Rosa City Schools.
 
 I received a doctorate in Educational Studies from the University of Michigan where I was a predoctoral fellow in the IES training program in Causal Inference in Educational Policy Research (CIEPR). I was a postdoctoral research associate in education policy at the Annenberg Institute at Brown University.
 
