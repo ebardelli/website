@@ -16,7 +16,7 @@ content:
   autolink: true
 
   # Contact details (edit or remove options as required)
-  email: bardelli@brown.edu
+  email: ebardelli@srcs.k12.ca.us
   #phone: (734) 926-8171
   #address:
   #  street: 610 East University Ave.
@@ -25,7 +25,7 @@ content:
   #  postcode: '48109'
   #  country: United States
   #  country_code: US
-  appointment_url: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3RirtC3YQotFKfU2OBZQpcAAIeQkg8sl5QW8_ojwn3F-CBixRV5f2DU3LLHmNs4v2_ubT_QJts'
+  # appointment_url: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3RirtC3YQotFKfU2OBZQpcAAIeQkg8sl5QW8_ojwn3F-CBixRV5f2DU3LLHmNs4v2_ubT_QJts'
   contact_links:
     - icon: video
       icon_pack: fas
