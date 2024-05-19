@@ -1,4 +1,8 @@
-github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy-core v0.1.0/go.mod h1:kJwI9H8dicHQCnP8G9EvUDI+oNg/yXcGsjGjwjXuM8I=
-github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy-seo v0.1.0/go.mod h1:R01vz++1i/KR2n00aWGcs6m/L7ky1klbrpqA2KXjMCk=
-github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy/v5 v5.7.0 h1:j0H7ApKal0qdWWdFbT7S/F3XQ7959nO3+kA6lLN4jec=
-github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy/v5 v5.7.0/go.mod h1:pxtkh2Fw4Vdwh2NvIYpCqhR0g7MgwVAxFN1lW9Rep44=
+github.com/HugoBlox/hugo-blox-builder/modules/blox-bootstrap/v5 v5.9.8-0.20240519164611-322b500bd237 h1:yTQkc95ccDejjiSEyJzNINOPN8FXwXdw9+/9DP5rg3s=
+github.com/HugoBlox/hugo-blox-builder/modules/blox-bootstrap/v5 v5.9.8-0.20240519164611-322b500bd237/go.mod h1:xZiTEEurbEwj/NhZohozvlyLCGVCT2wARHDAJeqKG/c=
+github.com/HugoBlox/hugo-blox-builder/modules/blox-core v0.3.1 h1:6GsVeNtYhzl14LLJRFRV1AonKGq8ZAduep/uiK5oEF4=
+github.com/HugoBlox/hugo-blox-builder/modules/blox-core v0.3.1/go.mod h1:So8+V2U+TNxlXmcpZfdDX0muLh3PdJ7z92h30sv3bZg=
+github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-reveal v1.1.3-0.20240519164611-322b500bd237 h1:2pkOF8a6/xke5JdZuZWqVutC10f8Od7ZsKD4HM1fW8c=
+github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-reveal v1.1.3-0.20240519164611-322b500bd237/go.mod h1:F7quX1aEkV2pToTpmDBXOSTkytAnCKkqv/JFLclqa2g=
+github.com/HugoBlox/hugo-blox-builder/modules/blox-seo v0.2.2 h1:ccb5jQLKqiFFht24e6+yW9eie1yIm81/K1xhs7ZHZlM=
+github.com/HugoBlox/hugo-blox-builder/modules/blox-seo v0.2.2/go.mod h1:NsESu6cEms1DgH84icCyylElg2Zu8A0f7Fma5JR0LZE=
