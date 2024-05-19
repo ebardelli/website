@@ -1,14 +1,16 @@
 ---
-title: Teacher Preparation Programs and Graduates’ Growth in Instructional Effectiveness
+title: 'Examining the Potential of Cartoon-Based Simulations for Studying Mathematics
+  Teachers’ Handling of Student Emotions: A Replication Study'
 
 # Authors
 # A YAML list of author names
 # If you created a profile for a user (e.g. the default `admin` user at `content/authors/admin/`), 
 # write the username (folder name) here, and it will be replaced with their full name and linked to their profile.
 authors:
-- Emanuele Bardelli
-- Matthew Ronfeldt
-- John P. Papay
+- AM Brown
+- E Bardelli
+- PG Herbst
+- JK Dimmel
 
 # Author notes (such as 'Equal Contribution')
 # A YAML list of notes for each author in the above `authors` list
@@ -17,7 +19,7 @@ author_notes: []
 date: '2023-01-01'
 
 # Date to publish webpage (NOT necessarily Bibtex publication's date).
-publishDate: '2024-05-19T16:51:32.597176Z'
+publishDate: '2024-05-19T16:51:32.590211Z'
 
 # Publication type.
 # A single CSL publication type but formatted as a YAML list (for Hugo requirements).
@@ -25,10 +27,10 @@ publication_types:
 - article-journal
 
 # Publication name and optional abbreviated publication name.
-publication: '*American Educational Research Journal*'
+publication: '*Implementation and Replication Studies in Mathematics Education*'
 publication_short: ''
 
-doi: 10.3102/00028312221137798
+doi: ''
 
 abstract: ''
 
@@ -68,9 +70,6 @@ image:
 #   E.g. `projects: ['internal-project']` links to `content/project/internal-project/index.md`.
 #   Otherwise, set `projects: []`.
 projects: []
-links:
-- name: URL
-  url: https://journals.sagepub.com/doi/10.3102/00028312221137798
 ---
 
 Add the **full text** or **supplementary notes** for the publication here using Markdown formatting.
