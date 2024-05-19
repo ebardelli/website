@@ -1,20 +1,22 @@
 ---
 # Documentation: https://docs.hugoblox.com/managing-content/
 
-title: How can teaching simulations help us study at scale the tensions mathematics
-  teachers have to manage when considering policy recommendations?
+title: 'Improving student teachers’ feelings of preparedness to teach through recruitment
+  of instructionally effective and experienced cooperating teachers: A randomized
+  experiment'
 subtitle: ''
 summary: ''
 authors:
-- Pat Herbst
-- Mollee Shultz
+- Matt Ronfeldt
 - Emanuele Bardelli
-- Nic Boileau
-- Amanda Mileswki
+- Hannah Mullman
+- Matt Truwit
+- Kevin Schaaf
+- Julie Baker
 tags: []
 categories: []
-date: '2022-01-01'
-lastmod: 2024-05-19T11:34:59-07:00
+date: '2019-10-01'
+lastmod: 2024-05-19T11:35:00-07:00
 featured: false
 draft: false
 
@@ -32,13 +34,13 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2024-05-19T18:34:59.462842Z'
+publishDate: '2024-05-19T18:35:00.583839Z'
 publication_types:
-- '2'
+- '3'
 abstract: ''
-publication: '*Educational Studies in Mathematics*'
-doi: 10/gnh8p9
+publication: ''
+doi: 10.26300/vst6-j842
 links:
 - name: URL
-  url: //doi.org/10/gnh8p9
+  url: https://doi.org/10.26300/vst6-j842
 ---

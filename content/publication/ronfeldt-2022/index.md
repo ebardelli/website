@@ -1,20 +1,20 @@
 ---
 # Documentation: https://docs.hugoblox.com/managing-content/
 
-title: How can teaching simulations help us study at scale the tensions mathematics
-  teachers have to manage when considering policy recommendations?
+title: 'Cultivating coaching in clinical mentors: An experimental evaluation of the
+  Mentors Matter professional development'
 subtitle: ''
 summary: ''
 authors:
-- Pat Herbst
-- Mollee Shultz
+- Matt Ronfeldt
+- Matt Truwit
 - Emanuele Bardelli
-- Nic Boileau
-- Amanda Mileswki
+- Kevin Schaaf
+- B. Smith
 tags: []
 categories: []
 date: '2022-01-01'
-lastmod: 2024-05-19T11:34:59-07:00
+lastmod: 2024-05-19T11:35:00-07:00
 featured: false
 draft: false
 
@@ -32,13 +32,10 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2024-05-19T18:34:59.462842Z'
+publishDate: '2024-05-19T18:35:00.226327Z'
 publication_types:
-- '2'
+- '3'
 abstract: ''
-publication: '*Educational Studies in Mathematics*'
-doi: 10/gnh8p9
-links:
-- name: URL
-  url: //doi.org/10/gnh8p9
+publication: ''
+url_pdf: https://peabody.vanderbilt.edu/TERA/files/TERA_Working_Paper_2022-01.pdf
 ---

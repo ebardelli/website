@@ -1,20 +1,19 @@
 ---
 # Documentation: https://docs.hugoblox.com/managing-content/
 
-title: How can teaching simulations help us study at scale the tensions mathematics
-  teachers have to manage when considering policy recommendations?
+title: Illustrating and enacting a critical quantitative approach to measurement with
+  MIMIC models
 subtitle: ''
 summary: ''
 authors:
-- Pat Herbst
-- Mollee Shultz
+- Matthew Diemer
+- Michael Frisby
+- Aixa Marchand
 - Emanuele Bardelli
-- Nic Boileau
-- Amanda Mileswki
 tags: []
 categories: []
-date: '2022-01-01'
-lastmod: 2024-05-19T11:34:59-07:00
+date: '2023-01-01'
+lastmod: 2024-05-19T11:35:00-07:00
 featured: false
 draft: false
 
@@ -32,13 +31,9 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2024-05-19T18:34:59.462842Z'
+publishDate: '2024-05-19T18:35:00.135410Z'
 publication_types:
-- '2'
+- '3'
 abstract: ''
-publication: '*Educational Studies in Mathematics*'
-doi: 10/gnh8p9
-links:
-- name: URL
-  url: //doi.org/10/gnh8p9
+publication: '*PsyArXiv*'
 ---

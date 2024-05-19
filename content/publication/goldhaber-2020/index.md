@@ -1,20 +1,22 @@
 ---
 # Documentation: https://docs.hugoblox.com/managing-content/
 
-title: How can teaching simulations help us study at scale the tensions mathematics
-  teachers have to manage when considering policy recommendations?
+title: Room for Improvement? Mentor Teachers and the Evolution of Teacher Preservice
+  Clinical Evaluations
 subtitle: ''
 summary: ''
 authors:
-- Pat Herbst
-- Mollee Shultz
+- Dan Goldhaber
+- Matt Ronfeldt
+- James Cowan
+- Trevor Gratz
 - Emanuele Bardelli
-- Nic Boileau
-- Amanda Mileswki
+- Matt Truwit
+- Hannah Mullman
 tags: []
 categories: []
-date: '2022-01-01'
-lastmod: 2024-05-19T11:34:59-07:00
+date: '2020-01-01'
+lastmod: 2024-05-19T11:35:00-07:00
 featured: false
 draft: false
 
@@ -32,13 +34,10 @@ image:
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
 projects: []
-publishDate: '2024-05-19T18:34:59.462842Z'
+publishDate: '2024-05-19T18:35:00.493408Z'
 publication_types:
-- '2'
+- '3'
 abstract: ''
-publication: '*Educational Studies in Mathematics*'
-doi: 10/gnh8p9
-links:
-- name: URL
-  url: //doi.org/10/gnh8p9
+publication: ''
+url_pdf: https://caldercenter.org/sites/default/files/CALDER%20WP%20239-0620.pdf
 ---
