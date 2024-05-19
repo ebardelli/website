@@ -26,9 +26,6 @@ serve:
 .PHONY=publications
 publications:
 	rm -rf content/publication/*/*.md; \
-	$(ACADEMIC) import --bibtex bibtex/publications.bib --overwrite --normalize content/publication; \
-	tmpfile=$(mktemp /tmp/publications.XXXXXX); \
-	sed 's/  keywords = {My Work\/Papers}.*$$//' bibtex/working-papers.bib | sed 's/  file =.*$$//' | sed 's/techreport/unpublished/' > "$tmpfile";\
-	$(ACADEMIC) import --bibtex "$tmpfile" --overwrite --normalize content/publication; \
-	rm "$tmpfile"
-	#$(ACADEMIC) import --bibtex bibtex/talks.bib --overwrite --publication-dir=content/event --normalize
+	$(ACADEMIC) import --overwrite --normalize bibtex/publications.bib content/publication; \
+	$(ACADEMIC) import --overwrite --normalize bibtex/working-papers.bib content/publication; \
+	#$(ACADEMIC) import --overwrite --normalize bibtex/talks.bib content/event 

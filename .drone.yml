@@ -5,7 +5,7 @@ name: publish
 
 steps:
   - name: build
-    image: klakegg/hugo:0.111.3-ext
+    image: hugomods/hugo:exts-0.126.1
     commands:
       - hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
 
