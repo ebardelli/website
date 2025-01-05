@@ -16,7 +16,7 @@ content:
   autolink: true
 
   # Contact details (edit or remove options as required)
-  email: ebardelli@srcs.k12.ca.us
+  email: me@ebardelli.com
   #phone: (734) 926-8171
   #address:
   #  street: 610 East University Ave.
@@ -26,11 +26,11 @@ content:
   #  country: United States
   #  country_code: US
   # appointment_url: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3RirtC3YQotFKfU2OBZQpcAAIeQkg8sl5QW8_ojwn3F-CBixRV5f2DU3LLHmNs4v2_ubT_QJts'
-  contact_links:
-    - icon: video
-      icon_pack: fas
-      name: Zoom Me
-      link: 'https://brown.zoom.us/my/bardelli'
+  #contact_links:
+  #  - icon: video
+  #    icon_pack: fas
+  #    name: Zoom Me
+  #    link: 'https://brown.zoom.us/my/bardelli'
 
 design:
   columns: '2'
