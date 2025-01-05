@@ -51,10 +51,7 @@ education:
 social:
     - icon: envelope
       icon_pack: fas
-      link: mailto:ebardelli@srcs.k12.ca.us
-    - icon: mastodon
-      icon_pack: fab
-      link: https://social.ebardelli.com/@emanuele
+      link: mailto:me@ebardelli.com
     - icon: google-scholar
       icon_pack: ai
       link: https://scholar.google.com/citations?user=2fqqWlkAAAAJ
