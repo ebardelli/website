@@ -8,7 +8,7 @@ main:
     url: '#about'
     weight: 1
   - name: Blog
-    url: 'https://ebardelli.com/blog/'
+    url: 'https://blog.ebardelli.com/'
     weight: 5
   - name: Ed News
     url: 'https://ebardelli.com/ed-news/'
