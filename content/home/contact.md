@@ -16,7 +16,7 @@ content:
   autolink: true
 
   # Contact details (edit or remove options as required)
-  email: me@ebardelli.com
+  email: email@ebardelli.com
   #phone: (734) 926-8171
   #address:
   #  street: 610 East University Ave.
