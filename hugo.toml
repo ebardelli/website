@@ -53,7 +53,7 @@ languageCode = 'en-us'
   mainSections = ['posts']
   toc = false # set to false to disable table of contents 'globally'
   tocOpen = false # set to true to open table of contents by default
-  goToTop = true # set to false to disable 'go to top' button
+  goToTop = false # set to false to disable 'go to top' button
   dateFormat = "" # date format used to show dates on various pages. If nothing is specified, then "2 Jan 2006" format is used.
   # See https://gohugo.io/functions/time/format/ for available date formats.
   rssFeedDescription = "full" # available options: 1) summary 2) full
