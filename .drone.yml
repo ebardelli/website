@@ -1,0 +1,37 @@
+---
+kind: pipeline
+type: docker
+name: publish
+
+steps:
+  - name: build
+    image: hugomods/hugo:exts-non-root-0.148.2
+    commands:
+      - hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
+
+  - name: publish local
+    image: drillster/drone-rsync
+    volumes:
+      - name: www_dir
+        path: /www
+    commands:
+      - rsync -rltvzc --delete --omit-dir-times --no-o --no-g public/ /www/
+
+  - name: publish gh pages
+    image: plugins/gh-pages
+    settings:
+      username:
+        from_secret: gh_username
+      password:
+        from_secret: gh_token
+      remote_url:
+        from_secret: gh_repo
+      target_branch: html
+      pages_directory: public/
+
+volumes:
+- name: www_dir
+  host:
+    path: /data/www/ebardelli.com/public
+
+...
