@@ -8,7 +8,7 @@ slug: about
 toc: false
 ---
 
-![About this site](/images/2025/board_meeting.jpeg)
+![About this site](board_meeting.jpeg)
 
 Everything you read on this blog comes straight from my own brain—my thoughts, opinions, and yes, even the occasional typo! All views expressed here are solely mine and do not represent those of my employer or anyone else. I take full responsibility for the content I share, so if you spot any errors, please feel free to [let me know](mailto:blog@ebardelli.com). I hope you enjoy reading my personal takes on various topics!
 

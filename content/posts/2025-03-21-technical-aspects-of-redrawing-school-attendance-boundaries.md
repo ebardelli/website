@@ -6,6 +6,7 @@ lastmod: 2025-05-27T00:02:51.000Z
 slug: technical-aspects-of-redrawing-school-attendance-boundaries
 tags: ["Data Science","Policy","Data Processing","Data Visualization","DuckDB","Geospatial"]
 
+isStarred: true
 draft: false
 ---
 
