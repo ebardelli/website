@@ -5,10 +5,6 @@ title: "The Technical Blueprint: Redrawing School Attendance Boundaries"
 draft: false
 slug: technical-aspects-of-redrawing-school-attendance-boundaries
 tags: ["Data Science","Policy","Data Processing","Data Visualization","DuckDB","Geospatial"]
-cover:
-    image: https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDd8fHNjaG9vbCUyMGJvdW5kYXJpZXN8ZW58MHx8fHwxNzM4NDMzMTQ0fDA&ixlib=rb-4.0.3&q=80&w=2000
-    alt: "The Technical Blueprint: Redrawing School Attendance Boundaries"
-description: 
 ---
 
 Imagine a single line drawn on a map. That line, a school attendance boundary, prescribes more than just where a child goes to school. It shapes their friendships, influences their family's home value, and defines the very fabric of their neighborhood. Redrawing those lines, then, is a task with far-reaching consequences that require balancing data and human impact.

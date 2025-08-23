@@ -5,10 +5,6 @@ title: Geospatial Analysis in DuckDB
 draft: false
 slug: geospatial-analysis-in-duckdb
 tags: ["DuckDB","Geospatial"]
-cover:
-    image: https://images.unsplash.com/photo-1479232284091-c8829ec114ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDQwfHxtYXB8ZW58MHx8fHwxNzM2MTAzMzk0fDA&ixlib=rb-4.0.3&q=80&w=2000
-    alt: Geospatial Analysis in DuckDB
-description: 
 ---
 
 DuckDB provides a comprehensive set of tools to conduct spatial data analysis. These tools are part of the `spatial` extension, an experimental add-on that supports geospatial data processing in DuckDB.
@@ -25,8 +21,10 @@ We will use the 2020 Census blocks in this analysis.
 
 These are available for download through the Census ftp server:
 
-    wget 'https://www2.census.gov/geo/tiger/TIGER2024/TABBLOCK20/tl_2024_06_tabblock20.zip'
-    unzip tl_2024_06_tabblock20.zip -d census_blocks
+```bash
+wget 'https://www2.census.gov/geo/tiger/TIGER2024/TABBLOCK20/tl_2024_06_tabblock20.zip'
+unzip tl_2024_06_tabblock20.zip -d census_blocks
+```
 
 Download US Census blocks
 
@@ -44,8 +42,10 @@ We will use the `spatial` extension in DuckDB to conduct our geospatial analysis
 
 These two commands will install and load the extension:
 
-    INSTALL spatial;
-    LOAD spatial;
+```sql
+INSTALL spatial;
+LOAD spatial;
+```
 
 Load spatial in DuckDB
 
@@ -57,18 +57,21 @@ We are going to load the data as views in DuckDB. This allows us to access the d
 
 The TIGER/Line data comes in a `dbf`, which spatial can read natively:
 
-    create view census_blocks as
-    select * 
-    from st_read('census_blocks/tl_2024_06_tabblock20.dbf');
-    
+```sql
+create view census_blocks as
+select * 
+from st_read('census_blocks/tl_2024_06_tabblock20.dbf');
+```
 
 Load US Census blocks
 
 To load the California district data, you will have to read the `geojson` file you:
 
-    create view ca_districts as 
-    select * 
-    from st_read('DistrictAreas2324_-2286165690798712574.geojson');
+```sql
+create view ca_districts as 
+select * 
+from st_read('DistrictAreas2324_-2286165690798712574.geojson');
+```
 
 Load CA district map
 
@@ -88,17 +91,19 @@ We are going to leverage two functions in `spatial`: `st_Contains` and `st_Point
 
 We can use these functions as part of a `join` statement to identify which blocks are part of a California district:
 
-    create view districts_blocks as
-    select 
-        ca_districts.CDSCode,
-        census_blocks.GEOIDFQ20
-    from ca_districts 
-    join census_blocks 
-        on st_Contains(
-            ca_districts.geom, 
-            st_Point(
-                census_blocks.INTPTLON20::DOUBLE,
-                census_blocks.INTPTLAT20::DOUBLE));
+```sql
+create view districts_blocks as
+select 
+    ca_districts.CDSCode,
+    census_blocks.GEOIDFQ20
+from ca_districts 
+join census_blocks 
+    on st_Contains(
+        ca_districts.geom, 
+        st_Point(
+            census_blocks.INTPTLON20::DOUBLE,
+            census_blocks.INTPTLAT20::DOUBLE));
+```
 
 Combine US Blocks and CA District map
 
@@ -112,64 +117,70 @@ This model is rather naive and doesn't take into consideration that California a
 
 We can conduct this simple OLS regression with:
 
-    with pop as (
-    select
-      ca_districts.DistrictName, 
-      ca_districts.DistrictType,
-      ca_districts.LocaleDistrict, 
-      ca_districts.EnrollTotal, 
-      ca_districts.EnrollNonCharter, 
-      ca_districts.EnrollCharter, 
-      sum(census_blocks.POP20) as ResidentPopulation,
-    from districts_blocks
-      join ca_districts on ca_districts.CDSCode = districts_blocks.CDSCode
-      join census_blocks on census_blocks.GEOIDFQ20 = districts_blocks.GEOIDFQ20
-    group by all
-    ),
-    reg as (
-    select
-      regr_intercept(EnrollTotal, ResidentPopulation) as intercept,
-      regr_slope(EnrollTotal, ResidentPopulation) as slope,
-    from pop
-    group by all
-    )
-    select
-      DistrictName,
-      DistrictType,
-      EnrollTotal,
-      (intercept + slope * ResidentPopulation)::INT as ExpectedEnrollment,
-      EnrollTotal - ExpectedEnrollment as EnrollDeviation,
-    from pop
-      cross join reg
-    order by EnrollDeviation;
+```sql
+with pop as (
+select
+    ca_districts.DistrictName, 
+    ca_districts.DistrictType,
+    ca_districts.LocaleDistrict, 
+    ca_districts.EnrollTotal, 
+    ca_districts.EnrollNonCharter, 
+    ca_districts.EnrollCharter, 
+    sum(census_blocks.POP20) as ResidentPopulation,
+from districts_blocks
+    join ca_districts on ca_districts.CDSCode = districts_blocks.CDSCode
+    join census_blocks on census_blocks.GEOIDFQ20 = districts_blocks.GEOIDFQ20
+group by all
+),
+reg as (
+select
+    regr_intercept(EnrollTotal, ResidentPopulation) as intercept,
+    regr_slope(EnrollTotal, ResidentPopulation) as slope,
+from pop
+group by all
+)
+select
+    DistrictName,
+    DistrictType,
+    EnrollTotal,
+    (intercept + slope * ResidentPopulation)::INT as ExpectedEnrollment,
+    EnrollTotal - ExpectedEnrollment as EnrollDeviation,
+from pop
+    cross join reg
+order by EnrollDeviation;
+```
 
 Regress student enrollment on population
 
 We find that these are the five most under-enrolled districts in California:
 
-    ┌──────────────────────────┬─────────────────┐
-    │       DistrictName       │ EnrollDeviation │
-    ├──────────────────────────┼─────────────────┤
-    │ San Francisco Unified    │          -40221 │
-    │ East Side Union High     │          -36270 │
-    │ Grossmont Union High     │          -31437 │
-    │ Kern High                │          -29534 │
-    │ Chaffey Joint Union High │          -23620 │
-    └──────────────────────────┴─────────────────┘
+```
+┌──────────────────────────┬─────────────────┐
+│       DistrictName       │ EnrollDeviation │
+├──────────────────────────┼─────────────────┤
+│ San Francisco Unified    │          -40221 │
+│ East Side Union High     │          -36270 │
+│ Grossmont Union High     │          -31437 │
+│ Kern High                │          -29534 │
+│ Chaffey Joint Union High │          -23620 │
+└──────────────────────────┴─────────────────┘
+```
 
 Under-enrollment estimates
 
 and the five most over-enrolled districts in California:
 
-    ┌─────────────────────────────┬─────────────────┐
-    │        DistrictName         │ EnrollDeviation │
-    ├─────────────────────────────┼─────────────────┤
-    │ Fresno Unified              │           28006 │
-    │ Elk Grove Unified           │           23842 │
-    │ Los Angeles Unified         │           22267 │
-    │ Corona-Norco Unified        │           19411 │
-    │ San Bernardino City Unified │           19333 │
-    └─────────────────────────────┴─────────────────┘
+```
+┌─────────────────────────────┬─────────────────┐
+│        DistrictName         │ EnrollDeviation │
+├─────────────────────────────┼─────────────────┤
+│ Fresno Unified              │           28006 │
+│ Elk Grove Unified           │           23842 │
+│ Los Angeles Unified         │           22267 │
+│ Corona-Norco Unified        │           19411 │
+│ San Bernardino City Unified │           19333 │
+└─────────────────────────────┴─────────────────┘
+```
 
 Over-enrollment estiamtes
 

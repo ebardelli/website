@@ -5,13 +5,9 @@ title: "Beyond Maps and Data: The Human Side of School Boundary Decisions"
 draft: false
 slug: beyond-maps-and-data-the-human-side-of-school-boundary-decisions
 
-cover:
-    image: https://images.unsplash.com/photo-1546410531-bb4caa6b424d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDEzfHxzY2hvb2x8ZW58MHx8fHwxNzQyNTg0NDc3fDA&ixlib=rb-4.0.3&q=80&w=2000
-    alt: "Beyond Maps and Data: The Human Side of School Boundary Decisions"
-description: 
 ---
 
-In the [previous blog post](__GHOST_URL__/technical-aspects-of-redrawing-school-attendance-boundaries/), I explored the technical aspects of our boundary redrawing process—data organization, geospatial analysis techniques, and optimization algorithms—and how we tackled them in my school district.
+In the [previous blog post](/posts/technical-aspects-of-redrawing-school-attendance-boundaries/), I explored the technical aspects of our boundary redrawing process—data organization, geospatial analysis techniques, and optimization algorithms—and how we tackled them in my school district.
 
 Yet, beyond the code and maps lies the heart of school consolidation: the students, families, and communities affected by these decisions.
 
