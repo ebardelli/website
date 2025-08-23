@@ -70,7 +70,7 @@ Using this database, I counted the number of current students living within the 
 
 DuckDB made this process trivial, requiring an aggregate `count` and a spatial join:
 
-```sql
+```sql {title="Spatial join in DuckDB counting students living within a US Census Block"}
 SELECT
     block.id AS ID,                     -- Census block identifier
     COUNT(student.id) AS RESIDENTS,     -- Number of students in the block
@@ -81,17 +81,13 @@ FROM US_Census_Blocks AS block
 GROUP BY ALL
 ```
 
-Spatial join in DuckDB counting students living within a US Census Block
-
 I export this table using the [GDAL](https://gdal.org/en/latest/) extension to a GeoJSON map:
 
-```sql
+```sql {title="Exporting to GeoJSON format within DuckDB using the spatial extension GDAL integration"}
 copy <table from previous query> 
 to map.geojson
 with (FORMAT gdal, DRIVER 'GeoJSON')
 ```
-
-Exporting to GeoJSON format within DuckDB using the spatial extension GDAL integration
 
 #### Algorithmic Optimization and its Limitations in Boundary Drawing
 
@@ -121,7 +117,7 @@ In more details, the process is divided into three parts:
 
 3. Selection of the next block to assign based on user optimization options. This last query returns a single block that the mapping tool assigns to the correct school.
 
-```sql
+```sql {title="Census block selection based on user-selected optimization parameters in DuckDB"}
 with current_enrollment as (
     select
         status.school,
@@ -170,8 +166,6 @@ order by
     end, distances.${blockOptimization}
 limit 1
 ```
-
-Census block selection based on user-selected optimization parameters in DuckDB
 
 The procedure is wrapped in a loop that continues to select blocks until all blocks are assigned, schools run out of space, or adjacent blocks to current assigned areas run out. 
 

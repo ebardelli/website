@@ -23,12 +23,10 @@ We will use the 2020 Census blocks in this analysis.
 
 These are available for download through the Census ftp server:
 
-```bash
+```bash {title="Download US Census blocks"}
 wget 'https://www2.census.gov/geo/tiger/TIGER2024/TABBLOCK20/tl_2024_06_tabblock20.zip'
 unzip tl_2024_06_tabblock20.zip -d census_blocks
 ```
-
-Download US Census blocks
 
 ### California School District Shapefiles
 
@@ -44,12 +42,10 @@ We will use the `spatial` extension in DuckDB to conduct our geospatial analysis
 
 These two commands will install and load the extension:
 
-```sql
+```sql {title="Load spatial in DuckDB"}
 INSTALL spatial;
 LOAD spatial;
 ```
-
-Load spatial in DuckDB
 
 Installing the extension is only needed once. After that, you will only need to use the `LOAD`command to activate `spatial` within the current DuckDB process.
 
@@ -59,23 +55,19 @@ We are going to load the data as views in DuckDB. This allows us to access the d
 
 The TIGER/Line data comes in a `dbf`, which spatial can read natively:
 
-```sql
+```sql {title="Load spatial in DuckDB"}
 create view census_blocks as
 select * 
 from st_read('census_blocks/tl_2024_06_tabblock20.dbf');
 ```
 
-Load US Census blocks
-
 To load the California district data, you will have to read the `geojson` file you:
 
-```sql
+```sql {title="Load CA district map"}
 create view ca_districts as 
 select * 
 from st_read('DistrictAreas2324_-2286165690798712574.geojson');
 ```
-
-Load CA district map
 
 ## Analysis
 
@@ -93,7 +85,7 @@ We are going to leverage two functions in `spatial`: `st_Contains` and `st_Point
 
 We can use these functions as part of a `join` statement to identify which blocks are part of a California district:
 
-```sql
+```sql {title="Combine US Blocks and CA District map"}
 create view districts_blocks as
 select 
     ca_districts.CDSCode,
@@ -107,8 +99,6 @@ join census_blocks
             census_blocks.INTPTLAT20::DOUBLE));
 ```
 
-Combine US Blocks and CA District map
-
 This will save a reference view that identifies which census blocks are part of which school district.
 
 ### Over- and Under-Enrolled
@@ -119,7 +109,7 @@ This model is rather naive and doesn't take into consideration that California a
 
 We can conduct this simple OLS regression with:
 
-```sql
+```sql {title="Regress student enrollment on population"}
 with pop as (
 select
     ca_districts.DistrictName, 
@@ -152,11 +142,9 @@ from pop
 order by EnrollDeviation;
 ```
 
-Regress student enrollment on population
-
 We find that these are the five most under-enrolled districts in California:
 
-```
+``` {title="Under-enrollment estimates"}
 ┌──────────────────────────┬─────────────────┐
 │       DistrictName       │ EnrollDeviation │
 ├──────────────────────────┼─────────────────┤
@@ -168,11 +156,10 @@ We find that these are the five most under-enrolled districts in California:
 └──────────────────────────┴─────────────────┘
 ```
 
-Under-enrollment estimates
 
 and the five most over-enrolled districts in California:
 
-```
+``` {title="Over-enrollment estiamtes"}
 ┌─────────────────────────────┬─────────────────┐
 │        DistrictName         │ EnrollDeviation │
 ├─────────────────────────────┼─────────────────┤
@@ -183,8 +170,6 @@ and the five most over-enrolled districts in California:
 │ San Bernardino City Unified │           19333 │
 └─────────────────────────────┴─────────────────┘
 ```
-
-Over-enrollment estiamtes
 
 ---
 
