@@ -65,7 +65,7 @@ languageCode = 'en-us'
   avatar = "avatar.jpg" # put the file in assets folder; also ensure that image has same height and width
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
   intro = "Data Science → Education Policy"
-  name = "Emanuele B"
+  name = "Emanuele Bardelli"
   description = "Notes From the Field: Data Science's Impact on Education Policy"
 
 # Allow to override webmanifest options

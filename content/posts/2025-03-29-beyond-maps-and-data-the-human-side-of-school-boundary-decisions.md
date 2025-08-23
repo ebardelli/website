@@ -1,10 +1,12 @@
 ---
+title: "Beyond Maps and Data: The Human Side of School Boundary Decisions"
 date: 2025-03-29T22:31:36.000Z
 lastmod: 2025-05-27T00:04:35.000Z
-title: "Beyond Maps and Data: The Human Side of School Boundary Decisions"
-draft: false
-slug: beyond-maps-and-data-the-human-side-of-school-boundary-decisions
 
+slug: beyond-maps-and-data-the-human-side-of-school-boundary-decisions
+tags: ["Data Science","Policy"]
+
+draft: false
 ---
 
 In the [previous blog post](/posts/technical-aspects-of-redrawing-school-attendance-boundaries/), I explored the technical aspects of our boundary redrawing process—data organization, geospatial analysis techniques, and optimization algorithms—and how we tackled them in my school district.

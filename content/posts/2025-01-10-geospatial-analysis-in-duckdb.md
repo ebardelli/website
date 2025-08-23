@@ -1,10 +1,12 @@
 ---
+title: Geospatial Analysis in DuckDB
 date: 2025-01-10T11:40:09.000Z
 lastmod: 2025-03-03T11:02:09.000Z
-title: Geospatial Analysis in DuckDB
-draft: false
+
 slug: geospatial-analysis-in-duckdb
 tags: ["DuckDB","Geospatial"]
+
+draft: false
 ---
 
 DuckDB provides a comprehensive set of tools to conduct spatial data analysis. These tools are part of the `spatial` extension, an experimental add-on that supports geospatial data processing in DuckDB.
