@@ -26,7 +26,7 @@ While working on our school consolidation project, we developed internal (and la
 
 All geospatial analysis relied on DuckDB as the data storage and analytical engine. 
 
-As I covered in a previous [blog post](__GHOST_URL__/geospatial-analysis-in-duckdb/), DuckDB provides a robust set of tools for geospatial analysis through the spatial extension. This includes functions such as [`ST_Contains`](https://duckdb.org/docs/stable/extensions/spatial/functions.html#st_union_agg) that powered our geospatial joins of students to attendance boundaries and GeoJSON aggregation functions to combine census blocks into single attendance boundaries. GeoJSON is a standard format for representing geographic data as text. Think of it as a blueprint for a map that a computer can read. Its coordinates define each shape (like a school boundary) and can have additional information attached to it (like school name or enrollment numbers).
+As I covered in a previous [blog post](/geospatial-analysis-in-duckdb/), DuckDB provides a robust set of tools for geospatial analysis through the spatial extension. This includes functions such as [`ST_Contains`](https://duckdb.org/docs/stable/extensions/spatial/functions.html#st_union_agg) that powered our geospatial joins of students to attendance boundaries and GeoJSON aggregation functions to combine census blocks into single attendance boundaries. GeoJSON is a standard format for representing geographic data as text. Think of it as a map blueprint that a computer can read. Its coordinates define each shape (like a school boundary) and can have additional information attached to it (like school name or enrollment numbers).
 
 One of the biggest advantages of using DuckDB over other GIS software (e.g., ArcGIS) is the ability to use SQL syntax to conduct geospatial analysis. This let me write SQL queries once and reuse the same code across multiple scenarios. When the school board requested an urgent analysis of how a specific boundary change might affect feeder patterns between elementary and middle schools, I could generate this analysis within hours rather than days, providing critical data for their next public meeting.
 
@@ -171,7 +171,7 @@ order by
 limit 1
 ```
 
-Census block selection based on user selected optimization parameters in DuckDB
+Census block selection based on user-selected optimization parameters in DuckDB
 
 The procedure is wrapped in a loop that continues to select blocks until all blocks are assigned, schools run out of space, or adjacent blocks to current assigned areas run out. 
 
@@ -181,15 +181,15 @@ Regardless of this limitation, the final maps still need some manual interventio
 
 ## Data-Supported Decision Making
 
-These technical systems—geospatial analysis, mathematical modeling, and databases—serve as valuable aids in the complex process of redrawing attendance boundaries. From visualizing and assigning census blocks to estimating school capacity, these technologies offer significant support in the technical work required. However, it is crucial to recognize that these methods remain supportive, not prescriptive.
+These technical systems—geospatial analysis, mathematical modeling, and databases—serve as valuable aids in the complex process of redrawing attendance boundaries. From visualizing and assigning census blocks to estimate school capacity, these technologies offer significant support in the technical work required. However, it is crucial to recognize that these methods remain supportive, not prescriptive.
 
 While geospatial analysis and optimization models can suggest theoretically efficient boundaries, they cannot fully capture the nuanced effects of these changes on a community. The potential for these algorithms to inadvertently perpetuate existing inequalities underscores the importance of human judgment and ethical consideration alongside these systems.
 
-The boundary drawing tools, with their ability to automatically assign blocks based on user-defined parameters, demonstrate the potential for algorithmic streamlining. Yet, the need for manual intervention to address patchwork assignments and ensure alignment between school and community boundaries highlights the limitations of purely technical solutions in redrawing school boundaries.
+The boundary drawing tools, with their ability to assign blocks automatically based on user-defined parameters, demonstrate the potential for algorithmic streamlining. Yet, the need for manual intervention to address patchwork assignments and ensure alignment between school and community boundaries highlights the limitations of purely technical solutions in redrawing school boundaries.
 
-Ultimately, the technical infrastructure described in this blog post serves to inform and support decision-makers during the process of redrawing school boundaries. These technologies provide the necessary data, analytical capabilities, and fast iteration time to fully explore different scenarios and understand the implications of various boundary configurations. However, the final decisions require human understanding of the community's history, current social dynamics, and equity considerations.
+Ultimately, the technical infrastructure described in this blog post serves to inform and support decision-makers during the process of redrawing school boundaries. These technologies provide the data, analytical capabilities, and fast iteration time to fully explore different scenarios and understand the implications of various boundary configurations. However, the final decisions require human understanding of the community's history, current social dynamics, and equity considerations.
 
-In essence, these technical systems are useful assistants, offering clarity, choice, and efficiency during a complex process. They provide critical context, but the final decisions remain firmly with well-informed decision-makers.
+These technical systems are useful assistants, offering clarity, choice, and efficiency during a complex process. They provide critical context, but the final decisions remain firmly with well-informed decision-makers.
 
 ## Technical Tools in Service of Community Needs 
 

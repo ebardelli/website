@@ -14,7 +14,7 @@ draft: true
 
 - US Census Estimates by Age and Census Tract
     - https://seer.cancer.gov/censustract-pops/
-- CA State Forcasts
+- CA State Forecasts
     - https://dof.ca.gov/forecasting/demographics/projections/
 - CA State Births by Zip Code
     - https://data.chhs.ca.gov/dataset/cdph_live-birth-by-zip-code
@@ -25,7 +25,7 @@ draft: true
 
 - Model the ratio of students who get retained year-to-year using a survival model
 - Explore the use of a time factor to control for time-based trends in retention
-    - Pre vs Post COVID retention
+    - Pre- vs Post-COVID retention
 
 ## School Setting Promotion
 
@@ -34,7 +34,7 @@ draft: true
 
 ## District-Level vs. School-Level Estimates
 
-- How to develop school level estimates from district and county estimates
+- How to develop school-level estimates from district and county estimates
 
 # Results
 
