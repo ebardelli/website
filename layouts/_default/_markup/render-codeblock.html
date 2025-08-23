@@ -1,0 +1,6 @@
+    <div class="highlight">
+        <pre tabindex="0"><code class="language-{{ .Type | default "text" }}" data-lang="{{ .Type | default "text" }}">{{ .Inner }}</code></pre>
+    </div>
+    {{- with .Attributes.title -}}
+    <div class="code-block-title" style="text-align: center;">{{ . }}</div>
+    {{- end -}}
