@@ -10,12 +10,19 @@ steps:
       - hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
 
   - name: publish local
-    image: drillster/drone-rsync
-    volumes:
-      - name: www_dir
-        path: /www
-    commands:
-      - rsync -rltvzc --delete --omit-dir-times --no-o --no-g public/ /www/
+    image: plugins/s3
+    settings:
+        endpoint: s3.ebardelli.com
+        bucket: homepage
+        region: garage
+        path_style: true
+        access_key:
+          from_secret: garage_access_key
+        secret_key:
+          from_secret: garage_secret_key
+        source: public/**/*
+        target: /
+        strip_prefix: true
 
   - name: publish gh pages
     image: plugins/gh-pages
@@ -37,10 +44,5 @@ steps:
         zone_identifier:
             from_secret: cloudflare_zone_identifier
         action: purge_everything
-
-volumes:
-- name: www_dir
-  host:
-    path: /data/www/ebardelli.com/public
 
 ...
