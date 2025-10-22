@@ -8,7 +8,7 @@ tags: ["Ed News", "Vibe Coding"]
 draft: false
 ---
 
-For the past few years I've run [Ed News](https://ebardelli.com/ed-news/), a small site that aggregates education publications so I can stay informed without visiting multiple sources. The original site used the Pluto gem (https://github.com/feedreader/pluto) to fetch RSS feeds and generate a static site. It worked well, but adding new features was difficult, so I decided to rebuild the backend.
+For the past few years I've run [Ed News](https://ebardelli.com/ed-news/), a small site that aggregates education publications so I can stay informed without visiting multiple sources. The original site used the [Pluto gem](https://github.com/feedreader/pluto) to fetch RSS feeds and generate a static site. It worked well, but adding new features was difficult, so I decided to rebuild the backend.
 
 ## The New Release
 
