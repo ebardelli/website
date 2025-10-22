@@ -9,20 +9,17 @@ steps:
     commands:
       - hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
 
-  - name: publish local
-    image: plugins/s3
-    settings:
-        endpoint: s3.ebardelli.com
-        bucket: homepage
-        region: garage
-        path_style: true
-        access_key:
-          from_secret: garage_access_key
-        secret_key:
-          from_secret: garage_secret_key
-        source: public/**/*
-        target: /
-        strip_prefix: true
+  - name: S3 sync to garage
+    image: peakcom/s5cmd:v2.3.0
+    commands:
+      - /s5cmd --endpoint-url=$AWS_ENDPOINT sync --delete public/ s3://homepage/
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: garage_access_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: garage_secret_key
+      AWS_ENDPOINT: https://s3.ebardelli.com
+      AWS_DEFAULT_REGION: garage
 
   - name: publish gh pages
     image: plugins/gh-pages
