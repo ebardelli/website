@@ -1,0 +1,54 @@
+name: CI / publish
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build site (Hugo)
+    runs-on: ubuntu-latest
+    container:
+      image: hugomods/hugo:exts-0.148.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build site
+        run: hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
+
+      - name: Upload public directory
+        uses: actions/upload-artifact@v4
+        with:
+          name: public
+          path: public/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  s3_sync:
+    name: S3 sync to garage
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download public artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: public
+          path: public
+
+      - name: Sync to S3
+        run: s5cmd --endpoint-url $AWS_ENDPOINT sync --delete public/ s3://homepage/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.GARAGE_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.GARAGE_SECRET_KEY }}
+          AWS_ENDPOINT: ${{ secrets.GARAGE_ENDPOINT }}
+          AWS_DEFAULT_REGION: ${{ secrets.GARAGE_DEFAULT_REGION }}
+
+      - name: Purge Cloudflare cache
+        uses: jakejarvis/cloudflare-purge-action@v0.3.0
+        env:
+          CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE_IDENTIFIER }}
+          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
