@@ -24,6 +24,10 @@ jobs:
           hugo-version: '0.152.2'
           extended: true
 
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
       - name: Build site
         run: hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
 
@@ -31,6 +35,9 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./public
+
+      - name: Build search index
+        run: npx -y pagefind --site public
 
       - name: Upload public directory
         uses: actions/upload-artifact@v4
