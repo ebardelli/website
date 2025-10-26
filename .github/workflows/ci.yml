@@ -27,11 +27,10 @@ jobs:
       - name: Build site
         run: hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
 
-      - name: Upload public directory
-        uses: actions/upload-artifact@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          name: public
-          path: public/
+          path: ./public
 
   s3_sync:
     name: S3 sync to garage
@@ -41,8 +40,8 @@ jobs:
       - name: Download public artifact
         uses: actions/download-artifact@v4
         with:
-          name: public
-          path: public
+          name: github-pages
+          path: pages
 
       - name: Set-up s5cmd
         uses: peak/action-setup-s5cmd@main
@@ -50,7 +49,7 @@ jobs:
           version: v2.3.0
 
       - name: Sync to S3
-        run: s5cmd --endpoint-url $AWS_ENDPOINT sync --delete public/ s3://homepage/
+        run: s5cmd --endpoint-url $AWS_ENDPOINT sync --delete pages/ s3://homepage/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.GARAGE_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.GARAGE_SECRET_KEY }}
@@ -71,5 +70,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: public
