@@ -29,10 +29,6 @@ jobs:
           name: public
           path: public/
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
   s3_sync:
     name: S3 sync to garage
     needs: build
@@ -43,6 +39,11 @@ jobs:
         with:
           name: public
           path: public
+
+      - name: Set-up s5cmd
+        uses: peak/action-setup-s5cmd@main
+        with:
+          version: v2.3.0
 
       - name: Sync to S3
         run: s5cmd --endpoint-url $AWS_ENDPOINT sync --delete public/ s3://homepage/
@@ -57,3 +58,14 @@ jobs:
         env:
           CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE_IDENTIFIER }}
           CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+
+  github_pages:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: public
