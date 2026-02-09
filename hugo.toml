@@ -92,6 +92,10 @@ name = "github"
 url = "https://github.com/ebardelli"
 
 [[params.socialIcons]]
+name = "email"
+url = "mailto:hello@ebardelli.com"
+
+[[params.socialIcons]]
 name = "bluesky"
 url = "https://bsky.app/profile/ebardelli.com"
 
