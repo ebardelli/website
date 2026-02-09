@@ -1,4 +1,7 @@
+{{ if ne .Params.comments false }}
 <hr style="margin-top: 40px; margin-bottom: 40px;" />
 <div class="comments">
   <h2>Comments</h2>
-  <p>If you have a question about this post or want to leave a comment, please email me at <a href="mailto:hello@ebardelli.com?subject=Comment%20on%20Your%20Post:%20{{ .Title }}">hello@ebardelli.com</a></p>
+  <p>If you have a question about this post or want to leave a comment, please email me at <a href="mailto:hello@ebardelli.com?subject=Comment%20on%20Your%20Post:%20{{ .Title }}">hello@ebardelli.com</a>.</p>
+</div>
+{{ end }}

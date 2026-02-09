@@ -6,6 +6,9 @@ draft: false
 slug: about
 
 toc: false
+
+params:
+    comments: false
 ---
 
 ![About this site](board_meeting.jpeg)
