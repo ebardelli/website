@@ -1,5 +1,6 @@
     <div class="highlight">
-        <pre tabindex="0"><code class="language-{{ .Type | default "text" }}" data-lang="{{ .Type | default "text" }}">{{ .Inner }}</code></pre>
+        {{- $h := highlight .Inner .Type "" -}}
+        {{- $h | replaceRE "(?s)<pre([^>]*)>" "<pre$1 style=\"white-space: pre-wrap !important; overflow-wrap: anywhere !important; word-break: break-word !important; overflow-x: visible !important;\">" | replaceRE "<span class=\"line\"" "<span class=\"line\" style=\"flex-wrap: wrap !important; white-space: pre-wrap !important;\"" | safeHTML -}}
     </div>
     {{- with .Attributes.title -}}
     <div class="code-block-title" style="text-align: center;">{{ . }}</div>

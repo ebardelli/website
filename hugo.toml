@@ -9,6 +9,7 @@ languageCode = 'en-us'
 
 [markup]
   [markup.highlight]
+    style = 'monokai'
     noClasses = false
   [markup.goldmark.renderer]
     unsafe = true
