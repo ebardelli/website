@@ -114,7 +114,7 @@ If this report is not available, districts can use their own student-level enrol
 
 Multiple years of data are preferable, with five years being the recommended minimum to calculate more stable survival rates and new student generation rates.
 
-Below, I show a sample query that processes CALPADS data to create a clean enrollment table. This query assumes a folder named `CALPADS` stores the raw CALPADS data, and that all reports are available as separate CSV files.
+Below, I show a sample query that processes CALPADS data to create a clean enrollment table. This query assumes a folder named `CALPADS` stores the raw CALPADS data, and that all reports are available as separate CSV files with this naming convention: `Enrollment_1_2_[YY]_[YY].csv`.
 
 ```sql {title="Processing Enrollment Data"}
 create or replace temp table enrollment as
@@ -127,19 +127,7 @@ select
         when Grade = 'KN' then 0
         else Grade::int
     end as gr
-from read_csv('CALPADS/Elem_1_2_*.csv', union_by_name=true, filename=true)
-union
-select
-    '20' || regexp_extract(filename, '_(\d\d)_\d\d.csv$', 1) || '-20' || regexp_extract(filename, '_\d\d_(\d\d).csv$', 1) as yr,
-    SchoolName as sc,
-    LocalID as id,
-    CASE
-        when Grade = 'TK' then -1
-        when Grade = 'KN' then 0
-        else Grade::int
-    end as gr
-from read_csv('CALPADS/Sec_1_2_*.csv', union_by_name=true, filename=true)
-;
+from read_csv('CALPADS/Enrollment_1_2_*.csv', union_by_name=true, filename=true)
 ```
 
 District-wide projections can be created by combining enrollment data across schools. The rest of the code remains the same. Here, the `sc` column can be set to a constant value representing the district name, or different aggregate levels representing regular enrollment, charter enrollment, and non-public school enrollment.
