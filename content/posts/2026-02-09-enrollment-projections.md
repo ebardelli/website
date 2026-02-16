@@ -171,15 +171,26 @@ The intuition behind using different percentiles is that they quantify the uncer
 
 # Implementation Steps
 
+## Required Tools
+
+The Monte Carlo simulation example is implemented in `DuckDB`, an open-source, in-process SQL database management system that is designed for analytical workloads. `DuckDB` is particularly well-suited for this type of analysis because it can efficiently handle large datasets and complex queries, making it ideal for processing student-level enrollment data and running simulations. `DuckDB` can be installed on a variety of operating systems and platforms using their [official installation guides](https://duckdb.org/install/).
+
+Modelling the stochastic process relies on a community extension for `DuckDB` (aptly) named `stochastic`, which provides functions for generating random numbers from specified distributions. 
+
+Install and load this extension from the 'DuckDB' community extensions marketplace:
+
+```sql {title="Installing Stochastic Extension"}
+install stochastic from community;
+load stochastic;
+```
+
 ## Data Collection
 
-The first step in this simulation approach is to collect and prepare the data. At a minimum, this includes historical enrollment data at the student level. For California districts, CALPADS certification report 1.2 Enrollment - Primary and Short Term Enrollment Student List is ideal, as it provides detailed information on student enrollment by grade and school.
-
-If this report is not available, districts can use their own student-level enrollment data, ensuring that it includes school codes, student id, and grade level at a minimum.
+The first step in this simulation approach is to collect and prepare the data. The simulation requires historical enrollment data at the student level. For California districts, CALPADS certification report 1.2 Enrollment - Primary and Short Term Enrollment Student List is ideal, as it provides detailed information on student enrollment by grade and school. If this report is not available, districts can use their own student-level enrollment data, ensuring that it includes school codes, student id, and grade level data.
 
 Multiple years of data are preferable, with five years being the recommended minimum to calculate more stable survival rates and new student generation rates.
 
-Below, I show a sample query that processes CALPADS data to create a clean enrollment table. This query assumes a folder named `CALPADS` stores the raw CALPADS data, and that all reports are available as separate CSV files with this naming convention: `Enrollment_1_2_[YY]_[YY].csv`.
+Below, I show a sample query that processes CALPADS data to create a clean enrollment table. This query assumes a folder named `CALPADS` stores the raw CALPADS data, and that all reports are available as separate CSV files with this naming convention: `Enrollment_1_2_[YY]_[YY].csv`. The example `SQL` code can be easely adjusted to fit other data formats, as long as the necessary information on school codes, student id, and grade level is included.
 
 ```sql {title="Processing Enrollment Data"}
 create or replace temp table enrollment as
@@ -200,15 +211,6 @@ District-wide projections can be created by combining enrollment data across sch
 ## Data Processing
 
 To run the simulations, we need two separate intermediate data tables: one for student survival rates and another for new student generation rates. Processing the same historical enrollment data in slightly different ways creates these tables.
-
-### Prerequisites
-
-The Monte Carlo process relies on an external extension for `DuckDB` called `stochastic`, which provides functions for generating random numbers from specified distributions. Install and load this extension from the 'DuckDB' community extensions marketplace:
-
-```sql {title="Installing Stochastic Extension"}
-install stochastic from community;
-load stochastic;
-```
 
 ### Student Survival Rates
 
@@ -269,6 +271,10 @@ order by sc, gr
 ;
 ```
 
+Different ways to aggregate survival rates can be used instead of averaging across years, such as using the most recent year's survival rate or using a weighted average that gives more weight to recent years. The choice of aggregation method can be informed by the stability of survival rates over time and the presence of any "exogenous shocks" that might have affected survival rates in specific years.
+
+In my experience, the choice of aggregation method does not significantly affect the overall projections, as the Monte Carlo simulation framework captures the uncertainty in survival rates. However, using a weighted average that gives more weight to recent years can help capture any recent trends or changes in survival rates that might not be fully reflected in a simple average.
+
 ## New Student Generation Rates
 
 We calculate new student generation rates by finding the number of new students entering the system at each grade level. The calculation of new student generation rates is important for kindergarten, as birth rates and other factors determine the number of new students entering the system. This is also true for any other grade level where new students might enter the system, such as through transfers or late enrollments.
@@ -325,6 +331,8 @@ This table provides three different estimates of new student generation: a regre
 The regression-based estimate uses simple linear regression to project the number of new students based on historical trends, while the average-based and maximum-based estimates provide alternative projections based on historical averages and maximums, respectively.
 
 Each of these estimates allows us to model different scenarios and account for uncertainty in new student generation in the Monte Carlo simulations.
+
+Similar to the survival rates, the choice of aggregation method can be informed by the stability of generation rates over time and the presence of any "exogenous shocks" that might have affected generation rates in specific years. However, the choice of aggregation method does not significantly affect the overall projections, as the Monte Carlo simulation framework captures the uncertainty in generation rates.
 
 ## Monte Carlo Simulations
 
@@ -604,7 +612,7 @@ group by all
 
 ## Smoothing School-Level Projections
 
-A final consideration is whether to apply any smoothing techniques to the school-level projections.  Because school-level projections are more sensitive to localized "exogenous shocks" and have fewer observations than district-level projections, they can exhibit more volatility and less accuracy.
+A final consideration is whether to apply any smoothing techniques to the school-level projections. Because school-level projections are more sensitive to localized "exogenous shocks" and have fewer observations than district-level projections, they can exhibit more volatility and less accuracy.
 
 An approach to address this issue is to calculate school-level estimates following a two-stage hybrid approach, where district-level projections are combined with school-level projections to produce smoothed school-level projections that align with the overall district-level projections while still reflecting the relative distribution of students across schools based on historical trends. 
 
@@ -612,7 +620,7 @@ In the first stage, we run projections at the district level and select an appro
 
 In the second stage, we adjust the school-level projections to align with the selected district-level projection. In this stage, the individual school-level projections are used to calculate the percentage share of grade-level enrollment for each school, and then we apply these shares to the selected district-level grade projections.
 
-Below, I show an example query that implements this two-stage approach. This query assumes that the district-level projections have already been calculated and stored in a csv file called `district.csv`, and that the school-level projections have been calculated and stored in a csv file called `schools.csv`.
+Below, I show an example query that implements this two-stage approach. This query assumes that the district-level projections have already been calculated and stored in a csv file called `district.csv`, and that the school-level projections have been calculated and stored in a csv file called `schools.csv`. These files can be replaced with temporary tables created from the previous steps in the Monte Carlo simulation process.
 
 ```sql {title="Smoothing School-Level Projections"}
 WITH
