@@ -1,5 +1,5 @@
 ---
-title: 'Monte Carlo Enrollment Projections for School Districts'
+title: 'A New Approach to Enrollment Projections for School Districts'
 date: 2026-02-09T12:21:09.000Z
 lastmod: '2026-02-16T09:45:00.000-07:00'
 
@@ -11,22 +11,15 @@ draft: false
 math: true
 ---
 
-Enrollment projections are a fundamental component of the planning and budgeting processes for school districts. 
-
-The primary purpose of these projections is to help districts prepare for long-term changes in educational demand, which directly affects the need for resources, personnel, and school facilities. 
-
-Specifically, enrollment data is used for:
-
- - Personnel Planning: Determining the number of teachers, administrators, and staff to meet programmatic needs.
- - Budgeting and Revenue Forecasting: Informing short-term and long-term financial plans, including salary and benefit expenditures.
- - Facilities and Capital Planning: Deciding on building utilization, the need for new school facilities, and capital-improvement projects.
- - Operational Logistics: Planning for student transportation and the allocation of supplies and textbooks.
+Enrollment projections are a fundamental component of the planning and budgeting processes for school districts. The primary purpose of these projections is to help districts prepare for long-term changes in educational demand, which directly affects the need for resources, personnel, and school facilities. 
 
 The most widely used method for school district enrollment projection is the cohort-survival ratio (CSR), also known as the grade retention method. This approach uses historical data to determine the percentage of students "surviving" from one grade to the next, while projecting incoming kindergarten classes based on birth rates from five years prior. Many districts favor CSR because they can easily compute it in a spreadsheet, even though more advanced methods like multiple linear regression exist.
 
-To be effective, enrollment projections must account for a variety of demographic and socioeconomic factors. Beyond simple birth and enrollment trends, administrators must consider migration patterns, student transfers to charter or private schools, and "exogenous shocks," such as policy changes that influence whether students enter or leave the district.
+To be effective, enrollment projections must account for a variety of demographic and socioeconomic factors. Beyond simple birth and enrollment trends, administrators must consider migration patterns, student transfers to charter or private schools, and "exogenous shocks," such as policy changes that influence whether students enter or leave the district. Finally, simple methods like CSR or regression-based models often struggle when conditions significantly change year-to-year, leading to policy makers to rely on their own judgment and "guesses" to adjust projections based on local knowledge of trends and conditions.
 
-# Projection Methods
+In this blog post, I describe a new approach to enrollment projections that builds upon the strengths of existing methods while addressing some of their limitations. This approach uses a Monte Carlo simulation framework to explicitly model uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate. By modeling student survival and new student generation as separate stochastic processes, this method allows for more robust modeling, especially in the presence of strong "exogenous shocks" that might affect one process more than another. Finally, this approach uses off-the-shelf, open-source, and freely available tools, such as `DuckDB` for data processing and analysis, making it accessible to school district staff without advanced statistical software or programming languages.
+
+# Background on Enrollment Projection Methods
 
 Existing enrollment projection models range from simple historical trend analyses to complex econometric and computational frameworks. We can categorize these models into two broad approaches: projection, which relies on historical data to extend existing trends, and prediction, which incorporates additional variables known as exogenous factors.
 
@@ -40,19 +33,19 @@ However, districts rarely rely on a single year's data; instead, they often use 
 
 Another decision is about how to predict new entries into kindergarten. Calculating the ratio of incoming kindergarten children to local birth rates from five years prior typically handles this.
 
-Mathematically, regression models include the CSR as a special case. Here, the grade progression ratio regresses against a constant term. This results in an arithmetic average of past observed values.
+## Regression and Structural Models
 
-## Structural and Regression Models
+More sophisticated prediction models attempt to explain the "why" behind enrollment changes by using multiple regression or structural equations.
 
-More sophisticated models attempt to explain the "why" behind enrollment changes by using multiple regression or structural equations.
+Regression models use the correlation between historical enrollment data alongside external variables to project future enrollment. For example, a regression model might find that enrollment is correlated with local unemployment rates, and use projected unemployment rates to forecast enrollment. The CSR method can be seen as a special case of a regression model where the only predictor is the previous year's enrollment.
 
-Structural equation models define enrollment in a specific grade as the sum of the previous year's enrollment in the prior grade, adjusted for net migration, net transfers to private schools, non-promotions, and dropouts.
+Structural equation models combine multiple regression equations to model more complex relationships between enrollment and various predictors, such as population growth, economic conditions, and policy changes. These models can capture feedback loops and interactions between variables, providing a more nuanced understanding of enrollment dynamics.
 
-One major benefit of using regression models is the ability to include exogenous variables in the projections.  Such external variables include population growth rates, per capita income, unemployment rates, and employment growth.
+One major benefit of using these more complex models is the ability to include external, new variables in the projections beyond historical enrollment data. Such external variables include population growth rates, per capita income, unemployment rates, and employment growth.
 
-## Approaches to Modeling
+## Approaches to Modeling School- and District-Level Projections
 
-We can also categorize enrollment projections based on the computational approach used to generate projections.
+Different computational approaches exist for modeling enrollment projections at the school and district levels, including top-down, bottom-up, and hybrid models.
 
 Top-down models start with a district-wide projection and then allocate students to individual schools based on historical percentages or current enrollment shares. 
 
@@ -64,7 +57,7 @@ While these different computational approaches provide a baseline, practitioners
 
 ## Limitations
 
-Existing enrollment projection models face several significant limitations, ranging from a heavy reliance on historical trends to difficulties in obtaining high-quality data for more complex formulas.
+Existing enrollment projection models face several significant limitations, ranging from a heavy reliance on historical trends to difficulties in obtaining high-quality data for more complex models.
 
 ### Cohort-Survival Ratio (CSR) Weaknesses
 
@@ -72,49 +65,45 @@ The primary drawback of the CSR method is its fundamental assumption that the fu
 
 CSR is notably less accurate for individual grades and schools than for district-wide totals. This is because of the compounding effect of small errors in grade-to-grade progression rates. Also, school-level projections are more sensitive to localized, yearly "exogenous shocks", which might lead to biased estimates when using historical averages.
 
-The CSR accuracy also declines sharply as the projection period extends beyond one year. Like the *compounding error* problem in financial forecasting, where small, individual errors can lead to a significant divergence from actual outcomes, this issue presents a similar challenge. When yearly projections consistently favor one direction, like being too optimistic or pessimistic, it creates problems. Over time, this persistent bias can lead to systematic overestimation or underestimation of enrollment.
+The CSR accuracy also declines sharply as the projection period extends beyond one year. This issue is like the *compounding error* problem in financial forecasting, where small, individual errors can lead to a significant divergence from actual outcomes. When yearly projections consistently favor one direction, like being too optimistic or pessimistic, it creates compounding errors where the projections can be off several percentage points from the eventual enrollment. Over time, this persistent bias can lead to systematic overestimation or underestimation of enrollment, which can have significant implications for resource allocation and planning.
 
-Finally, CSR models usually provide a single point estimate as the projection. While this might be sufficient for some planning purposes, it makes it difficult to account for expected external shocks or uncertainty in enrollment, leaving further guesswork for the analyst to adjust the projection based on their knowledge of local trends and conditions.
+Finally, CSR models usually provide a single point estimate as the projection. While this might be sufficient for some planning purposes, it makes it difficult to account for expected external shocks or uncertainty in enrollment, leaving further guesswork for the policy maker to adjust the projection based on their knowledge of local trends and conditions.
 
-### Structural and Regression Model Challenges
+### Regression and Structural Model Challenges
 
-While these models attempt to incorporate external variables, the difficulty of acquiring adequate time-series data for all necessary variables often limits them. Even when data is available, it is often of poor quality, particularly regarding net migration by grade and private school enrollment. Including too many exogenous variables can lead to statistical problems like multicollinearity.
+While these models attempt to incorporate external variables and can provide an estimate of the uncertainty of the predicted enrollment, the difficulty of acquiring adequate time-series data for all necessary variables often limits them. Even when data is available, it is often of poor quality, particularly regarding net migration by grade and private school enrollment. Including too many exogenous variables can lead to statistical problems like multicollinearity or overfitting of the prediction to the historical data.
 
-Another limitation of these models is data availability. Most external variables are usually available only at the county level (e.g., population growth, unemployment rates), which may not accurately reflect the local conditions for a specific school district. For example, a new production plan might open in a county, leading to a reduction in unemployment rates, suggesting an increase in enrollment. The new production plan will not equally affect all districts in the county, as some districts may be more impacted than others, influencing the enrollment increase unevenly.
+Another limitation of using these models for school- and district-level projections is data availability. Most external variables are usually available only at the county level (e.g., population growth, unemployment rates), which may not accurately reflect the local conditions for a specific school district. For example, a new production plan might open in a county, leading to a reduction in unemployment rates, suggesting an increase in enrollment. The new production plan will not equally affect all districts in the county, as some districts may be more impacted than others, influencing the enrollment increase unevenly.
 
 These reasons lead experts to frequently use these more complex models for state or national enrollment predictions, benefiting from better data quality and availability, rather than for local district projections.
 
 ### Systemic and Behavioral Biases
 
-Prior literature has shown that districts may intentionally bias their projections based on financial or political incentives. For example, studies in New York and Kentucky found that districts often underestimate revenues and overestimate expenditures to build budget slack or reach optimal fund balance levels.
+Research has shown that districts may intentionally bias their projections based on financial or political incentives. For example, studies in New York and Kentucky found that districts often underestimate revenues and overestimate expenditures to build budget slack or reach optimal fund balance levels. These adjustments are often made without explicitly stating the assumptions or rationale behind them, making it difficult to evaluate the accuracy of projections, leading to a lack of transparency and accountability in the decisions made using these projections.
 
-Models often struggle to factor in the impact of charter school competition, which can significantly alter enrollment and costs.
-
-Because no computational model can account for every local variable, the process remains highly subjective. Decision-makers often must use "guesses" and multiple "passes" to reconcile model outputs with their own knowledge of local trends, such as the relocation of special education programs or new magnet school openings.
-
-Finally, all models are subject to the inherent uncertainty of the future; for instance, forecast error increases significantly during economic downturns like the Great Recession.
+Most of the existing projection models also do not provide a clear picture regarding possible variability in the possible enrollment projections. Even if all projection models are subject to the inherent uncertainty of the future, providing a single point estimate from a CSR might suggest overconfidence in a projection that is actually quite uncertain. This can lead to a false sense of precision and may not adequately prepare districts for potential fluctuations in enrollment. For example, if a district is projecting enrollment for the next five years for facilities planning purposes, the uncertainty around that projection will likely increase with each year. A single point estimate does not capture this increasing uncertainty, which can lead to underpreparedness for potential enrollment changes.
 
 # A New Approach: Monte Carlo Simulations
 
-This blog post describes an alternative approach to enrollment projections that builds upon the strengths of the CSR method while addressing some of its limitations. This approach uses similar input data as traditional CSR models: enrollment by grade and school, student survival rates, and new student generation rates.
+In this blog post, I describe an alternative approach to enrollment projections that builds upon the strengths of the CSR and regression methods while addressing some of their limitations. This approach uses similar input data as these traditional models, enrollment by grade and school, while separately calculating student survival rates and new student generation rates, and combining them using a new Monte Carlo simulation framework.
 
-A Monte Carlo simulation framework handles this data, allowing for explicit modeling of uncertainty and presenting a range of outcomes instead of a single point estimate. These simulations can run thousands of times, and each time they randomly change the underlying projection assumptions. Analyzing the distribution of outcomes from these separate runs helps us understand the range of potential enrollment outcomes and their probabilities.
-
-These outcome ranges, which offer a quantitative measure of uncertainty in enrollment projections and guide adjustments for "exogenous shocks" by enabling local experts to choose a projection percentile for further forecasting, can inform decision-making.
+A Monte Carlo simulation framework allows for explicit modeling of uncertainty and presents a range of outcomes instead of a single point estimate. Separate simulations run thousands of times, each time randomly changing the underlying projection assumptions, and are combined together in an overall distribution of possible enrollment outcomes. These outcome ranges inform decision making by both providing a projection point estimate alongside possible alternative outcomes, which offer a quantitative measure of uncertainty in enrollment projections and guide adjustments for "exogenous shocks" by enabling local experts to choose a projection percentile for further forecasting.
 
 In addition, the simulations explicitly model student survival, or continued year-to-year enrollment, and new student generation, or new entries into the system, as separate processes, unlike traditional CSR models that combine these into a single grade progression ratio. This allows for more robust modeling, especially in the presence of strong "exogenous shocks" that might affect one process more than another. For example, the completion of a new housing development might lead to a surge in new student generation, while a change in promotion policies might lead to a drop in student survival rates. 
 
 Finally, this approach uses off-the-shelf, open-source, and freely available tools, such as `DuckDB` for data processing and analysis. This analysis uses `SQL` queries, which are more accessible to school district staff than specialized statistical software or programming languages. Student-level data is required to run the simulations, with certified CALPADS data being ideal for California districts.
 
-## The Stochastic Processes of Survival and Generation
+## The Stochastic Processes of Continued Enrollment and New Student Enrollment
 
-The Monte Carlo simulation approach models enrollment as a stochastic process driven by two key components: student survival and new student generation. 
+The Monte Carlo simulation approach models enrollment as a stochastic process driven by two key components: continued enrollment (i.e., student survival) and new student enrollment (i.e., new student generation). 
 
-This stochastic process models enrollment as a random process, similar to how we would expect it to play out in the real world. In other words, enrollment is not predicted by a set of circumstances that are known using past data. Instead, each enrollment projection is based on a set of possible outcomes, each one with its own likelihood of happening. All these separate outcomes are combined into a known distribution of outcomes, which can be analyzed to understand the range of potential enrollment outcomes and their probabilities.
+The simulation handles these two enrollment types as random processes, similar to how we would expect them to play out in the real world. In other words, enrollment is not predicted by a set of circumstances that are known using past data. Instead, each enrollment projection is based on a set of possible outcomes, each one with its own likelihood of happening. All these separate outcomes are combined into a known distribution of outcomes, which can be analyzed to understand the range of potential enrollment outcomes and their probabilities.
 
-The Monte Carlo simulation approach models these outcomes directly by simulating the enrollment process multiple times, each time randomly drawing from the underlying distributions of survival and generation rates. This allows us to capture the natural uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate. 
+The Monte Carlo simulation approach models these enrollment outcomes directly by simulating the enrollment process multiple times, each time randomly drawing from the underlying distributions of continued enrollment and new student enrollment rates. This allows us to capture the natural uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate.
 
 The name of the method comes from a common approach in statistics and computational mathematics, where random sampling is used to understand the behavior of a system that is difficult to model analytically. Its name comes from the Monte Carlo Casino in Monaco, which is famous for its games of chance, reflecting the method's reliance on randomness and probability.
+
+## Technical Overview of the Simulation
 
 In technical terms, the simulation models enrollments as:
 
