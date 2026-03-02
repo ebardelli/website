@@ -143,7 +143,7 @@ where `Dist` is chose based on the dispersion of the historical data:
  - If equidispersion: $ Poisson(\lambda) $
  - If overdispersion: $ NegativeBinomial(r, p) $
 
-With underdispertion, the binomial distribution is used, which requires a fixed maximum count $ n $. Here, we can use the maximum observed generation across all years as `n`, and the average generation divided by that maximum as the probability $ p $. This probability is calculated with $ p = \frac{\mu}{\sigma^2} $, where $\mu$ is the average generation for that grade and $\sigma^2$ is the variance of generation for that grade. This approach allows us to model the number of new students entering the system while accounting for the observed underdispersion in the historical data.
+With underdispersion, the binomial distribution is used, which requires a fixed maximum count $ n $. Here, we can use the maximum observed generation across all years as `n`, and the average generation divided by that maximum as the probability $ p $. This probability is calculated with $ p = \frac{\mu}{\sigma^2} $, where $\mu$ is the average generation for that grade and $\sigma^2$ is the variance of generation for that grade. This approach allows us to model the number of new students entering the system while accounting for the observed underdispersion in the historical data.
 
 With equidispersion, the Poisson distribution is used, which is appropriate for modeling count data where the mean and variance are approximately equal. The parameter $ \lambda $ represents the average number of new students generated over the historical period.
 
@@ -153,7 +153,7 @@ Accounting for variation in the historical data is important for generating real
 
 Intuitively, the three different distribution choices for modeling new student generation allow us to capture different patterns in the historical data.
 
-When year-to-year variation in new student generation is minimal (i.e., underdispertion, meaning variance is less than the mean), the binomial distribution restricts the number of new students produced.
+When year-to-year variation in new student generation is minimal (i.e., underdispersion, meaning variance is less than the mean), the binomial distribution restricts the number of new students produced.
 
 When the number of new students generated matches the historical pattern (i.e., equidispersion, meaning that the historical mean and variance are approximately equal), the Poisson distribution's allowance for greater variability in new student numbers around a known mean.
 
@@ -165,7 +165,7 @@ Choosing the appropriate distribution based on the observed dispersion in the hi
 
 The Monte Carlo framework combines the two separate survival and generation simulations into a single enrollment estimate. The overall enrollment estimate predicts enrollment by summing the number of students surviving from the previous grade and the number of new students generated for that grade. Repeating this process for each grade and school over many simulation runs enables us to generate a distribution of projected enrollment outcomes for each grade and school. These repeated simulations, each one separate from the others, allow us to capture the uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate.
 
-As as final step, these separate simulation runs are combined to determine the overall distribution of possible enrollment outcomes for each grade and school. By analyzing this distribution, we can understand the range of potential enrollment outcomes and their likelihood when compared to other predictions, which can inform decision-making and help districts prepare for a variety of future scenarios. Usually, the midpoint of this distribution (i.e., the median or 50th percentile) is used as the point estimate for enrollment projections. Other percentiles (e.g., the 25th percentile and the 75th percentile) can provide a more conservative or optimistic projection based on local knowledge of trends and conditions.
+As a final step, these separate simulation runs are combined to determine the overall distribution of possible enrollment outcomes for each grade and school. By analyzing this distribution, we can understand the range of potential enrollment outcomes and their likelihood when compared to other predictions, which can inform decision-making and help districts prepare for a variety of future scenarios. Usually, the midpoint of this distribution (i.e., the median or 50th percentile) is used as the point estimate for enrollment projections. Other percentiles (e.g., the 25th percentile and the 75th percentile) can provide a more conservative or optimistic projection based on local knowledge of trends and conditions.
 
 The intuition behind using different percentiles is that they quantify the uncertainty in enrollment projections and give a sense of the range of outcomes. This gives policy makers the tools to make informed decisions based on their specific circumstances and risk tolerance. For example, if a district is facing significant uncertainty because of potential "exogenous shocks" (e.g., a new charter school opening, a change in promotion policies) or has experienced an unexpected decline in enrollment year-over-year, they might choose to use a more conservative percentile (e.g., the 40th percentile) to account for the possibility of lower enrollment than historically observed. Conversely, if a district is expecting strong growth trends and wants to plan for higher enrollment, it might choose to use a more optimistic percentile (e.g., the 60th percentile).
 
@@ -190,7 +190,7 @@ The first step in this simulation approach is to collect and prepare the data. T
 
 Multiple years of data are preferable, with five years being the recommended minimum to calculate more stable survival rates and new student generation rates.
 
-Below, I show a sample query that processes CALPADS data to create a clean enrollment table. This query assumes a folder named `CALPADS` stores the raw CALPADS data, and that all reports are available as separate CSV files with this naming convention: `Enrollment_1_2_[YY]_[YY].csv`. The example `SQL` code can be easely adjusted to fit other data formats, as long as the necessary information on school codes, student id, and grade level is included.
+Below, I show a sample query that processes CALPADS data to create a clean enrollment table. This query assumes a folder named `CALPADS` stores the raw CALPADS data, and that all reports are available as separate CSV files with this naming convention: `Enrollment_1_2_[YY]_[YY].csv`. The example `SQL` code can be easily adjusted to fit other data formats, as long as the necessary information on school codes, student id, and grade level is included.
 
 ```sql {title="Processing Enrollment Data"}
 create or replace temp table enrollment as
