@@ -118,7 +118,7 @@ leaving further guesswork for the policy maker to adjust the projection based on
 
 Regression and structural models attempt to incorporate external variables and can provide an estimate of the uncertainty of the predicted enrollment.
 However, the difficulty of acquiring adequate time-series data for all necessary variables often limits them. 
-Even when data is available, it is often of poor quality (e.g., population estimates in the American Community Survey are only available at the tract level) or are the the wrong granularity (e.g., unemployment rates are usually available at the county level). 
+Even when data is available, it is often of poor quality (e.g., population estimates in the American Community Survey are only available at the tract level) or are the wrong granularity (e.g., unemployment rates are usually available at the county level). 
 Also, including too many exogenous variables can lead to statistical problems like multicollinearity or overfitting of the prediction to the historical data.
 
 Another limitation of using these models for school- and district-level projections is data availability. 
@@ -229,14 +229,15 @@ $$
 Generation_{grade, sim} \sim Dist(params)
 $$
 
-where `Dist` is chose based on the dispersion of the historical data:
+where `Dist` is chosen based on the dispersion of the historical data:
  - If underdispersion: $ Binomial(n, p) $
  - If equidispersion: $ Poisson(\lambda) $
  - If overdispersion: $ NegativeBinomial(r, p) $
 
 With underdispersion, the binomial distribution is used, which requires a fixed maximum count $ n $. 
 Here, we can use the maximum observed generation across all years as `n`, and the average generation divided by that maximum as the probability $ p $. 
-This probability is calculated with $ p = \frac{\mu}{\sigma^2} $, where $\mu$ is the average generation for that grade and $\sigma^2$ is the variance of generation for that grade. 
+In practical terms the probability is calculated as $p = \frac{\mu}{n}$ (where $\mu$ is the average count and $n$ is the chosen maximum, e.g., `N_max`). 
+In the SQL examples this is computed as `mu / generation.n_max`.
 This approach allows us to model the number of new students entering the system while accounting for the observed underdispersion in the historical data.
 
 With equidispersion, the Poisson distribution is used, which is appropriate for modeling count data where the mean and variance are approximately equal. 
@@ -294,7 +295,7 @@ The Monte Carlo simulation example is implemented in `DuckDB`, an open-source, i
 `DuckDB` is particularly well-suited for this type of analysis because it can efficiently handle large datasets and complex queries, making it ideal for processing student-level enrollment data and running simulations. 
 `DuckDB` can be installed on a variety of operating systems and platforms using their [official installation guides](https://duckdb.org/install/).
 
-Modelling the stochastic process relies on a community extension for `DuckDB` (aptly) named `stochastic`, 
+Modeling the stochastic process relies on a community extension for `DuckDB` (aptly) named `stochastic`, 
 which provides functions for generating random numbers from specified distributions. 
 
 Install and load this extension from the 'DuckDB' community extensions marketplace:
@@ -458,7 +459,7 @@ select
     regr_intercept(generation, yr) + regr_slope(generation, yr) * (max(yr) + 1) as N_reg,
     avg(generation) as N_avg,
     max(generation) as N_max,
-    sem(generation) as N_sd,
+    sem(generation) as N_sd
 from generation
 group by all
 order by generation.sc, generation.gr
@@ -524,7 +525,7 @@ sim_survival_y1 as (
                     (1.0 - mu) * k
                 )
             else 0.99
-        end as survival_draw,
+        end as survival_draw
     from survival
         cross join generate_series(1, 10000) g(sim_idx)
 ),
@@ -546,7 +547,7 @@ sim_survival_y2 as (
                     (1.0 - mu) * k
                 )
             else 0.99 
-        end as survival_draw,
+        end as survival_draw
     from survival
         cross join generate_series(1, 10000) g(sim_idx)
 ),
@@ -637,7 +638,7 @@ projections_y1 as (
             cohort,
             coalesce(sim_survival_y1.survival_draw, 0)
         ) as n_y1_survived,
-        coalesce(sim_generation_y1.generation_draw, 0) as n_y1_generation,
+        coalesce(sim_generation_y1.generation_draw, 0) as n_y1_generation
     from sim_generation_y1
         left join sim_survival_y1 
             on sim_survival_y1.sc = sim_generation_y1.sc
@@ -712,15 +713,19 @@ The output of the simulations will be a distribution of projected enrollment num
 A simple query like
 
 ```sql {title="Analyzing Projection Results"}
-from monte_carlo 
-select 
+select
     sc,
-    gr, 
-    avg(N_y0), quantile_cont(N_y1, 0.50), quantile_cont(N_y2, 0.50),
-    avg(N_y1_survived), avg(N_y2_survived),
-    avg(N_y1_generation), avg(N_y2_generation),
-
-group by sc, gr order by sc, gr;
+    gr,
+    avg(N_y0) as avg_N_y0,
+    quantile_cont(N_y1, 0.50) as median_N_y1,
+    quantile_cont(N_y2, 0.50) as median_N_y2,
+    avg(N_y1_survived) as avg_N_y1_survived,
+    avg(N_y2_survived) as avg_N_y2_survived,
+    avg(N_y1_generation) as avg_N_y1_generation,
+    avg(N_y2_generation) as avg_N_y2_generation
+from monte_carlo
+group by sc, gr
+order by sc, gr;
 ```
 
 provides the average projected enrollment for the base year (`N_y0`), the median projected enrollment for year 1 and year 2, alongside the average number of students surviving and generated for each year.
@@ -737,37 +742,35 @@ These deciles can help understand the range of outcomes and their associated pro
 which are then aggregated to the district level by summing across schools.
 
 ```sql {title="Calculating Projection Percentiles"}
-with
-details as (
-from monte_carlo 
-  select 
-      sc,
-      gr,
-      quantile_cont(N_y1, 0.10) as p_10,
-      quantile_cont(N_y1, 0.20) as p_20,
-      quantile_cont(N_y1, 0.30) as p_30,
-      quantile_cont(N_y1, 0.40) as p_40,
-      quantile_cont(N_y1, 0.50) as p_50,
-      quantile_cont(N_y1, 0.60) as p_60,
-      quantile_cont(N_y1, 0.70) as p_70,
-      quantile_cont(N_y1, 0.80) as p_80,
-      quantile_cont(N_y1, 0.90) as p_90,
-  
-  group by sc, gr order by sc, gr
+with details as (
+    select
+        sc,
+        gr,
+        quantile_cont(N_y1, 0.10) as p_10,
+        quantile_cont(N_y1, 0.20) as p_20,
+        quantile_cont(N_y1, 0.30) as p_30,
+        quantile_cont(N_y1, 0.40) as p_40,
+        quantile_cont(N_y1, 0.50) as p_50,
+        quantile_cont(N_y1, 0.60) as p_60,
+        quantile_cont(N_y1, 0.70) as p_70,
+        quantile_cont(N_y1, 0.80) as p_80,
+        quantile_cont(N_y1, 0.90) as p_90
+    from monte_carlo
+    group by sc, gr
 )
 select
-  sc,
-  sum(p_10) as p_10,
-  sum(p_20) as p_20,
-  sum(p_30) as p_30,
-  sum(p_40) as p_40,
-  sum(p_50) as p_50,
-  sum(p_60) as p_60,
-  sum(p_70) as p_70,
-  sum(p_80) as p_80,
-  sum(p_90) as p_90
+    sc,
+    sum(p_10) as p_10,
+    sum(p_20) as p_20,
+    sum(p_30) as p_30,
+    sum(p_40) as p_40,
+    sum(p_50) as p_50,
+    sum(p_60) as p_60,
+    sum(p_70) as p_70,
+    sum(p_80) as p_80,
+    sum(p_90) as p_90
 from details
-group by all
+group by sc
 ;
 ```
 
