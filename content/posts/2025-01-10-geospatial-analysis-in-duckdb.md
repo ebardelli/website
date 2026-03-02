@@ -21,7 +21,7 @@ The US Census Bureau maintains large geospatial databases of the US to support t
 
 We will use the 2020 Census blocks in this analysis.
 
-These are available for download through the Census ftp server:
+These are available for download from the Census download site:
 
 ```bash {title="Download US Census blocks"}
 wget 'https://www2.census.gov/geo/tiger/TIGER2024/TABBLOCK20/tl_2024_06_tabblock20.zip'
@@ -38,7 +38,7 @@ You will need to manually download the geospatial database of California's distr
 
 ### Setting Up spatial
 
-We will use the `spatial` extension in DuckDB to conduct our geospatial analysis. While this is an official DuckDB extension maintained by the DuckDB developers, it doesn't come automatically installed with DuckDB.
+We will use the `spatial` extension in DuckDB to conduct our geospatial analysis. While this is an official DuckDB extension maintained by the DuckDB developers, it doesn't come preinstalled with DuckDB.
 
 These two commands will install and load the extension:
 
@@ -47,7 +47,7 @@ INSTALL spatial;
 LOAD spatial;
 ```
 
-Installing the extension is only needed once. After that, you will only need to use the `LOAD`command to activate `spatial` within the current DuckDB process.
+Installing the extension is only needed once. After that, you will only need to use the `LOAD` command to activate `spatial` within the current DuckDB process.
 
 ### Loading the Data
 
@@ -61,7 +61,7 @@ select *
 from st_read('census_blocks/tl_2024_06_tabblock20.dbf');
 ```
 
-To load the California district data, you will have to read the `geojson` file you:
+To load the California district data, you will have to read the GeoJSON file you downloaded:
 
 ```sql {title="Load CA district map"}
 create view ca_districts as 
@@ -110,36 +110,41 @@ This model is rather naive and doesn't take into consideration that California a
 We can conduct this simple OLS regression with:
 
 ```sql {title="Regress student enrollment on population"}
-with pop as (
-select
-    ca_districts.DistrictName, 
-    ca_districts.DistrictType,
-    ca_districts.LocaleDistrict, 
-    ca_districts.EnrollTotal, 
-    ca_districts.EnrollNonCharter, 
-    ca_districts.EnrollCharter, 
-    sum(census_blocks.POP20) as ResidentPopulation,
-from districts_blocks
-    join ca_districts on ca_districts.CDSCode = districts_blocks.CDSCode
-    join census_blocks on census_blocks.GEOIDFQ20 = districts_blocks.GEOIDFQ20
-group by all
+WITH pop AS (
+    SELECT
+        ca_districts.DistrictName,
+        ca_districts.DistrictType,
+        ca_districts.LocaleDistrict,
+        ca_districts.EnrollTotal,
+        ca_districts.EnrollNonCharter,
+        ca_districts.EnrollCharter,
+        SUM(census_blocks.POP20) AS ResidentPopulation
+    FROM districts_blocks
+    JOIN ca_districts ON ca_districts.CDSCode = districts_blocks.CDSCode
+    JOIN census_blocks ON census_blocks.GEOIDFQ20 = districts_blocks.GEOIDFQ20
+    GROUP BY
+        ca_districts.DistrictName,
+        ca_districts.DistrictType,
+        ca_districts.LocaleDistrict,
+        ca_districts.EnrollTotal,
+        ca_districts.EnrollNonCharter,
+        ca_districts.EnrollCharter
 ),
-reg as (
-select
-    regr_intercept(EnrollTotal, ResidentPopulation) as intercept,
-    regr_slope(EnrollTotal, ResidentPopulation) as slope,
-from pop
-group by all
+reg AS (
+    SELECT
+        regr_intercept(EnrollTotal, ResidentPopulation) AS intercept,
+        regr_slope(EnrollTotal, ResidentPopulation) AS slope
+    FROM pop
 )
-select
+SELECT
     DistrictName,
     DistrictType,
     EnrollTotal,
-    (intercept + slope * ResidentPopulation)::INT as ExpectedEnrollment,
-    EnrollTotal - ExpectedEnrollment as EnrollDeviation,
-from pop
-    cross join reg
-order by EnrollDeviation;
+    (intercept + slope * ResidentPopulation)::INT AS ExpectedEnrollment,
+    EnrollTotal - ExpectedEnrollment AS EnrollDeviation
+FROM pop
+CROSS JOIN reg
+ORDER BY EnrollDeviation;
 ```
 
 We find that these are the five most under-enrolled districts in California:
@@ -159,7 +164,7 @@ We find that these are the five most under-enrolled districts in California:
 
 and the five most over-enrolled districts in California:
 
-``` {title="Over-enrollment estiamtes"}
+``` {title="Over-enrollment estimates"}
 ┌─────────────────────────────┬─────────────────┐
 │        DistrictName         │ EnrollDeviation │
 ├─────────────────────────────┼─────────────────┤
@@ -175,4 +180,4 @@ and the five most over-enrolled districts in California:
 
 ## Further Reading
 
-The team at Motherduck has written a [blog post](https://motherduck.com/blog/geospatial-for-beginner-duckdb-spatial-motherduck/) that covers the history of GIS software and give some more examples on how to use DuckDB for geospatial analysis. Give it a read if you want to find out more details about geospatial work with  
+The team at Motherduck has written a [blog post](https://motherduck.com/blog/geospatial-for-beginner-duckdb-spatial-motherduck/) that covers the history of GIS software and gives some more examples on how to use DuckDB for geospatial analysis. Give it a read if you want to find out more details about geospatial work with DuckDB and the spatial extension.
