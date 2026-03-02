@@ -1,5 +1,5 @@
 ---
-name: proofreader
+name: proofread
 description: Proofread posts before publication.
 ---
 
