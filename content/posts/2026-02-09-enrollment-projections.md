@@ -12,31 +12,30 @@ math: true
 ---
 
 Enrollment projections are a fundamental component of the planning and budgeting processes for school districts. 
-The primary purpose of these projections is to help districts prepare for long-term changes in educational demand, 
-which directly affects the need for resources, personnel, and school facilities. 
+The primary purpose of these projections is to help districts prepare for long-term changes in educational demand.
+This directly affects the need for resources, personnel, and school facilities. 
 
 The most widely used method for school district enrollment projection is the cohort-survival ratio (CSR), 
 also known as the grade progression method. 
 This approach uses historical data to determine the percentage of students "surviving" from one grade to the next, 
 while projecting incoming kindergarten classes based on birth rates from five years prior. 
-Many districts favor CSR because they can easily compute it in a spreadsheet, 
-even though more advanced methods like multiple linear regression exist.
+Many districts favor CSR because it can be easily computed and reviewed in a spreadsheet, even though more advanced methods (e.g., multiple linear regression) are available.
 
 To be effective, enrollment projections must account for a variety of demographic and socioeconomic factors. 
 Beyond simple birth and enrollment trends, 
 administrators must consider migration patterns, student transfers to charter or private schools, 
-and "exogenous shocks," such as policy changes that influence whether students enter or leave the district. 
+and external shocks, such as policy changes that influence whether students enter or leave the district. 
 Finally, simple methods like CSR or regression-based models often struggle when conditions significantly change year-to-year, 
 leading policymakers to rely on their own judgment and "guesses" to adjust projections based on local knowledge of trends and conditions.
 
 In this blog post, I describe a new approach to enrollment projections that builds upon the strengths of existing methods while addressing some of their limitations. 
 This approach uses a Monte Carlo simulation framework to explicitly model uncertainty in enrollment projections 
-and provide a range of potential outcomes rather than a single point estimate. 
+and provide a range of potential outcomes rather than a single point estimate.
 By modeling student survival and new student generation as separate stochastic processes, 
 this method allows for more robust modeling, 
-especially in the presence of strong *exogenous shocks* that might affect one process more than another. 
-Finally, this approach uses off-the-shelf, open-source, and freely available tools, such as `DuckDB` for data processing and analysis, 
-making it accessible to school district staff without advanced statistical software or programming languages.
+especially in the presence of strong external shocks that might affect one process more than another. 
+Finally, this approach uses off-the-shelf, open-source, and freely available tools, such as `DuckDB` for data processing and analysis. 
+That keeps it accessible to district staff who lack specialized statistical software.
 
 # Background on Enrollment Projection Methods
 
@@ -86,7 +85,7 @@ Bottom-up models project each individual school's enrollment independently and t
 
 Hybrid models project both independently and then reconcile the two sets of numbers, often through a series of "passes" to ensure the figures agree.
 
-While these different computational approaches provide a baseline, practitioners often emphasize that human judgment is required to adjust for "exogenous shocks," 
+While these different computational approaches provide a baseline, practitioners often emphasize that human judgment is required to adjust for external shocks, 
 such as policy changes regarding charter schools, changes in district boundaries, or unexpected economic shifts that cause sudden migration.
 
 ## Limitations
@@ -101,7 +100,7 @@ While effective for stable districts, it cannot anticipate sudden shifts caused 
 
 CSR is notably less accurate for individual grades and schools than for district-wide totals. 
 This is because of the compounding effect of small errors in grade-to-grade progression rates. 
-Also, school-level projections are more sensitive to localized, yearly "exogenous shocks", which might lead to biased estimates when using historical averages.
+Also, school-level projections are more sensitive to localized, yearly external shocks, which might lead to biased estimates when using historical averages.
 
 The CSR accuracy also declines sharply as the projection period extends beyond one year. 
 This issue is like the *compounding error* problem in financial forecasting, where small, individual errors can lead to a significant divergence from actual outcomes.
@@ -149,23 +148,22 @@ A single point estimate does not capture this increasing uncertainty, which can 
 
 In this blog post, I describe an alternative approach to enrollment projections 
 that builds upon the strengths of the CSR and regression methods while addressing some of their limitations. 
-This approach uses similar input data as these traditional models, enrollment by grade and school, 
+This process uses similar input data as these traditional models, enrollment by grade and school, 
 while separately calculating student survival rates and new student generation rates, and combining them using a new Monte Carlo simulation framework.
 
 A Monte Carlo simulation framework allows for explicit modeling of uncertainty and presents a range of outcomes instead of a single point estimate. 
 Separate simulations run thousands of times, each time randomly changing the underlying projection assumptions, 
 and are combined together in an overall distribution of possible enrollment outcomes. 
 These outcome ranges inform decision making by both providing a projection point estimate alongside possible alternative outcomes, 
-which offer a quantitative measure of uncertainty in enrollment projections and guide adjustments for *exogenous shocks* by enabling local experts to choose a projection percentile for further forecasting.
+which offer a quantitative measure of uncertainty in enrollment projections and guide adjustments for external shocks by enabling local experts to choose a projection percentile for further forecasting.
 
 In addition, the simulations explicitly model student survival, or continued year-to-year enrollment, and new student generation, or new entries into the system, as separate processes, 
 unlike traditional CSR models that combine these into a single grade progression ratio. 
-This allows for more robust modeling, especially in the presence of strong *exogenous shocks* that might affect one process more than another. 
+This allows for more robust modeling, especially in the presence of strong external shocks that might affect one process more than another. 
 For example, the completion of a new housing development might lead to a surge in new student generation, 
 while a change in promotion policies might lead to a drop in student survival rates. 
 
-Finally, this approach uses off-the-shelf, open-source, and freely available tools, such as `DuckDB` for data processing and analysis. 
-This analysis uses `SQL` queries, which are more accessible to school district staff than specialized statistical software or programming languages. 
+This analysis uses `SQL` queries in DuckDB, which are more accessible to school district staff than specialized statistical software or programming languages. 
 Student-level data is required to run the simulations, with certified CALPADS data being ideal for California districts.
 
 ## The Stochastic Processes of Continued Enrollment and New Student Enrollment
@@ -217,12 +215,19 @@ where
  - $ \mu $ is the average survival rate for that grade
  - $ k = \frac{\text{max variance}}{\text{observed variance}} - 1 $
 
+If helpful, note that max variance refers to the theoretical maximum for a Bernoulli proportion, $ \text{max_variance} = \mu (1 - \mu) $. 
+The formula $ k = \frac{\text{max_variance}}{\text{observed_variance}} - 1 $ rescales the beta shape parameters so the beta's variance can match the observed variance when possible. 
+If the observed variance is zero (e.g., a constant historical survival rate), avoid division-by-zero and fall back to a degenerate or conservative distribution (for example, using the observed mean or a tight beta centered on it).
+
 ### Modeling New Student Generation
 
 New student generation is modeled as the number of new students entering the system at each grade level. 
 The choice of distribution for modeling new student generation depends on the relationship between the mean and variance of the historical generation data. 
 If the variance is less than the mean (underdispersion), a binomial distribution is used. 
 If the variance is approximately equal to the mean (equidispersion), a Poisson distribution is used. 
+In practice we treat $ \text{mean} \approx \text{variance} $ using a small numerical tolerance to avoid floating-point noise.
+For example, $ \abs{\text{variance}} - \abs{\text{mean}} \le 1e-6 $ is considered equidispersion and triggers the Poisson model. 
+You can adjust this tolerance depending on sample size and the scale of counts.
 If the variance is greater than the mean (overdispersion), a negative binomial distribution is used.
 
 $$
@@ -295,8 +300,11 @@ The Monte Carlo simulation example is implemented in `DuckDB`, an open-source, i
 `DuckDB` is particularly well-suited for this type of analysis because it can efficiently handle large datasets and complex queries, making it ideal for processing student-level enrollment data and running simulations. 
 `DuckDB` can be installed on a variety of operating systems and platforms using their [official installation guides](https://duckdb.org/install/).
 
-Modeling the stochastic process relies on a community extension for `DuckDB` (aptly) named `stochastic`, 
+
+Modeling the stochastic process relies on a community extension for `DuckDB` aptly named `stochastic`, 
 which provides functions for generating random numbers from specified distributions. 
+The `stochastic` DuckDB extension provides the sampling functions used in the examples (for example, `dist_beta_sample`, `dist_poisson_sample`, `dist_negative_binomial_sample`, and `dist_binomial_sample`). 
+Check the extension documentation for exact parameter conventions and supported types because function names and parameter orders may vary in future versions.
 
 Install and load this extension from the 'DuckDB' community extensions marketplace:
 
@@ -328,7 +336,6 @@ select
     CASE
         when Grade = 'TK' then -1
         when Grade = 'KN' then 0
-        else Grade::int
     end as gr
 from read_csv('CALPADS/Enrollment_1_2_*.csv', union_by_name=true, filename=true)
 ```
@@ -382,7 +389,8 @@ survival_long as (
         sc,
         gr,
         avg(survival) as avg_survival_rate,
-        sqrt(avg(survival) / count(id)) as sd_survival_rate,
+        -- standard error for a proportion: sqrt(p * (1 - p) / n)
+        sqrt(avg(survival) * (1.0 - avg(survival)) / count(id)) as sd_survival_rate,
         count(*) as n_obs,
         sum(survival) as n_survived
     from survival_data
@@ -407,8 +415,8 @@ order by sc, gr
 Different ways to aggregate survival rates can be used instead of averaging across years, such as using the most recent year's survival rate or using a weighted average that gives more weight to recent years. 
 The choice of aggregation method can be informed by the stability of survival rates over time and the presence of any external factors that might have affected survival rates in specific years.
 
-In my experience, the choice of aggregation method does not significantly affect the overall projections, 
-as the Monte Carlo simulation framework captures the uncertainty in survival rates. 
+Empirically, this choice often has limited impact on aggregate district projections, though school-level results can be more sensitive. 
+Consider running a small sensitivity check comparing a simple average, a recent-year weight, and a regression-based forecast to verify stability for your data. 
 However, using a weighted average that gives more weight to recent years can help capture any recent trends or changes in survival rates that might not be fully reflected in a simple average.
 
 ## New Student Generation Rates
@@ -474,8 +482,9 @@ while the average-based and maximum-based estimates provide alternative projecti
 
 Each of these estimates allows us to model different scenarios and account for uncertainty in new student generation in the Monte Carlo simulations.
 
-Similar to the survival rates, the choice of aggregation method can be informed by the stability of generation rates over time and the presence of any external factors that might have affected generation rates in specific years. 
-However, the choice of aggregation method does not significantly affect the overall projections, as the Monte Carlo simulation framework captures the uncertainty in generation rates.
+Similar to the survival rates, the choice of aggregation method can be informed by the stability of generation rates over time and the presence of any external factors. 
+Empirically, this choice often has limited impact on aggregate district projections, though school-level results can be more sensitive. 
+Consider running a small sensitivity check comparing a simple average, a recent-year weight, and a regression-based forecast to verify stability for your data.
 
 ## Monte Carlo Simulations
 
@@ -489,6 +498,10 @@ The example below illustrates how to perform two-year Monte Carlo simulations.
 The first part simulates survival and generation rates for year 1 and year 2. 
 The second part combines these separate simulations into a final simulation at the district or school level. 
 Adding more simulation and projection steps allows us to extend the code to simulate over two years of projections if needed.
+
+**Note on reproducibility**: the simulation uses a pseudorandom seed (for example, `setseed(20260209)`) to make draws reproducible. 
+Different seeds will produce different simulated draws; when auditing sensitivity, 
+run the full simulation across several seeds or report results aggregated across multiple seeds to ensure results are not driven by a single random draw.
 
 ```sql {title="Running Monte Carlo Simulations"}
 create or replace temp table monte_carlo as
@@ -516,15 +529,17 @@ sim_survival_y1 as (
         coalesce(survival.sd_survival_rate, 0.0) as sigma,
         (coalesce(survival.avg_survival_rate, 1.0) * (1.0 - coalesce(survival.avg_survival_rate, 1.0))) as max_variance, 
         (coalesce(survival.sd_survival_rate, 0.0) * coalesce(survival.sd_survival_rate, 0.0)) as observed_variance,
-        ((max_variance) / (observed_variance) - 1.0) as k,
         case
-            -- draw from beta
-            when observed_variance < max_variance and sigma > 0 then 
+            -- draw from beta when valid: mu in (0,1) and variance > 0 and less than max variance
+            when mu > 0.0 and mu < 1.0 and observed_variance > 0.0 and observed_variance < max_variance then
                 dist_beta_sample(
-                    mu * k,
-                    (1.0 - mu) * k
+                    mu * (max_variance / observed_variance - 1.0),
+                    (1.0 - mu) * (max_variance / observed_variance - 1.0)
                 )
-            else 0.99
+            -- degenerate or boundary cases: return mean or bounds
+            when mu <= 0.0 then 0.0
+            when mu >= 1.0 then 1.0
+            else mu
         end as survival_draw
     from survival
         cross join generate_series(1, 10000) g(sim_idx)
@@ -538,15 +553,17 @@ sim_survival_y2 as (
         coalesce(survival.sd_survival_rate, 0.0) as sigma,
         (coalesce(survival.avg_survival_rate, 1.0) * (1.0 - coalesce(survival.avg_survival_rate, 1.0))) as max_variance, 
         (coalesce(survival.sd_survival_rate, 0.0) * coalesce(survival.sd_survival_rate, 0.0)) as observed_variance,
-        ((max_variance) / (observed_variance) - 1.0) as k,
         case
-            -- draw from beta
-            when observed_variance < max_variance and sigma > 0 then 
+            -- draw from beta when valid: mu in (0,1) and variance > 0 and less than max variance
+            when mu > 0.0 and mu < 1.0 and observed_variance > 0.0 and observed_variance < max_variance then
                 dist_beta_sample(
-                    mu * k,
-                    (1.0 - mu) * k
+                    mu * (max_variance / observed_variance - 1.0),
+                    (1.0 - mu) * (max_variance / observed_variance - 1.0)
                 )
-            else 0.99 
+            -- degenerate or boundary cases: return mean or bounds
+            when mu <= 0.0 then 0.0
+            when mu >= 1.0 then 1.0
+            else mu
         end as survival_draw
     from survival
         cross join generate_series(1, 10000) g(sim_idx)
@@ -694,9 +711,11 @@ from enrollment
 There are a few assumptions about the distributions for student survival and new student generation that are worth noting.
 
 Student survival is modeled using a beta distribution, which is appropriate for modeling probabilities that are bounded between 0 and 1. 
-The parameters of the beta distribution are calculated based on the average and standard deviation of survival rates and the number of observations. 
-If the observed variance is greater than the maximum variance for a beta distribution, or if the standard deviation is zero, 
-the simulation defaults to a survival rate of `0.99` to avoid unrealistic values.
+We estimate the beta shape parameters from the observed mean and variance of historical survival rates.
+If historical variance is zero or exceeds the allowable beta variance, we fallback to a conservative default.
+In the code, the value `0.99` is used as a conservative default for the mean survival rate, 
+which assumes that most students will continue enrollment from one grade to the next.
+This fallback value can be adjusted based on local knowledge of trends and conditions to better reflect the expected survival rates in the projections.
 
 For new student generation, the distribution is chosen based on the relationship between the mean and variance of the historical generation data. 
 If the variance is less than the mean (underdispersion), a binomial distribution is used. 
@@ -777,7 +796,7 @@ group by sc
 ## Smoothing School-Level Projections
 
 A final consideration is whether to apply any smoothing techniques to the school-level projections. 
-Because school-level projections are more sensitive to localized exogenous shocks and have fewer observations than district-level projections, 
+Because school-level projections are more sensitive to localized external shocks and have fewer observations than district-level projections, 
 they can exhibit more volatility and less accuracy.
 
 An approach to address this issue is to calculate school-level estimates following a two-stage hybrid approach, 
@@ -888,7 +907,7 @@ In this blog post, I describe a fresh approach to enrollment projections using M
 which allows for explicit modeling of uncertainty and provides a range of outcomes rather than a single point estimate. 
 
 This approach builds upon the strengths of traditional cohort-survival ratio models while addressing some of their limitations, 
-particularly in accounting for "exogenous shocks" and providing more robust projections at the school level. 
+particularly in accounting for external shocks and providing more robust projections at the school level. 
 
 By using open-source tools and student-level data, 
 this method can be accessible to school district staff and can provide valuable insights for enrollment planning and decision-making.
