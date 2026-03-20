@@ -336,6 +336,7 @@ select
     CASE
         when Grade = 'TK' then -1
         when Grade = 'KN' then 0
+        else Grade::int
     end as gr
 from read_csv('CALPADS/Enrollment_1_2_*.csv', union_by_name=true, filename=true)
 ```
