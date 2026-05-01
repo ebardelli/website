@@ -12,7 +12,7 @@ draft: false
 
 Imagine a single line drawn on a map. That line, a school attendance boundary, prescribes more than just where a child goes to school. It shapes their friendships, influences their family's home value, and defines the very fabric of their neighborhood. Redrawing those lines, then, is a task with far-reaching consequences that require balancing data and human impact.
 
-In this post, I'll walk you through how our district used data science and geospatial analysis to redraw school boundaries during a challenging consolidation process. You'll learn about the custom GIS tools we built to visualize and manipulate geographic data, how we used DuckDB to power sophisticated boundary analysis, the challenges of balancing algorithmic optimization with community needs, and practical lessons for data-driven decision making in education policy.
+In this post, I'll walk you through how our district used data science and geospatial analysis to redraw school boundaries during a challenging consolidation process. You'll learn about the custom GIS tools we built to visualize and manipulate geographic data, how we used DuckDB to power sophisticated boundary analysis, the challenges of balancing algorithmic optimization with community needs, and practical lessons for data-driven decisions-making in educational policy.
 
 Along the way, I'll share both technical insights and the human considerations that ultimately guided our process.
 
@@ -26,7 +26,7 @@ While working on our school consolidation project, we developed internal (and la
 
 All geospatial analysis relied on DuckDB as the data storage and analytical engine. 
 
-As I covered in a previous [blog post](/geospatial-analysis-in-duckdb/), DuckDB provides a robust set of tools for geospatial analysis through the spatial extension. This includes functions such as [`ST_Contains`](https://duckdb.org/docs/stable/extensions/spatial/functions.html#st_union_agg) that powered our geospatial joins of students to attendance boundaries and GeoJSON aggregation functions to combine census blocks into single attendance boundaries. GeoJSON is a standard format for representing geographic data as text. Think of it as a map blueprint that a computer can read. Its coordinates define each shape (like a school boundary) and can have additional information attached to it (like school name or enrollment numbers).
+As I covered in a previous [blog post](/geospatial-analysis-in-duckdb/), DuckDB provides a robust set of tools for geospatial analysis through the spatial extension. This includes functions such as [`ST_Contains`](https://duckdb.org/docs/stable/extensions/spatial/functions.html#st_contains) that powered our geospatial joins of students to attendance boundaries and GeoJSON aggregation functions to combine census blocks into single attendance boundaries. GeoJSON is a standard format for representing geographic data as text. Think of it as a map blueprint that a computer can read. Its coordinates define each shape (like a school boundary) and can have additional information attached to it (like school name or enrollment numbers).
 
 One of the biggest advantages of using DuckDB over other GIS software (e.g., ArcGIS) is the ability to use SQL syntax to conduct geospatial analysis. This lets me write SQL queries once and reuse the same code across multiple scenarios. When the school board requested an urgent analysis of how a specific boundary change might affect feeder patterns between elementary and middle schools, I could generate this analysis within hours rather than days, providing critical data for their next public meeting.
 
@@ -46,7 +46,7 @@ The inspiration for this web application came from a Friday night email from a t
 
 While the GeoJSON Viewer helped stakeholders understand existing boundaries, we needed a more interactive tool for the actual redrawing process. This led us to develop the Boundary Drawing Tool, which supports direct manipulation of attendance zones using census blocks as building blocks.
 
-The basic design decision behind this tool was to allow the user to color in attendance boundaries using the US Census blocks as a starting layer. For this reason, this tool has three main features: 1. loading of a base map based on US Census blocks and district boundaries, 2. assigning blocks to schools, and 3. displaying basic attendance projections based on current enrollment patterns.
+The basic design decisions behind this tool were to allow the user to color in attendance boundaries using the US Census blocks as a starting layer. For this reason, this tool has three main features: 1. loading of a base map based on US Census blocks and district boundaries, 2. assigning blocks to schools, and 3. displaying basic attendance projections based on current enrollment patterns.
 
 ## Census Block Integration
 
@@ -54,7 +54,7 @@ The basic design decision behind this tool was to allow the user to color in att
 
 The Census Bureau develops census blocks as the smallest statistical unit bounded
 
-> by roads, streams, and railroad tracks, and by nonvisible boundaries such as property lines, city limits, school district, county limits, and short line-of-sight extensions of roads" ([U.S. Census Bureau](https://www.census.gov/newsroom/blogs/random-samplings/2011/07/what-are-census-blocks.html)).
+> by roads, streams, and railroad tracks, and by nonvisible boundaries such as property lines, city limits, school district, county limits, and short line-of-sight extensions of roads ([U.S. Census Bureau](https://www.census.gov/newsroom/blogs/random-samplings/2011/07/what-are-census-blocks.html)).
 
 Building upon this established foundation, we leveraged these pre-defined blocks to avoid the time-consuming task of dividing the city into geographical units ourselves. This approach not only saved considerable development time but also provided boundaries that residents could intuitively recognize.
 
@@ -99,7 +99,7 @@ COPY (
 
 The small but growing literature on school boundaries (e.g., [Monarrez, 2023](https://www.aeaweb.org/articles?id=10.1257/app.20200498), [Gillani et al., 2023](https://journals.sagepub.com/doi/full/10.3102/0013189X231170858)) discusses the potential of mathematical modeling in drawing attendance boundaries. 
 
-Optimization models and algorithms can assist in labor-intensive planning and decision-making processes required when drawing a new attendance boundary. By offloading the bulk of the boundary assignment to an algorithm, the analyst’s time is focused on marginal changes to the boundary to accommodate intangible aspects such as neighborhood implicit boundaries, historical attendance patterns, and communities of interest.
+Optimization models and algorithms can assist in labor-intensive planning and decisions-making processes required when drawing a new attendance boundary. By offloading the bulk of the boundary assignment to an algorithm, the analyst’s time is focused on marginal changes to the boundary to accommodate intangible aspects such as neighborhood implicit boundaries, historical attendance patterns, and communities of interest.
 
 At the same time, prior work has shown that over-reliance on mathematical models that optimize, for example, distance to the nearest school, could exacerbate school segregation by institutionalizing housing segregation within school attendance boundaries ([Monarrez, 2023](https://www.aeaweb.org/articles?id=10.1257/app.20200498)). 
 
@@ -185,13 +185,13 @@ Geospatial analysis, optimization models, and databases provided the technical f
 
 In practice, we used automated assignment to surface feasible options and save analyst time, then layered in local knowledge and values to resolve edge cases, address patchwork assignments, and avoid reinforcing historical inequities. Visualization was essential in this process: maps translated quantitative outputs into a form stakeholders could understand and discuss.
 
-The work succeeded when technical capability supported community-centered decision-making rather than replacing it. In the next post, I'll explore how these tools facilitated conversations and the social dynamics that ultimately shaped our final boundary decisions.
+The work succeeded when technical capability supported community-centered decisions-making rather than replacing it. In the next post, I'll explore how these tools facilitated conversations and the social dynamics that ultimately shaped our final boundary decision.
 
 ## Further Readings
 
 - [A Beginner's Guide To Geospatial With DuckDB Spatial And MotherDuck](https://motherduck.com/blog/geospatial-analysis-duckdb/) - A practical introduction to geospatial analysis using DuckDB.
-- Monarrez, T. (2023). [School Attendance Boundaries and the Segregation of Public Schools in the United States](https://www.aeaweb.org/articles?id=10.1257/app.20200498). *American Economic Journal: Applied Economics* 15 (3): 210–37. - Research examining how school boundary decisions can perpetuate segregation.
-- Richards, M. P. (2014). [The Gerrymandering of School Attendance Zones and the Segregation of Public Schools: A Geospatial Analysis](https://journals.sagepub.com/doi/abs/10.3102/0002831214553652). *American Educational Research Journal*, *51*(6), 1119-1157. - Historical context on how boundary decisions impact school demographics.
+- Monarrez, T. (2023). [School Attendance Boundaries and the Segregation of Public Schools in the United States](https://www.aeaweb.org/articles?id=10.1257/app.20200498). *American Economic Journal: Applied Economics* 15 (3): 210–37. - Research examining how school boundary decision can perpetuate segregation.
+- Richards, M. P. (2014). [The Gerrymandering of School Attendance Zones and the Segregation of Public Schools: A Geospatial Analysis](https://journals.sagepub.com/doi/abs/10.3102/0002831214553652). *American Educational Research Journal*, *51*(6), 1119-1157. - Historical context on how boundary decision impact school demographics.
 - [NCES School Attendance Boundary Survey (SABS)](https://nces.ed.gov/programs/edge/SABS) - A national database of school attendance boundaries maintained by the National Center for Education Statistics.
 
 ---
@@ -202,7 +202,7 @@ After completing this boundary redrawing project, several important lessons emer
 
 **Data and algorithms need human context.** While our optimization models efficiently assigned census blocks to schools, they couldn't account for historical neighborhood connections, walking routes, or community identities. The most successful boundaries came from blending algorithmic suggestions with local knowledge.
 
-**Flexible, reusable tools accelerate decision-making.** By building our analysis on SQL-based DuckDB rather than point-and-click GIS software, we could rapidly respond to new scenarios and questions as they emerged during board meetings and community forums.
+**Flexible, reusable tools accelerate decisions-making.** By building our analysis on SQL-based DuckDB rather than point-and-click GIS software, we could rapidly respond to new scenarios and questions as they emerged during board meetings and community forums.
 
 **Census blocks provide an ideal foundation.** Using pre-defined census blocks as our building units saved considerable time and provided a neutral, recognized geographic division that stakeholders could understand and reference.
 
