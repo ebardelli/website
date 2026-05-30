@@ -1,8 +1,6 @@
 baseURL = 'https://ebardelli.com'
 title = 'Data Science → Education Policy'
 
-languageCode = 'en-us'
-
 [module]
   [[module.imports]]
     path = "github.com/hugo-sid/hugo-blog-awesome"
@@ -20,8 +18,8 @@ languageCode = 'en-us'
 
 # Setup
 [Languages.en-us]
-  languageName = "English"
-  languageCode = "en-us"
+  label = "English"
+  locale = "en-us"
   contentDir = "content"
   weight = 1
 
