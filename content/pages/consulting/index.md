@@ -1,6 +1,4 @@
 ---
-date: 2026-05-30T08:05:00.000Z
-lastmod: 2026-05-30T08:05:00.000Z
 title: Consulting Services
 draft: false
 slug: consulting

@@ -1,6 +1,4 @@
 ---
-date: 2025-01-02T12:25:44.000Z
-lastmod: 2025-03-19T07:53:01.000Z
 title: About this site
 draft: false
 slug: about
