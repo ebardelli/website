@@ -82,7 +82,7 @@ My clients are typically organizations that are serious about improvement. You'l
 
 ## Starting the Conversation
 
-If you're wondering whether consulting might help, email me at consulting@ebardelli.com to set up an initial conversation. 
+If you're wondering whether consulting might help, email me at [consulting@ebardelli.com](mailto:consulting@ebardelli.com) to set up an initial conversation. 
 
 We'll talk through:
 
