@@ -24,3 +24,7 @@ I received a doctorate in Educational Studies from the University of Michigan, w
 I grew up in Italy. I earned a Bachelor of Science in Mathematics from the Università degli Studi di Modena e Reggio Emilia, and a Master of Arts in Education and a teaching credential from California State University, Los Angeles. I also worked as an instructional coach and middle and high school mathematics teacher in Los Angeles and Lodi, California, for five years.
 
 I use the pronouns he/him/his.
+
+## Consulting Services
+
+I work with educational organizations, school districts, and nonprofits on projects involving educational policy, program evaluation, data analysis, and strategic planning. If you're interested in exploring a potential collaboration, send me an email.
