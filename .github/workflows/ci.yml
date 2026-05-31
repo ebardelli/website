@@ -29,7 +29,7 @@ jobs:
           node-version: '22'
 
       - name: Build site
-        run: hugo -e production --gc --minify --cleanDestinationDir --baseURL="/"
+        run: hugo -e production --gc --minify --cleanDestinationDir
 
       - name: Build search index
         run: npx -y pagefind --site public
