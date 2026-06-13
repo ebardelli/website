@@ -48,4 +48,4 @@ I have some more plans for this small service. Below are a few ideas I'm thinkin
 - Enrich articles further with CrossRef metadata (authors, DOIs, citations).
 - Small UI tweaks: highlight new research, add author pages, improve pagination.
 
-If you want to try the data yourself or file a bug/feature request, the repo is open on [GitHub](https://github.com/ebardelli/ed-news). For quick feedback, ping me on [BlueSky](https://bsky.app/profile/ebardelli.com).
+If you want to try the data yourself or file a bug/feature request, the repo is open on [GitHub](https://github.com/ebardelli/ed-news).
