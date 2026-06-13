@@ -9,17 +9,17 @@ tags: ["DuckDB","Geospatial"]
 draft: false
 ---
 
-DuckDB provides a comprehensive set of tools to conduct spatial data analysis. These tools are part of the `spatial` extension, an experimental add-on that supports geospatial data processing in DuckDB.
+DuckDB has solid support for spatial data analysis through the `spatial` extension, an experimental add-on for geospatial data processing.
 
-In this post, I cover how to conduct a simple geospatial analysis that combines the US 2020 Census population data with California's school district enrollment to identify school districts that over- or under-enrolled based on the population base residing within their attendance boundaries.
+In this post, I walk through a geospatial analysis that combines US 2020 Census population data with California's school district enrollment to identify districts that are over- or under-enrolled relative to the population living within their attendance boundaries.
 
 ## Setting Up the Data
 
 ### TIGER/Line Shapefiles
 
-The US Census Bureau maintains large geospatial databases of the US to support their decennial census. TIGER/Line shapefiles collect the census' land features, such as roads, rivers, and lakes, as well as areas such as counties, census tracts, and census blocks. The [2024 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) were released on September 25, 2024.
+The US Census Bureau maintains large geospatial databases to support their decennial census. TIGER/Line shapefiles collect land features like roads, rivers, and lakes, as well as administrative areas such as counties, census tracts, and census blocks. The [2024 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) were released on September 25, 2024.
 
-We will use the 2020 Census blocks in this analysis.
+We'll use the 2020 Census blocks in this analysis.
 
 These are available for download from the Census download site:
 
@@ -30,28 +30,28 @@ unzip tl_2024_06_tabblock20.zip -d census_blocks
 
 ### California School District Shapefiles
 
-The California Department of Education also provides (a more modest) number of geospatial datasets. However, these are not as easily accessible as the census datasets.
+The California Department of Education also provides a (more modest) number of geospatial datasets, though they're not as easily accessible as the census data.
 
-You will need to manually download the geospatial database of California's districts from this [map](https://gis.data.ca.gov/datasets/CDEGIS::california-school-district-areas-2023-24/explore?location=36.948239%2C-119.002226%2C6.36). Download the database in GeoJSON format.
+You'll need to manually download the geospatial database of California's districts from this [map](https://gis.data.ca.gov/datasets/CDEGIS::california-school-district-areas-2023-24/explore?location=36.948239%2C-119.002226%2C6.36). Download it in GeoJSON format.
 
 ## Data Cleaning
 
 ### Setting Up spatial
 
-We will use the `spatial` extension in DuckDB to conduct our geospatial analysis. While this is an official DuckDB extension maintained by the DuckDB developers, it doesn't come preinstalled with DuckDB.
+We'll use the `spatial` extension in DuckDB for our geospatial analysis. It's an official extension maintained by the DuckDB developers, but it doesn't come preinstalled.
 
-These two commands will install and load the extension:
+These two commands install and load the extension:
 
 ```sql {title="Load spatial in DuckDB"}
 INSTALL spatial;
 LOAD spatial;
 ```
 
-Installing the extension is only needed once. After that, you will only need to use the `LOAD` command to activate `spatial` within the current DuckDB process.
+You only need to install it once. After that, `LOAD` is enough to activate `spatial` within the current DuckDB process.
 
 ### Loading the Data
 
-We are going to load the data as views in DuckDB. This allows us to access the data just-in-time when running the analysis and only uses a minimal amount of additional storage on top of the original databases on disk to store some metadata.
+We're going to load the data as views in DuckDB. This lets us access the data just-in-time during analysis, and uses minimal additional storage beyond the original files on disk.
 
 The TIGER/Line data comes in a `dbf`, which spatial can read natively:
 
@@ -61,7 +61,7 @@ select *
 from st_read('census_blocks/tl_2024_06_tabblock20.dbf');
 ```
 
-To load the California district data, you will have to read the GeoJSON file you downloaded:
+To load the California district data, read the GeoJSON file you downloaded:
 
 ```sql {title="Load CA district map"}
 create view ca_districts as 
@@ -71,19 +71,19 @@ from st_read('DistrictAreas2324_-2286165690798712574.geojson');
 
 ## Analysis
 
-Now that we have the `census_blocks` and `ca_districts` views ready, we can move on to the analysis. The plan has three steps:
+With `census_blocks` and `ca_districts` ready, the analysis breaks into three steps:
 
-- Identify which blocks belong within the attendance boundary of a particular school district.
-- Aggregate the total 2020 Census population for each school district attendance boundary.
-- Regress the population on the district enrollment to identify potential over- and under-enrolled school districts based on population.
+- Identify which census blocks fall within each school district's attendance boundary.
+- Aggregate the 2020 Census population for each district boundary.
+- Regress population on district enrollment to flag potential over- and under-enrollment.
 
 ### Working with Geospatial Geometries
 
-The first step in the analysis plan requires us to identify which census blocks are part of individual districts' attendance boundaries.
+The first step requires matching census blocks to individual districts' attendance boundaries.
 
-We are going to leverage two functions in `spatial`: `st_Contains` and `st_Point`. The first function checks if a geometry contains a point or another geometry. In our case, we will use it to check if a district boundary contains a census block's centroid. The second function builds a spatial point using the centroid coordinates that the Census Bureau provides for each block.
+We'll use two functions from `spatial`: `st_Contains` and `st_Point`. `st_Contains` checks whether a geometry contains a point or another geometry. In this example, we'll check whether a district boundary contains a census block's centroid. `st_Point` builds a spatial point from the centroid coordinates the Census Bureau provides for each block.
 
-We can use these functions as part of a `join` statement to identify which blocks are part of a California district:
+These functions go into a `join` to identify which blocks belong to which California district:
 
 ```sql {title="Combine US Blocks and CA District map"}
 create view districts_blocks as
@@ -99,15 +99,15 @@ join census_blocks
             census_blocks.INTPTLAT20::DOUBLE));
 ```
 
-This will save a reference view that identifies which census blocks are part of which school district.
+This saves a reference view mapping census blocks to school districts.
 
 ### Over- and Under-Enrolled
 
-We can estimate the expected enrollment in each district by regressing total enrollment on the population residing within a district attendance boundary.
+We can estimate expected enrollment in each district by regressing total enrollment on the population living within a district's attendance boundary.
 
-This model is rather naive and doesn't take into consideration that California allows for elementary districts that serve K-8 grades, high districts that serve 9-12 grades, and unified districts that serve K-12 grades.
+This model ignores an important distinction: California has elementary districts (K–8), high school districts (9–12), and unified districts (K–12). A more rigorous model would account for that. But even this simple version surfaces interesting patterns.
 
-We can conduct this simple OLS regression with:
+We run the OLS regression with:
 
 ```sql {title="Regress student enrollment on population"}
 WITH pop AS (
@@ -147,7 +147,7 @@ CROSS JOIN reg
 ORDER BY EnrollDeviation;
 ```
 
-We find that these are the five most under-enrolled districts in California:
+The five most under-enrolled districts:
 
 ``` {title="Under-enrollment estimates"}
 ┌──────────────────────────┬─────────────────┐
@@ -161,8 +161,7 @@ We find that these are the five most under-enrolled districts in California:
 └──────────────────────────┴─────────────────┘
 ```
 
-
-and the five most over-enrolled districts in California:
+And the five most over-enrolled:
 
 ``` {title="Over-enrollment estimates"}
 ┌─────────────────────────────┬─────────────────┐
@@ -180,4 +179,4 @@ and the five most over-enrolled districts in California:
 
 ## Further Reading
 
-The team at Motherduck has written a [blog post](https://motherduck.com/blog/geospatial-for-beginner-duckdb-spatial-motherduck/) that covers the history of GIS software and gives some more examples on how to use DuckDB for geospatial analysis. Give it a read if you want to find out more details about geospatial work with DuckDB and the spatial extension.
+The Motherduck team has a [blog post](https://motherduck.com/blog/geospatial-for-beginner-duckdb-spatial-motherduck/) covering the history of GIS software alongside more examples of using DuckDB for geospatial analysis.
