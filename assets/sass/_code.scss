@@ -60,6 +60,17 @@ pre {
     line-height: 1.5;
     display: block;
     border: 0;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+
+    // Chroma wraps each line in a flex container (.line > .cl).
+    // Flex items default to min-width: auto (= min-content), so a long
+    // unbreakable token like a URL sets the item's minimum to its full
+    // length and overflow-wrap never fires. min-width: 0 lets the item
+    // shrink so overflow-wrap: break-word can do its job.
+    .cl {
+      min-width: 0;
+    }
   }
 }
 

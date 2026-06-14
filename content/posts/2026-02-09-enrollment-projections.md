@@ -13,7 +13,7 @@ math: true
 
 Enrollment projections drive planning and budgeting for school districts. Districts use them to anticipate long-term shifts in educational demand, which in turn shapes decisions about staffing, resources, and facilities.
 
-The most widely used method is the cohort-survival ratio (CSR), also known as the grade progression method. CSR uses historical data to estimate the share of students "surviving" from one grade to the next, while projecting incoming kindergarten classes from birth rates five years prior. Districts favor it because anyone can run it in a spreadsheet, even though more advanced methods like multiple linear regression exist.
+The most widely used method is the cohort-survival ratio (CSR), also known as the grade progression method. CSR uses historical data to estimate the share of students *surviving* from one grade to the next, while projecting incoming kindergarten classes from birth rates five years prior. Districts favor it because anyone can run it in a spreadsheet, even though more advanced methods like multiple linear regression exist.
 
 Accurate projections require more than birth and enrollment trends. Administrators must also weigh migration patterns, transfers to charter or private schools, and external shocks such as policy changes that move students into or out of a district. CSR and regression-based models both struggle when conditions shift sharply year-to-year, and planners often resort to informal judgment calls to patch the gap.
 
@@ -25,34 +25,26 @@ Enrollment projection models span a wide range, from simple historical trend ana
 
 ## Cohort-Survival Ratio (CSR) / Grade Progression Method
 
-The most widely used approach in school districts is the cohort-survival ratio. 
-School districts favor this method for its simplicity because they can compute it using standard spreadsheet software without advanced statistical capacity.
+The most widely used approach in school districts is the cohort-survival ratio. School districts favor this method for its simplicity because they can compute it using standard spreadsheet software without advanced statistical capacity.
 
-This method uses percentages of students "surviving" from one grade to the next over recent years to project future numbers. 
-For example, if Grade 1 enrollment has historically been 102% of the previous year's kindergarten class, that ratio applies to current kindergarten numbers to project next year's first grade.
+This method uses percentages of students "surviving" from one grade to the next over recent years to project future numbers. For example, if Grade 1 enrollment has historically been 102% of the previous year's kindergarten class, that ratio applies to current kindergarten numbers to project next year's first grade.
 
-However, districts rarely rely on a single year's data; 
-instead, they often use a three-to-five-year average of ratios. 
-Some use weighting schemes to give more influence to the most recent years.
+However, districts rarely rely on a single year's data; instead, they often use a three-to-five-year average of ratios. Some use weighting schemes to give more influence to the most recent years.
 
-Another decision is about how to predict new entries into kindergarten. 
-Calculating the ratio of incoming kindergarten children to local birth rates from five years prior typically handles this.
+Another decision is how to project new kindergarten entries. The standard approach divides incoming kindergarten enrollment by local birth rates from five years prior. When birth rate data isn't available[^1], districts fall back to averaging year-over-year enrollment changes for that grade and carrying that average forward.
+
+[^1]: The California Department of Public Health maintains a dataset of [annual births by zip code](https://data.chhs.ca.gov/dataset/cdph_live-birth-by-zip-code). However, zip codes do not match with elementary school districts, so this data isn't very informative when predicting Transitional Kindergarten or Kindergarten enrollment.
+
 
 ## Regression and Structural Models
 
-More sophisticated prediction models attempt to explain the "why" behind enrollment changes by using multiple regression or structural equations.
+More sophisticated prediction models attempt to explain the *why* behind enrollment changes by using multiple regression or structural equations.
 
-Regression models use the correlation between historical enrollment data alongside external variables to project future enrollment. 
-For example, a regression model might find that enrollment is correlated with local unemployment rates, 
-and use projected unemployment rates to forecast enrollment. 
-The CSR method can be seen as a special case of a regression model where the only predictor is the previous year's enrollment.
+Regression models use the correlation between historical enrollment data alongside external variables to project future enrollment. For example, a regression model might find that enrollment is correlated with local unemployment rates, and use projected unemployment rates to forecast enrollment. The CSR method can be seen as a special case of a regression model where the only predictor is the previous year's enrollment.
 
-Structural equation models combine multiple regression equations to model more complex relationships between enrollment and various predictors, 
-such as population growth, economic conditions, and policy changes. 
-These models can capture feedback loops and interactions between variables, giving planners a richer picture of what drives enrollment shifts.
+Structural equation models combine multiple regression equations to model more complex relationships between enrollment and various predictors, such as population growth, economic conditions, and policy changes. These models can capture feedback loops and interactions between variables, giving planners a richer picture of what drives enrollment shifts.
 
-One major benefit of using these more complex models is the ability to include external, new variables in the projections beyond historical enrollment data. 
-Such external variables include population growth rates, per capita income, unemployment rates, and employment growth.
+One major benefit of using these more complex models is the ability to include external, new variables in the projections beyond historical enrollment data. Such external variables include population growth rates, per capita income, unemployment rates, and employment growth.
 
 ## Approaches to Modeling School- and District-Level Projections
 

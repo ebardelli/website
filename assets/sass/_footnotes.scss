@@ -1,0 +1,72 @@
+$sidenote-min-viewport: 1100px;
+$sidenote-width: 200px;
+$sidenote-gap: 24px;
+
+// Default footnote section (bottom of post, all screen sizes)
+.footnotes {
+  margin-top: 2.5em;
+  padding-top: 1em;
+  border-top: 1px solid $light;
+  font-size: $small-font-size;
+  color: $gray;
+  line-height: 1.5;
+
+  ol {
+    padding-left: 1.2em;
+  }
+
+  li {
+    margin-bottom: 0.4em;
+  }
+
+  a.footnote-backref {
+    text-decoration: none;
+    margin-left: 0.25em;
+  }
+}
+
+// Inline footnote reference superscript
+a.footnote-ref {
+  text-decoration: none;
+}
+
+// Sidenotes — visible only on wide screens (JS inserts these)
+@media screen and (min-width: $sidenote-min-viewport) {
+  .page-content {
+    position: relative;
+  }
+
+  .sidenote {
+    position: absolute;
+    left: calc(100% + #{$sidenote-gap});
+    width: $sidenote-width;
+    font-size: 0.8em;
+    line-height: 1.45;
+    color: $gray;
+    border-left: 2px solid $light;
+    padding-left: 0.6em;
+
+    .sidenote-number {
+      font-size: 0.75em;
+      vertical-align: super;
+      font-weight: $bold-weight;
+      margin-right: 0.1em;
+    }
+
+    // Goldmark wraps footnote content in <p>; render inline so the number flows naturally
+    p {
+      display: inline;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: $text-link-blue;
+      text-decoration: none;
+
+      &:hover {
+        color: $text-link-blue-active;
+      }
+    }
+  }
+}

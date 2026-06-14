@@ -271,6 +271,34 @@
       }
     }
   }
+
+  // Footnotes section (bottom of post)
+  .footnotes {
+    border-color: $dark-light;
+    color: $dark-gray;
+
+    a {
+      color: $dark-text-link-blue;
+
+      &:hover {
+        color: $dark-text-link-blue-active;
+      }
+    }
+  }
+
+  // Sidenotes (wide screens only)
+  .sidenote {
+    color: $dark-gray;
+    border-color: $dark-light;
+
+    a {
+      color: $dark-text-link-blue;
+
+      &:hover {
+        color: $dark-text-link-blue-active;
+      }
+    }
+  }
 }
 
 // support JS disabled environment with media query

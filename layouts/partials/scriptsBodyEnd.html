@@ -1,5 +1,15 @@
 {{ $main := slice (resources.Get "js/main.js") }}
 
+{{ if .IsPage }}
+    {{ $sidenotes := resources.Get "js/sidenotes.js" }}
+    {{ if hugo.IsProduction }}
+        {{ $sidenotes = $sidenotes | resources.Minify | resources.Fingerprint }}
+        <script src="{{ $sidenotes.Permalink }}" integrity="{{ $sidenotes.Data.Integrity }}"></script>
+    {{ else }}
+        <script src="{{ $sidenotes.Permalink }}"></script>
+    {{ end }}
+{{ end }}
+
 {{ if .Site.Params.goToTop }}
     {{ $main = $main | append (resources.Get "js/goToTop.js") }}
 {{ end }}
