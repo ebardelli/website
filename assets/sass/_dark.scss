@@ -275,7 +275,7 @@
   // Footnotes section (bottom of post)
   .footnotes {
     border-color: $dark-light;
-    color: $dark-gray;
+    color: inherit;
 
     a {
       color: $dark-text-link-blue;
@@ -288,7 +288,7 @@
 
   // Sidenotes (wide screens only)
   .sidenote {
-    color: $dark-gray;
+    color: inherit;
     border-color: $dark-light;
 
     a {
