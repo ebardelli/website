@@ -35,53 +35,51 @@ Another decision is how to project new kindergarten entries. The standard approa
 
 [^1]: The California Department of Public Health maintains a dataset of [annual births by zip code](https://data.chhs.ca.gov/dataset/cdph_live-birth-by-zip-code). However, zip codes do not match with elementary school districts, so this data isn't very informative when predicting Transitional Kindergarten or Kindergarten enrollment.
 
+### Moving Decaying Averages Models
+
+A particular set of CSR models is the weighted moving average model that uses decaying weights. In these models, the weights decline by a set amount, either decided beforehand or calculated from observed data.[^2] 
+
+The weighted average of historical survival rates is then calculated by multiplying each year's rate by its assigned weight, summing the results, and dividing by the total weight. This gives more influence to recent years when estimating the grade progression ratios used to project enrollment.
+
+A similar calculation can be applied to new enrollment grades using the weighted average year-to-year change instead of the survival rate.
+
+[^2]: This is what the enrollment projections in FCMAT's Projection Pro uses. In this model, weights decline by 1 for each historical year moving back from the base year, so the most recent historical year has a weight of 4, the year before that has a weight of 3, and so on.
+
 
 ## Regression and Structural Models
 
 More sophisticated prediction models attempt to explain the *why* behind enrollment changes by using multiple regression or structural equations.
 
-Regression models use the correlation between historical enrollment data alongside external variables to project future enrollment. For example, a regression model might find that enrollment is correlated with local unemployment rates, and use projected unemployment rates to forecast enrollment. The CSR method can be seen as a special case of a regression model where the only predictor is the previous year's enrollment.
+Regression models use the correlation between historical enrollment data and external variables to project future enrollment. For example, a regression model might find that enrollment is correlated with local unemployment rates, and use projected unemployment rates to forecast enrollment. The CSR method can be seen as a special case of a regression model where the only predictor is the previous year's enrollment.[^3]
 
 Structural equation models combine multiple regression equations to model more complex relationships between enrollment and various predictors, such as population growth, economic conditions, and policy changes. These models can capture feedback loops and interactions between variables, giving planners a richer picture of what drives enrollment shifts.
 
 One major benefit of using these more complex models is the ability to include external, new variables in the projections beyond historical enrollment data. Such external variables include population growth rates, per capita income, unemployment rates, and employment growth.
 
-## Approaches to Modeling School- and District-Level Projections
-
-Different computational approaches exist for modeling enrollment projections at the school and district levels, including top-down, bottom-up, and hybrid models.
-
-Top-down models start with a district-wide projection and then allocate students to individual schools based on historical percentages or current enrollment shares. 
-
-Bottom-up models project each individual school's enrollment independently and then aggregate to reach a district total. 
-
-Hybrid models project both independently and then reconcile the two sets of numbers, often through a series of "passes" to ensure the figures agree.
-
-These computational approaches give practitioners a starting framework, but judgment is still required to account for external shocks: charter school policy changes, district boundary shifts, or economic swings that trigger sudden migration.
+[^3]: Similarly, moving decaying averages models can be parametrized in a regression framework using observation weights.
 
 ## Limitations
 
-Existing enrollment projection models face several significant limitations, 
-ranging from a heavy reliance on historical trends to difficulties in obtaining high-quality data for more complex models.
+Existing enrollment projection models face several significant limitations, ranging from a heavy reliance on historical trends to difficulties in obtaining high-quality data for more complex models.
 
 ### Cohort-Survival Ratio (CSR) Weaknesses
 
-The primary drawback of the CSR method is its fundamental assumption that the future will not vary significantly from the past. 
-While effective for stable districts, it cannot anticipate sudden shifts caused by economic factors, changes in district boundaries, or new promotion policies.
+The primary drawback of the CSR method is its fundamental assumption that the future will not vary significantly from the past. While effective for stable districts, it cannot anticipate sudden shifts caused by economic factors, changes in district boundaries, or new promotion policies.[^4]
 
-CSR is notably less accurate for individual grades and schools than for district-wide totals. 
-This is because of the compounding effect of small errors in grade-to-grade progression rates. 
-Also, school-level projections are more sensitive to localized, yearly external shocks, which might lead to biased estimates when using historical averages.
+CSR is notably less accurate for individual grades and schools than for district-wide totals. This is because of the compounding effect of small errors in grade-to-grade progression rates. Also, school-level projections are more sensitive to localized, yearly external shocks, which might lead to biased estimates when using historical averages.
 
-The CSR accuracy also declines sharply as the projection period extends beyond one year. 
-This issue is like the *compounding error* problem in financial forecasting, where small, individual errors can lead to a significant divergence from actual outcomes.
-When yearly projections consistently favor one direction, like being too optimistic or pessimistic, 
-it creates compounding errors where the projections can be off several percentage points from the eventual enrollment. 
-Over time, this persistent bias can lead to systematic overestimation or underestimation of enrollment, 
-which can have significant implications for resource allocation and planning.
+The CSR accuracy also declines sharply as the projection period extends beyond one year. This issue is like the *compounding error* problem in financial forecasting, where small, individual errors can lead to a significant divergence from actual outcomes. When yearly projections consistently favor one direction, like being too optimistic or pessimistic, it creates compounding errors where the projections can be off several percentage points from the eventual enrollment. Over time, this persistent bias can lead to systematic overestimation or underestimation of enrollment, which can have significant implications for resource allocation and planning.
 
-Finally, CSR models usually provide a single point estimate as the projection. 
-While this might be sufficient for some planning purposes, it makes it difficult to account for expected external shocks or uncertainty in enrollment, 
+Finally, CSR models usually provide a single point estimate as the projection. While this might be sufficient for some planning purposes, it makes it difficult to account for expected external shocks or uncertainty in enrollment, 
 leaving further guesswork for the policy maker to adjust the projection based on their knowledge of local trends and conditions.
+
+[^4]: This becomes a major issue because projections are really only useful in times of sudden shifts in enrollment.
+
+### Moving Decaying Average Models
+
+The main limitation of decaying weight models is that they still assume the recent past is the best guide to the future, and they weight it more heavily. When a district experiences a structural break (e.g., a school closure, a new housing development, a sudden boundary change), the most recent years may be the least representative of what comes next, and down-weighting older data makes that worse.[^5] The models also offer no built-in way to quantify how uncertain the projection is. A single weighted average produces a single point estimate, leaving planners without a sense of the range of plausible outcomes.
+
+[^5]: Sometimes, this can also be a strenght of these models. For example, enrollment rates were very volatile following school re-opening after COVID. Down-weighting these years isn't a bad idea after all.
 
 ### Regression and Structural Model Challenges
 
@@ -93,37 +91,19 @@ For these reasons, complex regression models are more commonly used for state or
 
 ### Systemic and Behavioral Biases
 
-Research has shown that districts may intentionally bias their projections based on financial or political incentives. 
-For example, studies in New York and Kentucky found that districts often underestimate revenues and overestimate expenditures to build budget slack or reach optimal fund balance levels. 
-These adjustments are often made without explicitly stating the assumptions or rationale behind them, 
-making it difficult to evaluate the accuracy of projections, 
-leading to a lack of transparency and accountability in the decisions made using these projections.
+Research has shown that districts may intentionally bias their projections based on financial or political incentives. For example, studies in New York and Kentucky found that districts often underestimate revenues and overestimate expenditures to build budget slack or reach optimal fund balance levels. These adjustments are often made without explicitly stating the assumptions or rationale behind them, making it difficult to evaluate the accuracy of projections, leading to a lack of transparency and accountability in the decisions made using these projections.
 
-Most of the existing projection models also do not provide a clear picture regarding possible variability in the possible enrollment projections. 
-Even if all projection models are subject to the inherent uncertainty of the future, 
-providing a single point estimate from a CSR might suggest overconfidence in a projection that is actually quite uncertain. 
-A single-number projection implies a precision that isn't there and leaves districts unprepared when enrollment shifts. For five-year facilities planning, that uncertainty grows with every year out. A point estimate hides all of it.
+Most of the existing projection models also do not provide a clear picture regarding possible variability in the possible enrollment projections. Even if all projection models are subject to the inherent uncertainty of the future, providing a single point estimate from a CSR might suggest overconfidence in a projection that is actually quite uncertain. A single-number projection implies a precision that isn't there and leaves districts unprepared when enrollment shifts. For five-year facilities planning, that uncertainty grows with every year out. A point estimate hides all of it.
 
 # A New Approach: Monte Carlo Simulations
 
-In this blog post, I describe an alternative approach to enrollment projections 
-that builds upon the strengths of the CSR and regression methods while addressing some of their limitations. 
-This process uses similar input data as these traditional models, enrollment by grade and school, 
-while separately calculating student survival rates and new student generation rates, and combining them using a new Monte Carlo simulation framework.
+In this blog post, I describe an alternative approach to enrollment projections that builds upon the strengths of the CSR and regression methods while addressing some of their limitations. This process uses similar input data as these traditional models, enrollment by grade and school, while separately calculating student survival rates and new student generation rates, and combining them using a new Monte Carlo simulation framework.
 
-A Monte Carlo simulation framework allows for explicit modeling of uncertainty and presents a range of outcomes instead of a single point estimate. 
-Separate simulations run thousands of times, each time randomly changing the underlying projection assumptions, 
-and are combined together in an overall distribution of possible enrollment outcomes. 
-These outcome ranges support decision-making in two ways: they provide a point estimate (the median) alongside a quantified spread of uncertainty, and they let local experts choose a projection percentile to reflect their knowledge of current conditions or anticipated shocks.
+A Monte Carlo simulation framework allows for explicit modeling of uncertainty and presents a range of outcomes instead of a single point estimate. Separate simulations run thousands of times, each time randomly changing the underlying projection assumptions, and are combined together in an overall distribution of possible enrollment outcomes. These outcome ranges support decision-making in two ways: they provide a point estimate (the median) alongside a quantified spread of uncertainty, and they let local experts choose a projection percentile to reflect their knowledge of current conditions or anticipated shocks.
 
-In addition, the simulations explicitly model student survival, or continued year-to-year enrollment, and new student generation, or new entries into the system, as separate processes, 
-unlike traditional CSR models that combine these into a single grade progression ratio. 
-This allows for more robust modeling, especially in the presence of strong external shocks that might affect one process more than another. 
-For example, the completion of a new housing development might lead to a surge in new student generation, 
-while a change in promotion policies might lead to a drop in student survival rates. 
+In addition, the simulations explicitly model student survival, or continued year-to-year enrollment, and new student generation, or new entries into the system, as separate processes, unlike traditional CSR models that combine these into a single grade progression ratio. This allows for more robust modeling, especially in the presence of strong external shocks that might affect one process more than another. For example, the completion of a new housing development might lead to a surge in new student generation, while a change in promotion policies might lead to a drop in student survival rates. 
 
-This analysis uses `SQL` queries in DuckDB, which are more accessible to school district staff than specialized statistical software or programming languages. 
-Student-level data is required to run the simulations, with certified CALPADS data being ideal for California districts.
+This analysis uses `SQL` queries in DuckDB, which are more accessible to school district staff than specialized statistical software or programming languages. Student-level data is required to run the simulations, with certified CALPADS data being ideal for California districts.
 
 ## The Stochastic Processes of Continued Enrollment and New Student Enrollment
 
