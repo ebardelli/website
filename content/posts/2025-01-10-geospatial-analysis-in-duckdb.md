@@ -19,6 +19,9 @@ In this post, I walk through a geospatial analysis that combines US 2020 Census 
 
 The US Census Bureau maintains large geospatial databases to support their decennial census. TIGER/Line shapefiles collect land features like roads, rivers, and lakes, as well as administrative areas such as counties, census tracts, and census blocks.[^1] 
 
+
+[^1]: The [2024 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) were released on September 25, 2024.
+
 We'll use the 2020 Census blocks in this analysis.
 
 These are available for download from the Census download site:
@@ -30,9 +33,9 @@ unzip tl_2024_06_tabblock20.zip -d census_blocks
 
 ### California School District Shapefiles
 
-The California Department of Education also provides a (more modest) number of geospatial datasets, though they're not as easily accessible as the census data.[^3]
+The California Department of Education also provides a (more modest) number of geospatial datasets, though they're not as easily accessible as the census data.[^2]
 
-You'll need to manually download the geospatial database of California's districts from this [map](https://gis.data.ca.gov/datasets/CDEGIS::california-school-district-areas-2023-24/explore?location=36.948239%2C-119.002226%2C6.36). Download it in GeoJSON format.
+[^2]: In fact, the CDE maps aren't easy to navigate at all. Some of them allow to download the source data, others don't. I'm not sure why.
 
 ## Data Cleaning
 
@@ -47,7 +50,9 @@ INSTALL spatial;
 LOAD spatial;
 ```
 
-You only need to install it once. After that, `LOAD` is enough to activate `spatial` within the current DuckDB process.[^2]
+You only need to install it once. After that, `LOAD` is enough to activate `spatial` within the current DuckDB process.[^3]
+
+[^3]: DuckDB comes with both [core extensions](https://duckdb.org/docs/current/core_extensions/overview#default-extensions) and [community extensions](https://duckdb.org/community_extensions/list_of_extensions). These extensions add functionality that isn't part of the core DuckDB program.
 
 ### Loading the Data
 
@@ -108,6 +113,10 @@ We can estimate expected enrollment in each district by regressing total enrollm
 This model ignores an important distinction: California has elementary districts (K–8), high school districts (9–12), and unified districts (K–12). A more rigorous model would account for that. But even this simple version surfaces interesting patterns.
 
 We run the OLS regression[^4] with:
+
+[^4]: DuckDB isn't really setup for statistical work. This is more of an example than a real analysis. You can still use this dataset in R (for example) using the [DuckDB R package](https://duckdb.org/docs/current/clients/r).
+
+You'll need to manually download the geospatial database of California's districts from this [map](https://gis.data.ca.gov/datasets/CDEGIS::california-school-district-areas-2023-24/explore?location=36.948239%2C-119.002226%2C6.36). Download it in GeoJSON format.
 
 ```sql {title="Regress student enrollment on population"}
 WITH pop AS (
@@ -180,8 +189,3 @@ And the five most over-enrolled:
 ## Further Reading
 
 The Motherduck team has a [blog post](https://motherduck.com/blog/geospatial-for-beginner-duckdb-spatial-motherduck/) covering the history of GIS software alongside more examples of using DuckDB for geospatial analysis.
-
-[^1]: The [2024 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) were released on September 25, 2024.
-[^2]: DuckDB comes with both [core extensions](https://duckdb.org/docs/current/core_extensions/overview#default-extensions) and [community extensions](https://duckdb.org/community_extensions/list_of_extensions). These extensions add functionality that isn't part of the core DuckDB program.
-[^3]: In fact, the CDE maps aren't easy to navigate at all. Some of them allow to download the source data, others don't. I'm not sure why.
-[^4]: DuckDB isn't really setup for statistical work. This is more of an example than a real analysis. You can still use this dataset in R (for example) using the [DuckDB R package](https://duckdb.org/docs/current/clients/r).
