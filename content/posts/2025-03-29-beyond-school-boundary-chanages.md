@@ -3,7 +3,7 @@ title: "The Policy and Community Work Behind School Boundary Changes"
 date: 2025-03-29T22:31:36.000Z
 lastmod: 2025-06-12T00:04:35.000Z
 
-slug: beyond-maps-and-data-the-human-side-of-school-boundary-decisions
+slug: beyond-school-boundary-chanages
 tags: ["Data Science","Policy"]
 
 draft: false
