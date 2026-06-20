@@ -16,22 +16,60 @@
     {{- partial "scriptsBodyStart.html" . -}}
     {{- partial "header.html" . -}}
     <div class="wrapper">
-        {{ partial "bio" . }}
+        {{/* Bio hero — avatar + tagline + site description */}}
+        {{ $avatar_img := .Site.Params.author.avatar }}
+        {{ $avatar_img_alt := .Site.Params.author.name }}
+        {{ $image := resources.Get $avatar_img }}
+        <div class="author">
+            {{ with $image }}
+            {{ if eq .MediaType.SubType "svg" }}
+            <svg width="25em" height="25em" xmlns="http://www.w3.org/2000/svg">
+                <image width="25em" height="25em" href="{{ $image.RelPermalink }}" />
+            </svg>
+            {{ else }}
+            {{ $image1x := $image.Fill "70x70 center webp" }}
+            {{ $image2x := $image.Fill "140x140 center webp" }}
+            {{ $image3x := $image.Fill "210x210 center webp" }}
+            <img
+                class="author-avatar"
+                src="{{ $image1x.RelPermalink }}"
+                srcset="{{ $image2x.RelPermalink }} 2x, {{ $image3x.RelPermalink }} 3x"
+                alt="{{ $avatar_img_alt }}"
+                width="{{ $image1x.Width }}"
+                height="{{ $image1x.Height }}" />
+            {{ end }}
+            {{ end }}
+            <h2 class="author-name">{{ .Site.Params.author.intro }}</h2>
+            <p class="author-bio">{{ .Site.Params.description }}</p>
+        </div>
+
         <main aria-label="Content">
-            <h3 class="posts-item-note" aria-label="Recent Posts">{{ T "home.recent_posts" }}</h3>
-            {{/* Show last 5 posts in reverse date order */}}
             {{ $pagesToShow := where .Site.RegularPages "Type" "in" site.Params.mainSections }}
             {{ $posts := $pagesToShow.ByDate.Reverse }}
-            {{ range first 5 $posts }}
-            {{ partial "postCard" . }}
+            {{ $featured := where $posts ".Params.isStarred" true }}
+
+            {{ if $featured }}
+            <h3 class="posts-item-note">Featured</h3>
+            {{ range $featured }}
+            <article class="featured-item">
+                <h4 class="featured-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+                {{ with .Params.description }}<p class="featured-item-summary">{{ . }}</p>{{ else }}{{ with .Summary }}<p class="featured-item-summary">{{ . }}</p>{{ end }}{{ end }}
+            </article>
             {{ end }}
-            {{ if gt (len $posts) 5 }}
-            <p>
+            {{ end }}
+
+            <p class="see-all-posts">
                 {{ range $firstSection := (where .Site.Sections "Section" "in" (first 1 (.Site.Params.mainSections))) }}
                 <a href="{{ $firstSection.Permalink }}">{{ T "home.see_all_posts" }}</a>
                 {{ end }}
             </p>
-            {{ end }}
+
+            <div class="home-consulting">
+                <h3 class="posts-item-note">Consulting</h3>
+                <p>I help organizations in the education sector use data and strategy to achieve meaningful, equitable outcomes for students and communities. <a href="/consulting/">Learn more about my work &rarr;</a></p>
+            </div>
+
+            <p class="home-bio">{{ .Site.Params.author.name }} &mdash; {{ .Site.Params.author.description }}</p>
         </main>
     </div>
     {{- partial "footer.html" . -}}

@@ -1,3 +1,48 @@
 .author .author-bio {
   max-width: 100%;
 }
+
+// Homepage featured posts
+.featured-item {
+  padding-top: 8px;
+  padding-bottom: 10px;
+
+  &:not(:first-child) {
+    border-top: 1px solid $light;
+  }
+
+  .featured-item-title {
+    margin: 0 0 2px;
+    font-size: $base-font-size;
+    font-weight: normal;
+    letter-spacing: 0.1px;
+
+    a {
+      color: $text-base-color;
+      transition: color 150ms ease-in;
+      &:hover { color: $black; }
+    }
+  }
+
+.featured-item-summary {
+    margin: 0;
+    font-size: $small-font-size;
+    line-height: 1.65;
+    opacity: 0.8;
+  }
+}
+
+.see-all-posts {
+  margin-top: 1rem;
+}
+
+.home-consulting {
+  margin-top: 2.5rem;
+}
+
+.home-bio {
+  margin-top: 3rem;
+  font-size: $small-font-size;
+  opacity: 0.55;
+  line-height: 1.6;
+}

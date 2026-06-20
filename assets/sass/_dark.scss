@@ -195,6 +195,23 @@
     }
   }
 
+  // Featured Items (homepage)
+  .featured-item {
+    &:not(:first-child) {
+      border-color: $dark-light;
+    }
+
+    .featured-item-title {
+      a {
+        color: $dark-text-base-color;
+
+        &:hover {
+          color: $dark-white;
+        }
+      }
+    }
+  }
+
   // Post Navigation
   .post-nav {
     border-color: $dark-light;

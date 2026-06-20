@@ -9,6 +9,7 @@ tags: ["Data Science","Projections","Forecasting","DuckDB","Monte Carlo Simulati
 isStarred: true
 draft: false
 math: true
+description: "Standard enrollment projection methods break down when conditions shift sharply. This post describes a Monte Carlo simulation framework that models uncertainty explicitly, treating student survival and new-student generation as separate stochastic processes implemented in DuckDB."
 ---
 
 Enrollment projections drive planning and budgeting for school districts. Districts use them to anticipate long-term shifts in educational demand, which in turn shapes decisions about staffing, resources, and facilities.

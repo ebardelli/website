@@ -8,6 +8,7 @@ tags: ["Data Science","Policy","Data Processing","Data Visualization","DuckDB","
 
 isStarred: true
 draft: false
+description: "How we used DuckDB's spatial extension and custom web tooling to redraw school attendance boundaries during a district consolidation, covering Census block integration, geospatial joins, student geocoding, and real-time attendance projection for stakeholder-facing boundary proposals."
 ---
 
 Imagine a single line drawn on a map. That line, a school attendance boundary, prescribes more than just where a child goes to school. It shapes their friendships, influences their family's home value, and defines the character of their neighborhood. Redrawing those lines is a task with far-reaching consequences that require balancing data and human impact.
