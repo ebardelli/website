@@ -1,5 +1,5 @@
 baseURL = 'https://ebardelli.com'
-title = 'Data Science → Education Policy'
+title = 'Emanuele Bardelli'
 
 [markup]
   [markup.highlight]
@@ -49,12 +49,12 @@ title = 'Data Science → Education Policy'
     weight = 50
   
 [Languages.en-us.params]
-  sitename = "Awesome hugo blog"
+  sitename = "Emanuele Bardelli"
   defaultColor = "dark" # set color mode: dark, light, auto
   # Setting it to 'auto' applies the color scheme based on the visitor's device color preference.If you don't specify anything, ignore this parameter, or leave it blank,
   # the default value is set to 'auto'.
   # You can take a look at layouts/index.html for more information.
-  description = "Notes From the Field: Data Science's Impact on Education Policy"
+  description = "Writing about data, schools, and the decisions that shape them."
   mainSections = ['posts']
   toc = false # set to false to disable table of contents 'globally'
   tocOpen = false # set to true to open table of contents by default
@@ -69,9 +69,9 @@ title = 'Data Science → Education Policy'
 [Languages.en-us.params.author]
   avatar = "avatar.jpg" # put the file in assets folder; also ensure that image has same height and width
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
-  intro = "Data Science → Education Policy"
+  intro = "Data science for better schools"
   name = "Emanuele Bardelli"
-  description = "Notes From the Field: Data Science's Impact on Education Policy"
+  description = "I'm a researcher, district administrator, and data scientist. This is where I write about data, schools, and the decisions that shape them."
 
 # Allow to override webmanifest options
 [Languages.en-us.params.webmanifest]
