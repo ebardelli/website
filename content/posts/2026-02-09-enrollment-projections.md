@@ -107,23 +107,14 @@ This analysis uses `SQL` queries in DuckDB, which are more accessible to school 
 
 ## The Stochastic Processes of Continued Enrollment and New Student Enrollment
 
-The Monte Carlo simulation approach models enrollment as a stochastic process driven by two key components: 
-continued enrollment (i.e., student survival) and new student enrollment (i.e., new student generation). 
+The Monte Carlo simulation approach models enrollment as a stochastic process driven by two key components: continued enrollment (i.e., student survival) and new student enrollment (i.e., new student generation). 
 
-The simulation handles these two enrollment types as random processes, similar to how we would expect them to play out in the real world. 
-In other words, enrollment is not predicted by a set of circumstances that are known using past data. 
-Instead, each enrollment projection is based on a set of possible outcomes, each one with its own likelihood of happening. 
-All these separate outcomes are combined into a known distribution of outcomes, 
-which can be analyzed to understand the range of potential enrollment outcomes and their probabilities.
+The simulation handles these two enrollment types as random processes, similar to how we would expect them to play out in the real world. In other words, enrollment is not predicted by a set of circumstances that are known using past data. Instead, each enrollment projection is based on a set of possible outcomes, each one with its own likelihood of happening. All these separate outcomes are combined into a known distribution of outcomes, which can be analyzed to understand the range of potential enrollment outcomes and their probabilities.
 
-The Monte Carlo simulation approach models these enrollment outcomes directly by simulating the enrollment process multiple times, 
-each time randomly drawing from the underlying distributions of continued enrollment and new student enrollment rates. 
-This allows us to capture the natural uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate.
+The Monte Carlo simulation approach models these enrollment outcomes directly by simulating the enrollment process multiple times, each time randomly drawing from the underlying distributions of continued enrollment and new student enrollment rates. This allows us to capture the natural uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate.
 
 The name of the method comes from a common approach in statistics and computational mathematics, 
-where random sampling is used to understand the behavior of a system that is difficult to model analytically. 
-Its name comes from the Monte Carlo Casino in Monaco, which is famous for its games of chance, 
-reflecting the method's reliance on randomness and probability.
+where random sampling is used to understand the behavior of a system that is difficult to model analytically. Its name comes from the Monte Carlo Casino in Monaco, which is famous for its games of chance, reflecting the method's reliance on randomness and probability.
 
 ## Technical Overview of the Simulation
 
@@ -140,9 +131,7 @@ where
 
 ### Modeling Survival Rates
 
-Survival is modeled as the ratio of students who continue enrollment from one grade to the next. 
-This ratio naturally falls between 0 and 1, so we can use the beta distribution to model survival rates. 
-The parameters of the beta distribution are calculated based on the average and standard deviation of historical survival rates, as well as the number of observations:
+Survival is modeled as the ratio of students who continue enrollment from one grade to the next. This ratio naturally falls between 0 and 1, so we can use the beta distribution to model survival rates. The parameters of the beta distribution are calculated based on the average and standard deviation of historical survival rates, as well as the number of observations:
 
 $$
 Survival_{grade, sim} \sim Beta(\alpha, \beta)
@@ -154,20 +143,11 @@ where
  - $ \mu $ is the average survival rate for that grade
  - $ k = \frac{\text{max variance}}{\text{observed variance}} - 1 $
 
-If helpful, note that max variance refers to the theoretical maximum for a Bernoulli proportion, $ \text{max_variance} = \mu (1 - \mu) $. 
-The formula $ k = \frac{\text{max_variance}}{\text{observed_variance}} - 1 $ rescales the beta shape parameters so the beta's variance can match the observed variance when possible. 
-If the observed variance is zero (e.g., a constant historical survival rate), avoid division-by-zero and fall back to a degenerate or conservative distribution (for example, using the observed mean or a tight beta centered on it).
+If helpful, note that max variance refers to the theoretical maximum for a Bernoulli proportion, $ \text{max_variance} = \mu (1 - \mu) $. The formula $ k = \frac{\text{max_variance}}{\text{observed_variance}} - 1 $ rescales the beta shape parameters so the beta's variance can match the observed variance when possible. If the observed variance is zero (e.g., a constant historical survival rate), avoid division-by-zero and fall back to a degenerate or conservative distribution (for example, using the observed mean or a tight beta centered on it).
 
 ### Modeling New Student Generation
 
-New student generation is modeled as the number of new students entering the system at each grade level. 
-The choice of distribution for modeling new student generation depends on the relationship between the mean and variance of the historical generation data. 
-If the variance is less than the mean (underdispersion), a binomial distribution is used. 
-If the variance is approximately equal to the mean (equidispersion), a Poisson distribution is used. 
-In practice we treat $ \text{mean} \approx \text{variance} $ using a small numerical tolerance to avoid floating-point noise.
-For example, $ \abs{\text{variance}} - \abs{\text{mean}} \le 1e-6 $ is considered equidispersion and triggers the Poisson model. 
-You can adjust this tolerance depending on sample size and the scale of counts.
-If the variance is greater than the mean (overdispersion), a negative binomial distribution is used.
+New student generation is modeled as the number of new students entering the system at each grade level. The choice of distribution for modeling new student generation depends on the relationship between the mean and variance of the historical generation data. If the variance is less than the mean (underdispersion), a binomial distribution is used. If the variance is approximately equal to the mean (equidispersion), a Poisson distribution is used. In practice we treat $ \text{mean} \approx \text{variance} $ using a small numerical tolerance to avoid floating-point noise.For example, $ \abs{\text{variance}} - \abs{\text{mean}} \le 1e-6 $ is considered equidispersion and triggers the Poisson model. You can adjust this tolerance depending on sample size and the scale of counts. If the variance is greater than the mean (overdispersion), a negative binomial distribution is used.
 
 $$
 Generation_{grade, sim} \sim Dist(params)
@@ -178,20 +158,12 @@ where `Dist` is chosen based on the dispersion of the historical data:
  - If equidispersion: $ Poisson(\lambda) $
  - If overdispersion: $ NegativeBinomial(r, p) $
 
-With underdispersion, the binomial distribution is used, which requires a fixed maximum count $ n $. 
-Here, we can use the maximum observed generation across all years as `n`, and the average generation divided by that maximum as the probability $ p $. 
-In practical terms the probability is calculated as $p = \frac{\mu}{n}$ (where $\mu$ is the average count and $n$ is the chosen maximum, e.g., `N_max`). 
-In the SQL examples this is computed as `mu / generation.n_max`.
-This approach allows us to model the number of new students entering the system while accounting for the observed underdispersion in the historical data.
+With underdispersion, the binomial distribution is used, which requires a fixed maximum count $ n $. Here, we can use the maximum observed generation across all years as `n`, and the average generation divided by that maximum as the probability $ p $. In practical terms the probability is calculated as $p = \frac{\mu}{n}$ (where $\mu$ is the average count and $n$ is the chosen maximum, e.g., `N_max`). 
+In the SQL examples this is computed as `mu / generation.n_max`. This approach allows us to model the number of new students entering the system while accounting for the observed underdispersion in the historical data.
 
-With equidispersion, the Poisson distribution is used, which is appropriate for modeling count data where the mean and variance are approximately equal. 
-The parameter $ \lambda $ represents the average number of new students generated over the historical period.
+With equidispersion, the Poisson distribution is used, which is appropriate for modeling count data where the mean and variance are approximately equal. The parameter $ \lambda $ represents the average number of new students generated over the historical period.
 
-With overdispersion, the negative binomial distribution is used, which is appropriate for modeling count data where the variance exceeds the mean. 
-The parameter $ r $ is calculated as $ r = \frac{\mu^2}{\sigma^2 - \mu} $, 
-where $\mu$ is the average generation for that grade and $\sigma^2$ is the variance of generation for that grade. 
-The parameter $ p $ is calculated as $ p = \frac{\mu}{\sigma^2} $. 
-This approach allows us to model the number of new students entering the system while accounting for the observed overdispersion in the historical data.
+With overdispersion, the negative binomial distribution is used, which is appropriate for modeling count data where the variance exceeds the mean. The parameter $ r $ is calculated as $ r = \frac{\mu^2}{\sigma^2 - \mu} $, where $\mu$ is the average generation for that grade and $\sigma^2$ is the variance of generation for that grade. The parameter $ p $ is calculated as $ p = \frac{\mu}{\sigma^2} $. This approach allows us to model the number of new students entering the system while accounting for the observed overdispersion in the historical data.
 
 Matching the distribution to observed dispersion keeps the simulations realistic. When the historical data shows less variability than expected, it may indicate constraints on new student entry (such as limited housing). More variability than expected often points to unobserved factors like economic shifts or new housing supply. Ignoring this instability produces unrealistic projections, which is why distribution choice is central to the Monte Carlo approach.
 
@@ -207,36 +179,21 @@ Choosing the right distribution based on observed dispersion is what makes the s
 
 ## Combining Survival and Generation in Monte Carlo Simulations
 
-The Monte Carlo framework combines the two separate survival and generation simulations into a single enrollment estimate. 
-The overall enrollment estimate predicts enrollment by summing the number of students surviving from the previous grade and the number of new students generated for that grade. 
-Repeating this process for each grade and school over many simulation runs enables us to generate a distribution of projected enrollment outcomes for each grade and school. 
-These repeated simulations, each one separate from the others, allow us to capture the uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate.
+The Monte Carlo framework combines the two separate survival and generation simulations into a single enrollment estimate. The overall enrollment estimate predicts enrollment by summing the number of students surviving from the previous grade and the number of new students generated for that grade. Repeating this process for each grade and school over many simulation runs enables us to generate a distribution of projected enrollment outcomes for each grade and school. These repeated simulations, each one separate from the others, allow us to capture the uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate.
 
-As a final step, these separate simulation runs are combined to determine the overall distribution of possible enrollment outcomes for each grade and school. 
-By analyzing this distribution, we can understand the range of potential enrollment outcomes and their likelihood when compared to other predictions, 
-which can inform decision-making and help districts prepare for a variety of future scenarios. 
-Usually, the midpoint of this distribution (i.e., the median or 50th percentile) is used as the point estimate for enrollment projections. 
-Other percentiles (e.g., the 25th percentile and the 75th percentile) can provide a more conservative or optimistic projection based on local knowledge of trends and conditions.
+As a final step, these separate simulation runs are combined to determine the overall distribution of possible enrollment outcomes for each grade and school. By analyzing this distribution, we can understand the range of potential enrollment outcomes and their likelihood when compared to other predictions, which can inform decision-making and help districts prepare for a variety of future scenarios. Usually, the midpoint of this distribution (i.e., the median or 50th percentile) is used as the point estimate for enrollment projections. Other percentiles (e.g., the 25th percentile and the 75th percentile) can provide a more conservative or optimistic projection based on local knowledge of trends and conditions.
 
-The intuition behind using different percentiles is that they quantify the uncertainty in enrollment projections and give a sense of the range of outcomes. 
-This gives policy makers the tools to make informed decisions based on their specific circumstances and risk tolerance. 
-For example, if a district is facing significant uncertainty because of potential external factors (e.g., a new charter school opening, a change in promotion policies) or has experienced an unexpected decline in enrollment year-over-year, 
-they might choose to use a more conservative percentile (e.g., the 40th percentile) to account for the possibility of lower enrollment than historically observed. 
-Conversely, if a district is expecting strong growth trends and wants to plan for higher enrollment, it might choose to use a more optimistic percentile (e.g., the 60th percentile).
+The intuition behind using different percentiles is that they quantify the uncertainty in enrollment projections and give a sense of the range of outcomes. This gives policy makers the tools to make informed decisions based on their specific circumstances and risk tolerance. For example, if a district is facing significant uncertainty because of potential external factors (e.g., a new charter school opening, a change in promotion policies) or has experienced an unexpected decline in enrollment year-over-year, they might choose to use a more conservative percentile (e.g., the 40th percentile) to account for the possibility of lower enrollment than historically observed. Conversely, if a district is expecting strong growth trends and wants to plan for higher enrollment, it might choose to use a more optimistic percentile (e.g., the 60th percentile).
 
 # Implementation Steps
 
 ## Required Tools
 
-The Monte Carlo simulation example is implemented in `DuckDB`, an open-source, in-process SQL database management system that is designed for analytical workloads. 
-`DuckDB` is particularly well-suited for this type of analysis because it can efficiently handle large datasets and complex queries, making it ideal for processing student-level enrollment data and running simulations. 
-`DuckDB` can be installed on a variety of operating systems and platforms using their [official installation guides](https://duckdb.org/install/).
+The Monte Carlo simulation example is implemented in `DuckDB`, an open-source, in-process SQL database management system that is designed for analytical workloads. `DuckDB` is particularly well-suited for this type of analysis because it can efficiently handle large datasets and complex queries, making it ideal for processing student-level enrollment data and running simulations. `DuckDB` can be installed on a variety of operating systems and platforms using their [official installation guides](https://duckdb.org/install/).
 
 
 Modeling the stochastic process relies on a community extension for `DuckDB` aptly named `stochastic`, 
-which provides functions for generating random numbers from specified distributions. 
-The `stochastic` DuckDB extension provides the sampling functions used in the examples (for example, `dist_beta_sample`, `dist_poisson_sample`, `dist_negative_binomial_sample`, and `dist_binomial_sample`). 
-Check the extension documentation for exact parameter conventions and supported types because function names and parameter orders may vary in future versions.
+which provides functions for generating random numbers from specified distributions. The `stochastic` DuckDB extension provides the sampling functions used in the examples (for example, `dist_beta_sample`, `dist_poisson_sample`, `dist_negative_binomial_sample`, and `dist_binomial_sample`). Check the extension documentation for exact parameter conventions and supported types because function names and parameter orders may vary in future versions.
 
 Install and load this extension from the 'DuckDB' community extensions marketplace:
 
@@ -247,17 +204,11 @@ load stochastic;
 
 ## Data Collection
 
-The first step in this simulation approach is to collect and prepare the data. 
-The simulation requires historical enrollment data at the student level. 
-For California districts, CALPADS report 1.2 Enrollment - Primary and Short Term Enrollment Student List is ideal, 
-as it provides detailed information on student enrollment by grade and school. 
-If this report is not available, districts can use their own student-level enrollment data, ensuring that it includes school codes, student id, and grade level data.
+The first step in this simulation approach is to collect and prepare the data. The simulation requires historical enrollment data at the student level. For California districts, CALPADS report 1.2 Enrollment - Primary and Short Term Enrollment Student List is ideal, as it provides detailed information on student enrollment by grade and school. If this report is not available, districts can use their own student-level enrollment data, ensuring that it includes school codes, student id, and grade level data.
 
 Multiple years of data are preferable, with five years being the recommended minimum to calculate more stable survival rates and new student generation rates.
 
-Below, I show a sample query that processes CALPADS data to create a clean enrollment table. 
-This query assumes a folder named `CALPADS` stores the raw CALPADS data, and that all reports are available as separate CSV files with this naming convention: `Enrollment_1_2_[YY]_[YY].csv`. 
-The example `SQL` code can be easily adjusted to fit other data formats, as long as the necessary information on school codes, student id, and grade level is included.
+Below, I show a sample query that processes CALPADS data to create a clean enrollment table. This query assumes a folder named `CALPADS` stores the raw CALPADS data, and that all reports are available as separate CSV files with this naming convention: `Enrollment_1_2_[YY]_[YY].csv`. The example `SQL` code can be easily adjusted to fit other data formats, as long as the necessary information on school codes, student id, and grade level is included.
 
 ```sql {title="Processing Enrollment Data"}
 create or replace temp table enrollment as
@@ -273,21 +224,15 @@ select
 from read_csv('CALPADS/Enrollment_1_2_*.csv', union_by_name=true, filename=true)
 ```
 
-District-wide projections can be created by combining enrollment data across schools. 
-The rest of the code remains the same. 
-Here, the `sc` column can be set to a constant value representing the district name, 
-or different aggregate levels representing regular enrollment, charter enrollment, and non-public school enrollment.
+District-wide projections can be created by combining enrollment data across schools. The rest of the code remains the same. Here, the `sc` column can be set to a constant value representing the district name, or different aggregate levels representing regular enrollment, charter enrollment, and non-public school enrollment.
 
 ## Data Processing
 
-To run the simulations, we need two separate intermediate data tables: 
-one for student survival rates and another for new student generation rates. 
-Processing the same historical enrollment data in slightly different ways creates these tables.
+To run the simulations, we need two separate intermediate data tables: one for student survival rates and another for new student generation rates. Processing the same historical enrollment data in slightly different ways creates these tables.
 
 ### Student Survival Rates
 
-We calculate student survival rates by tracking individual students across years to determine the percentage that "survive," or continue enrollment, from one grade to the next. 
-For example, to calculate the survival rate from kindergarten to first grade, we divide the number of students who enrolled in first grade at year `t+1` after being enrolled in kindergarten at year `t` by the total number of students enrolled in kindergarten at year `t`.
+We calculate student survival rates by tracking individual students across years to determine the percentage that "survive," or continue enrollment, from one grade to the next. For example, to calculate the survival rate from kindergarten to first grade, we divide the number of students who enrolled in first grade at year `t+1` after being enrolled in kindergarten at year `t` by the total number of students enrolled in kindergarten at year `t`.
 
 This query calculates the average and standard deviation of survival rates for each grade level.
 
@@ -345,22 +290,15 @@ order by sc, gr
 ;
 ```
 
-Different ways to aggregate survival rates can be used instead of averaging across years, such as using the most recent year's survival rate or using a weighted average that gives more weight to recent years. 
-The choice of aggregation method can be informed by the stability of survival rates over time and the presence of any external factors that might have affected survival rates in specific years.
+Different ways to aggregate survival rates can be used instead of averaging across years, such as using the most recent year's survival rate or using a weighted average that gives more weight to recent years. The choice of aggregation method can be informed by the stability of survival rates over time and the presence of any external factors that might have affected survival rates in specific years.
 
-Empirically, this choice often has limited impact on aggregate district projections, though school-level results can be more sensitive. 
-Consider running a small sensitivity check comparing a simple average, a recent-year weight, and a regression-based forecast to verify stability for your data. 
-However, using a weighted average that gives more weight to recent years can help capture any recent trends or changes in survival rates that might not be fully reflected in a simple average.
+Empirically, this choice often has limited impact on aggregate district projections, though school-level results can be more sensitive. Consider running a small sensitivity check comparing a simple average, a recent-year weight, and a regression-based forecast to verify stability for your data. However, using a weighted average that gives more weight to recent years can help capture any recent trends or changes in survival rates that might not be fully reflected in a simple average.
 
 ## New Student Generation Rates
 
-We calculate new student generation rates by finding the number of new students entering the system at each grade level. 
-The calculation of new student generation rates is important for kindergarten, as birth rates and other factors determine the number of new students entering the system. 
-This is also true for any other grade level where new students might enter the system, such as through transfers or late enrollments.
+We calculate new student generation rates by finding the number of new students entering the system at each grade level. The calculation of new student generation rates is important for kindergarten, as birth rates and other factors determine the number of new students entering the system. This is also true for any other grade level where new students might enter the system, such as through transfers or late enrollments.
 
-We estimate new student generation by comparing the number of students enrolled in a grade level at year `t` with the number of students enrolled in the previous grade level at year `t-1`. 
-For example, to calculate the new student generation rate for 2nd grade, you count the number of new students in 2nd grade at year `t` who were not enrolled in 1st grade at year `t-1`. 
-Then, you divide that number by the total number of students enrolled in 2nd grade at year 't'.
+We estimate new student generation by comparing the number of students enrolled in a grade level at year `t` with the number of students enrolled in the previous grade level at year `t-1`. For example, to calculate the new student generation rate for 2nd grade, you count the number of new students in 2nd grade at year `t` who were not enrolled in 1st grade at year `t-1`. Then, you divide that number by the total number of students enrolled in 2nd grade at year 't'.
 
 ```sql {title="Calculating New Student Generation Rates"}
 create or replace temp table generation as
@@ -407,34 +345,23 @@ order by generation.sc, generation.gr
 ;
 ```
 
-This table provides three different estimates of new student generation: 
-a regression-based estimate (`N_reg`), an average-based estimate (`N_avg`), and a maximum-based estimate (`N_max`). 
+This table provides three different estimates of new student generation: a regression-based estimate (`N_reg`), an average-based estimate (`N_avg`), and a maximum-based estimate (`N_max`). 
 
-The regression-based estimate uses simple linear regression to project the number of new students based on historical trends, 
-while the average-based and maximum-based estimates provide alternative projections based on historical averages and maximums, respectively.
+The regression-based estimate uses simple linear regression to project the number of new students based on historical trends, while the average-based and maximum-based estimates provide alternative projections based on historical averages and maximums, respectively.
 
 Each of these estimates allows us to model different scenarios and account for uncertainty in new student generation in the Monte Carlo simulations.
 
-Similar to the survival rates, the choice of aggregation method can be informed by the stability of generation rates over time and the presence of any external factors. 
-Empirically, this choice often has limited impact on aggregate district projections, though school-level results can be more sensitive. 
-Consider running a small sensitivity check comparing a simple average, a recent-year weight, and a regression-based forecast to verify stability for your data.
+Similar to the survival rates, the choice of aggregation method can be informed by the stability of generation rates over time and the presence of any external factors. Empirically, this choice often has limited impact on aggregate district projections, though school-level results can be more sensitive. Consider running a small sensitivity check comparing a simple average, a recent-year weight, and a regression-based forecast to verify stability for your data.
 
 ## Monte Carlo Simulations
 
 With the survival and generation tables prepared, the next step is to run the Monte Carlo simulations.
 
-Using survival and generation rates, the simulations will project future enrollment for each grade and school. 
-We will run the simulations for a specified number of iterations (e.g., 10,000), 
-and in each iteration, we will randomly sample the survival rates and generation rates from their respective distributions (using the average and standard deviation calculated in the previous steps).
+Using survival and generation rates, the simulations will project future enrollment for each grade and school. We will run the simulations for a specified number of iterations (e.g., 10,000), and in each iteration, we will randomly sample the survival rates and generation rates from their respective distributions (using the average and standard deviation calculated in the previous steps).
 
-The example below illustrates how to perform two-year Monte Carlo simulations. 
-The first part simulates survival and generation rates for year 1 and year 2. 
-The second part combines these separate simulations into a final simulation at the district or school level. 
-Adding more simulation and projection steps allows us to extend the code to simulate over two years of projections if needed.
+The example below illustrates how to perform two-year Monte Carlo simulations. The first part simulates survival and generation rates for year 1 and year 2. The second part combines these separate simulations into a final simulation at the district or school level. Adding more simulation and projection steps allows us to extend the code to simulate over two years of projections if needed.[^6]
 
-**Note on reproducibility**: the simulation uses a pseudorandom seed (for example, `setseed(20260209)`) to make draws reproducible. 
-Different seeds will produce different simulated draws; when auditing sensitivity, 
-run the full simulation across several seeds or report results aggregated across multiple seeds to ensure results are not driven by a single random draw.
+[^6]: **Note on reproducibility**: the simulation uses a pseudorandom seed (for example, `setseed(20260209)`) to make draws reproducible. Different seeds will produce different simulated draws; when auditing sensitivity, run the full simulation across several seeds or report results aggregated across multiple seeds to ensure results are not driven by a single random draw.
 
 ```sql {title="Running Monte Carlo Simulations"}
 create or replace temp table monte_carlo as
@@ -643,24 +570,13 @@ from enrollment
 
 There are a few assumptions about the distributions for student survival and new student generation that are worth noting.
 
-Student survival is modeled using a beta distribution, which is appropriate for modeling probabilities that are bounded between 0 and 1. 
-We estimate the beta shape parameters from the observed mean and variance of historical survival rates.
-If historical variance is zero or exceeds the allowable beta variance, we fallback to a conservative default.
-In the code, the value `0.99` is used as a conservative default for the mean survival rate, 
-which assumes that most students will continue enrollment from one grade to the next.
-This fallback value can be adjusted based on local knowledge of trends and conditions to better reflect the expected survival rates in the projections.
+Student survival is modeled using a beta distribution, which is appropriate for modeling probabilities that are bounded between 0 and 1. We estimate the beta shape parameters from the observed mean and variance of historical survival rates. If historical variance is zero or exceeds the allowable beta variance, we fallback to a conservative default. In the code, the value `0.99` is used as a conservative default for the mean survival rate, which assumes that most students will continue enrollment from one grade to the next. This fallback value can be adjusted based on local knowledge of trends and conditions to better reflect the expected survival rates in the projections.
 
-For new student generation, the distribution is chosen based on the relationship between the mean and variance of the historical generation data. 
-If the variance is less than the mean (underdispersion), a binomial distribution is used. 
-If the variance is approximately equal to the mean (equidispersion), a Poisson distribution is used. 
-If the variance is greater than the mean (overdispersion), a negative binomial distribution is used. 
-If the standard deviation is zero or negative, the simulation defaults to using the average generation as a constant value. 
-These distribution choices are appropriate for count data (in our case, the number of new students), which can exhibit different dispersion characteristics than continuous data.
+For new student generation, the distribution is chosen based on the relationship between the mean and variance of the historical generation data. If the variance is less than the mean (underdispersion), a binomial distribution is used. If the variance is approximately equal to the mean (equidispersion), a Poisson distribution is used. If the variance is greater than the mean (overdispersion), a negative binomial distribution is used. If the standard deviation is zero or negative, the simulation defaults to using the average generation as a constant value. These distribution choices are appropriate for count data (in our case, the number of new students), which can exhibit different dispersion characteristics than continuous data.
 
 ## Projection Analysis
 
-The last step in the projection process is to analyze the results of the Monte Carlo simulations. 
-The output of the simulations will be a distribution of projected enrollment numbers for each grade and school for each year of projection.
+The last step in the projection process is to analyze the results of the Monte Carlo simulations. The output of the simulations will be a distribution of projected enrollment numbers for each grade and school for each year of projection.
 
 A simple query like
 
@@ -682,16 +598,11 @@ order by sc, gr;
 
 provides the average projected enrollment for the base year (`N_y0`), the median projected enrollment for year 1 and year 2, alongside the average number of students surviving and generated for each year.
 
-The median projection is used in Monte Carlo simulations to represent the middle-of-the-road scenario. 
-This projection sits in the middle of all simulated outcomes, meaning that there is an equal probability of the actual enrollment being above or below this value.
+The median projection is used in Monte Carlo simulations to represent the middle-of-the-road scenario. This projection sits in the middle of all simulated outcomes, meaning that there is an equal probability of the actual enrollment being above or below this value.
 
-Different percentiles can also be calculated to represent more optimistic or pessimistic scenarios. 
-For example, the `0.25` quantile would represent a more pessimistic scenario (where enrollment is lower than the median), 
-while the `0.75` quantile would represent a more optimistic scenario (where enrollment is higher than the median)
+Different percentiles can also be calculated to represent more optimistic or pessimistic scenarios. For example, the `0.25` quantile would represent a more pessimistic scenario (where enrollment is lower than the median), while the `0.75` quantile would represent a more optimistic scenario (where enrollment is higher than the median)
 
-For example, the query below calculates all deciles for the year 1 projections.
-These deciles can help understand the range of outcomes and their associated probabilities by school and grade level, 
-which are then aggregated to the district level by summing across schools.
+For example, the query below calculates all deciles for the year 1 projections. These deciles can help understand the range of outcomes and their associated probabilities by school and grade level, which are then aggregated to the district level by summing across schools.
 
 ```sql {title="Calculating Projection Percentiles"}
 with details as (
@@ -728,23 +639,16 @@ group by sc
 
 ## Smoothing School-Level Projections
 
-A final consideration is whether to apply any smoothing techniques to the school-level projections. 
-Because school-level projections are more sensitive to localized external shocks and have fewer observations than district-level projections, 
-they can exhibit more volatility and less accuracy.
+A final consideration is whether to apply any smoothing techniques to the school-level projections. Because school-level projections are more sensitive to localized external shocks and have fewer observations than district-level projections, they can exhibit more volatility and less accuracy.
 
-An approach to address this issue is to calculate school-level estimates following a two-stage hybrid approach, 
-where district-level projections are combined with school-level projections to produce smoothed school-level projections that align with the overall district-level projections while still reflecting the relative distribution of students across schools based on historical trends. 
+An approach to address this issue is to calculate school-level estimates following a two-stage hybrid approach, where district-level projections are combined with school-level projections to produce smoothed school-level projections that align with the overall district-level projections while still reflecting the relative distribution of students across schools based on historical trends. 
 
 In the first stage, we run projections at the district level and select an appropriate projection result to represent the overall district enrollment. 
 
-In the second stage, we adjust the school-level projections to align with the selected district-level projection. 
-In this stage, the individual school-level projections are used to calculate the percentage share of grade-level enrollment for each school, 
-and then we apply these shares to the selected district-level grade projections.
+In the second stage, we adjust the school-level projections to align with the selected district-level projection. In this stage, the individual school-level projections are used to calculate the percentage share of grade-level enrollment for each school, and then we apply these shares to the selected district-level grade projections.
 
-Below, I show an example query that implements this two-stage approach. 
-This query assumes that the district-level projections have already been calculated and stored in a csv file called `district.csv`, 
-and that the school-level projections have been calculated and stored in a csv file called `schools.csv`. 
-These files can be replaced with temporary tables created from the previous steps in the Monte Carlo simulation process.
+Below, I show an example query that implements this two-stage approach. This query assumes that the district-level projections have already been calculated and stored in a csv file called `district.csv`, 
+and that the school-level projections have been calculated and stored in a csv file called `schools.csv`. These files can be replaced with temporary tables created from the previous steps in the Monte Carlo simulation process.
 
 ```sql {title="Smoothing School-Level Projections"}
 WITH
