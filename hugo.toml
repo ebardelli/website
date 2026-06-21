@@ -33,20 +33,15 @@ title = 'Emanuele Bardelli'
     url = '/posts/'
     weight = 20
   [[Languages.en-us.menu.main]]
-    pageRef="consulting"
-    name='Consulting'
-    url='/pages/consulting/'
-    weight=30
-  [[Languages.en-us.menu.main]]
     pageRef="about"
     name = 'About'
     url = '/about/'
-    weight = 40
+    weight = 30
   [[Languages.en-us.menu.main]]
     pageRef="search"
     name = 'Search'
     url = '/pages/search/'
-    weight = 50
+    weight = 40
   
 [Languages.en-us.params]
   sitename = "Emanuele Bardelli"
