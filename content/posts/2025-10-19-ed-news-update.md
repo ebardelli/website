@@ -1,5 +1,7 @@
 ---
 title: 'An update to the Ed News service'
+description: "Ed News aggregates education publications into a single feed, but its original Ruby-based backend made adding features difficult. This post describes the Python rewrite built with LLM assistance: a pipeline that pulls RSS feeds, enriches research metadata via CrossRef, computes text embeddings for semantic article recommendations using sqlite-vec, and publishes the database as queryable Parquet files."
+
 date: '2025-10-19T14:37:03-07:00'
 
 slug: ed-news-update

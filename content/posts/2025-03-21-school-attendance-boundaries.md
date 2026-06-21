@@ -1,5 +1,7 @@
 ---
 title: "On Redrawing School Attendance Boundaries"
+description: "Redrawing school attendance boundaries at time of school consolidation requires balancing data precision with community impact. This post describes the DuckDB-powered GIS tooling I built to support redrawing school attendance boundaries, starting from Census block integration and student geocoding to real-time attendance projections for public stakeholder meetings."
+
 date: 2025-03-21T22:09:26.000Z
 lastmod: 2025-05-27T00:02:51.000Z
 
@@ -8,7 +10,6 @@ tags: ["Data Science","Policy","Data Processing","Data Visualization","DuckDB","
 
 isStarred: true
 draft: false
-description: "Redrawing school attendance boundaries at time of school consolidation requires balancing data precision with community impact. This post describes the DuckDB-powered GIS tooling I built to support redrawing school attendance boundaries, starting from Census block integration and student geocoding to real-time attendance projections for public stakeholder meetings."
 ---
 
 Imagine a single line drawn on a map. That line, a school attendance boundary, prescribes more than just where a child goes to school. It shapes their friendships, influences their family's home value, and defines the character of their neighborhood. Redrawing those lines is a task with far-reaching consequences that require balancing data and human impact.

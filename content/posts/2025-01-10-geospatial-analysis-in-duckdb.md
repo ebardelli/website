@@ -1,5 +1,7 @@
 ---
 title: Geospatial Analysis in DuckDB
+description: "DuckDB's spatial extension enables geospatial analysis without a dedicated GIS database. This post walks through combining US 2020 Census block data with California school district shapefiles to identify districts that are over- or under-enrolled relative to the residential population within their attendance boundaries."
+
 date: 2025-01-10T11:40:09.000Z
 lastmod: 2025-03-03T11:02:09.000Z
 
