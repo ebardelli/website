@@ -57,6 +57,7 @@ pre {
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
+    font-size: 0.875em;
     line-height: 1.5;
     display: block;
     border: 0;
@@ -211,4 +212,44 @@ pre {
 
 .highlight .ss {
   color: #83a598;
+}
+
+.highlight {
+  position: relative;
+
+  // Force wrapping so long lines don't overflow horizontally
+  pre {
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    overflow-x: visible !important;
+  }
+}
+
+// Chroma wraps each line in a flex span; allow it to wrap for long tokens
+.chroma .line {
+  flex-wrap: wrap !important;
+  white-space: pre-wrap !important;
+}
+
+.copy-code-button {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  color: inherit;
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.code-block-title {
+  text-align: center;
 }
