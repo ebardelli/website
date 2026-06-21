@@ -1,6 +1,6 @@
 @mixin dark-mode {
   body {
-    color: $dark-text-base-color;
+    color: $dark-white;
     background-color: $dark-black;
   }
 
@@ -92,7 +92,7 @@
 
   // horizontal rule
   hr {
-    border-color: $dark-light;
+    border-color: $dark-gray;
   }
 
   // Post Meta
@@ -176,7 +176,7 @@
   // Post Item
   .post-item {
     &:not(:first-child) {
-      border-color: $dark-light;
+      border-color: $dark-gray;
     }
 
     .post-item-date {
@@ -198,7 +198,7 @@
   // Featured Items (homepage)
   .featured-item {
     &:not(:first-child) {
-      border-color: $dark-light;
+      border-color: $dark-gray;
     }
 
     .featured-item-title {

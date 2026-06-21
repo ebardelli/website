@@ -37,6 +37,7 @@
 // Content
 .posts-item-note {
   padding-bottom: .3rem;
+  @include relative-font-size(1.25);
   font-weight: 500;
   color: $black;
 }
@@ -122,6 +123,7 @@
     opacity: 0.8;
     margin-top: .7rem;
     padding: .3rem .95rem;
+    line-height: 1.6;
   }
 
   &_social-icons {

@@ -35,7 +35,7 @@ title = 'Emanuele Bardelli'
   [[Languages.en-us.menu.main]]
     pageRef="consulting"
     name='Consulting'
-    url='/consulting/'
+    url='/pages/consulting/'
     weight=30
   [[Languages.en-us.menu.main]]
     pageRef="about"
@@ -71,7 +71,7 @@ title = 'Emanuele Bardelli'
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
   intro = "Data science for better schools"
   name = "Emanuele Bardelli"
-  description = "I'm a researcher, district administrator, and data scientist. This is where I write about data, schools, and the decisions that shape them."
+  description = "I'm a researcher, district administrator, and data scientist. This website is where I write about data, schools, and the decisions that shape them."
 
 # Allow to override webmanifest options
 [Languages.en-us.params.webmanifest]

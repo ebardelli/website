@@ -1,14 +1,15 @@
 <footer class="footer">
-    <span class="footer_item"> </span>
-    &nbsp;
+    <div class="wrapper">
+        <span class="footer_item"> </span>
+        &nbsp;
 
-    <div class="footer_social-icons">
-        {{- partial "socialIcons.html" site.Params.socialIcons -}}
+        <div class="footer_social-icons">
+            {{- partial "socialIcons.html" site.Params.socialIcons -}}
+        </div>
+        <small class="footer_copyright">
+            © {{ now.Format "2006" }} {{ .Site.Params.author.name }} ~ {{ .Site.Params.author.description }} ~ {{ T "footer.disclaimer" | safeHTML }}
+        </small>
     </div>
-    <small class="footer_copyright">
-        © {{ now.Format "2006" }} {{ .Site.Params.author.name }}.
-        {{ T "footer.disclaimer" | safeHTML }}
-    </small>
 </footer>
 
 {{- if .Site.Params.goToTop -}}
