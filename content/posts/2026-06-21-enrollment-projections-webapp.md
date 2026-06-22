@@ -1,6 +1,6 @@
 ---
 title: 'Enrollment Projections in Your Browser'
-description: "A browser-based tool that takes CALPADS CSV files and produces a five-year enrollment forecast—along with accuracy checks and model diagnostics—without requiring any software installation or technical setup."
+description: "This post introduces a browser-based tool that wraps the full projection pipeline in a simple upload interface, runs all analysis client-side so no student data leaves the user's computer, and outputs an Excel workbook with forecasts, accuracy checks, and model diagnostics."
 
 date: '2026-06-21T09:00:00-07:00'
 
@@ -12,9 +12,11 @@ draft: false
 math: false
 ---
 
-Last February, I wrote about a [Monte Carlo approach to enrollment projections](https://ebardelli.com/posts/enrollment-projections/) that separates student survival from new-student generation and quantifies uncertainty instead of producing a single number. The methodology works, but it required running SQL queries manually, which can be difficult at times.
+Last February, I wrote about a [Monte Carlo approach to enrollment projections](https://ebardelli.com/posts/enrollment-projections/) that separates student survival from new-student generation and quantifies uncertainty instead of producing a single number. The methodology works, but it required running SQL queries manually, which limited who could run it.
 
 So I built a tool that wraps the whole process in a browser interface. Upload your CALPADS files,[^1] click Run, and download an Excel workbook with the results. All analysis is done in your browser on your computer, so no student data is ever shared with the server.
+
+The webapp is free to use. If you want to let me know that you used it or if you have any questions, you can reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com).
 
 [^1]: At the moment, the webapp accepts CALPADS 1.2 and CALPADS 1.18 reports or custom data uploaded following the [custom data format template](https://projections.ebardelli.com/enrollment-template.csv).
 
@@ -22,23 +24,23 @@ So I built a tool that wraps the whole process in a browser interface. Upload yo
 
 The tool takes California CALPADS 1.2 enrollment files (or, optionally, 1.18 demographics files if you are interested in predicting unduplicated pupils) as input. After uploading the data, you assign each school a group[^2] which determines how the projections are segmented in the output. Then you hit Run.
 
-[^2]: By default, the app uses District, Charter, or Non-Public School (NPS). You can enter other groups if you fancy it.
-
 The engine runs two models in parallel: a Monte Carlo simulation (5,000 draws by default) that produces a range of outcomes across three percentiles, and an FCMAT-style[^3] five-year linear projection for comparison. Everything happens client-side in the browser using DuckDB; your data never leaves your computer.
 
-[^3]: This model mirrors the projections included in the [FCMAT's Projection-Pro](https://www.fcmat.org/projection-pro) application. The results might be slightly different because Projection-Pro uses CALPADS 1.1 data.
-
 The output is an Excel workbook organized by group and school, with one projection sheet per segment. Each sheet shows current enrollment, the low/median/high Monte Carlo range, and the FCMAT linear trend—five years out for each grade.
+
+[^2]: By default, the app uses District, Charter, or Non-Public School (NPS). You can enter other groups if you fancy it.
+
+[^3]: This model mirrors the projections included in the [FCMAT's Projection-Pro](https://www.fcmat.org/projection-pro) application. The results might be slightly different because Projection-Pro uses CALPADS 1.1 data.
 
 ## Evaluation mode
 
 If you upload a file for a year that has already passed[^4] the tool automatically switches into evaluation mode.
 
-[^4]: Say, you want to evaluate enrollment after Census day.
-
 In this mode, the workbook gains a set of accuracy sheets that compare what the model *would have projected* against what *actually happened*. Each sheet shows the difference between actual and projected enrollment by grade, school, and group. This is useful for two things: understanding how well the model performs for your district, and building the case (or skepticism) for relying on a particular percentile in future planning cycles.
 
 The model trains only on data through the year before the projection target, so the comparison is a genuine out-of-sample test rather than a fit to known outcomes.
+
+[^4]: For example, if you want to evaluate enrollment accuracy after Census day.
 
 ## Diagnostics
 
@@ -49,5 +51,3 @@ These sheets are mainly useful for analysts checking whether the model's assumpt
 ## Trying it
 
 The tool is available at [projections.ebardelli.com](https://projections.ebardelli.com). It works in any modern browser. A sample custom template is available on the upload screen if you want to test it without CALPADS files.
-
-If you run into issues or have feedback, feel free to reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com).
