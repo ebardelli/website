@@ -873,7 +873,7 @@ The method builds on the cohort-survival ratio while fixing two of its persisten
 
 ## Updates
 
-Since the original post, several improvements have made the model more robust:
+Since the original post, several improvements have made the model more robust. I have updated this post to reflect these changes.
 
 ### June 2026 Update - Projection-Webapp
 
