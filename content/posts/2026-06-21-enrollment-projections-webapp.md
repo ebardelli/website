@@ -12,7 +12,7 @@ draft: false
 math: false
 ---
 
-Last February, I wrote about a [Monte Carlo approach to enrollment projections](https://ebardelli.com/posts/enrollment-projections/) that separates student survival from new-student generation and quantifies uncertainty instead of producing a single number. The methodology works, but it required running SQL queries manually, which limited who could run it.
+Last February, I wrote about a [Monte Carlo approach to enrollment projections](https://ebardelli.com/posts/enrollment-projections/) that separates student continuing student enrollment from new-student enrollment and quantifies uncertainty instead of producing a single projection. The methodology works, but it required running SQL queries manually. This makes the method cumbersome when compared to using a spreadsheet, limiting who could run it.
 
 So I built a tool that wraps the whole process in a browser interface. Upload your CALPADS files,[^1] click Run, and download an Excel workbook with the results.
 
