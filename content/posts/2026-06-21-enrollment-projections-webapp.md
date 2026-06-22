@@ -14,7 +14,7 @@ math: false
 
 Last February, I wrote about a [Monte Carlo approach to enrollment projections](https://ebardelli.com/posts/enrollment-projections/) that separates student survival from new-student generation and quantifies uncertainty instead of producing a single number. The methodology works, but it required running SQL queries manually, which limited who could run it.
 
-So I built a tool that wraps the whole process in a browser interface. Upload your CALPADS files,[^1] click Run, and download an Excel workbook with the results. All analysis is done in your browser on your computer, so no student data is ever shared with the server.
+So I built a tool that wraps the whole process in a browser interface. Upload your CALPADS files,[^1] click Run, and download an Excel workbook with the results.
 
 The webapp is free to use. If you want to let me know that you used it or if you have any questions, you can reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com).
 
@@ -22,19 +22,19 @@ The webapp is free to use. If you want to let me know that you used it or if you
 
 ## What the tool does
 
-The tool takes California CALPADS 1.2 enrollment files (or, optionally, 1.18 demographics files if you are interested in predicting unduplicated pupils) as input. After uploading the data, you assign each school a group[^2] which determines how the projections are segmented in the output. Then you hit Run.
+The tool takes California CALPADS 1.2 enrollment files as input (or 1.18 demographics files if you are interested in predicting unduplicated pupils). After uploading the data, you assign each school a group[^2] which determines how the projections are segmented in the output. Then you hit Run.
 
-The engine runs two models in parallel: a Monte Carlo simulation (5,000 draws by default) that produces a range of outcomes across three percentiles, and an FCMAT-style[^3] five-year linear projection for comparison. Everything happens client-side in the browser using DuckDB; your data never leaves your computer.
+The engine runs two models in parallel: a Monte Carlo simulation (5,000 draws by default) that produces a range of outcomes across three percentiles, and a traditional cohort survival analysis model[^3] for comparison. Everything happens client-side in the browser using DuckDB; your data never leaves your computer.
 
-The output is an Excel workbook organized by group and school, with one projection sheet per segment. Each sheet shows current enrollment, the low/median/high Monte Carlo range, and the FCMAT linear trend—five years out for each grade.
+The output is an Excel workbook organized by group and school, with one projection sheet per segment. Each sheet shows current enrollment, the low/median/high Monte Carlo range, and the cohort survival analysis for each grade.
 
-[^2]: By default, the app uses District, Charter, or Non-Public School (NPS). You can enter other groups if you fancy it.
+[^2]: By default, the app uses District, Charter, or Non-Public School (NPS). You can enter other groups if you want.
 
-[^3]: This model mirrors the projections included in the [FCMAT's Projection-Pro](https://www.fcmat.org/projection-pro) application. The results might be slightly different because Projection-Pro uses CALPADS 1.1 data.
+[^3]: This model allows you to set your own weights. Using a linear function (i.e., exponent 1) will mirror the projections included in the [FCMAT's Projection-Pro](https://www.fcmat.org/projection-pro) application. The results might be slightly different because Projection-Pro uses CALPADS 1.1 data.
 
 ## Evaluation mode
 
-If you upload a file for a year that has already passed[^4] the tool automatically switches into evaluation mode.
+If you upload a file for a year that has already passed,[^4] the tool automatically switches into evaluation mode.
 
 In this mode, the workbook gains a set of accuracy sheets that compare what the model *would have projected* against what *actually happened*. Each sheet shows the difference between actual and projected enrollment by grade, school, and group. This is useful for two things: understanding how well the model performs for your district, and building the case (or skepticism) for relying on a particular percentile in future planning cycles.
 
