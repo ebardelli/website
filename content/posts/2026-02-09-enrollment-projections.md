@@ -3,7 +3,7 @@ title: 'A New Approach to Enrollment Projections for School Districts'
 description: "Standard enrollment projection methods break down when conditions shift sharply. This post describes a Monte Carlo simulation framework that models uncertainty explicitly, treating student survival and new-student generation as separate stochastic processes implemented in DuckDB."
 
 date: 2026-02-09T12:21:09.000Z
-lastmod: '2026-02-16T09:45:00.000-07:00'
+lastmod: '2026-06-22T12:00:00.000-07:00'
 
 slug: enrollment-projections
 tags: ["Data Science","Projections","Forecasting","DuckDB","Monte Carlo Simulations"]
@@ -292,9 +292,88 @@ order by sc, gr
 ;
 ```
 
-Different ways to aggregate survival rates can be used instead of averaging across years, such as using the most recent year's survival rate or using a weighted average that gives more weight to recent years. The choice of aggregation method can be informed by the stability of survival rates over time and the presence of any external factors that might have affected survival rates in specific years.
+### Adaptive Exponential Smoothing
 
-Empirically, this choice often has limited impact on aggregate district projections, though school-level results can be more sensitive. Consider running a small sensitivity check comparing a simple average, a recent-year weight, and a regression-based forecast to verify stability for your data. However, using a weighted average that gives more weight to recent years can help capture any recent trends or changes in survival rates that might not be fully reflected in a simple average.
+The per-year rates above are combined into a single forecast using **adaptive exponential smoothing**. A simple equal-weighted average treats all historical years identically, which can be unreliable when conditions have shifted: a school closure, a new attendance boundary, or pandemic-era disruptions can make the most recent years very different from older ones.
+
+Exponential smoothing processes historical survival rates in chronological order, updating a running state estimate each year:
+
+$$
+\hat{x}_t = \hat{x}_{t-1} + \alpha \cdot \text{winsorize}\!\left(r_t - \hat{x}_{t-1},\; \pm 2\hat{\sigma}_t\right)
+$$
+
+where $r_t$ is the annual survival rate, $\hat{x}_{t-1}$ is the smoothed state from the previous year, and the innovation $r_t - \hat{x}_{t-1}$ is clipped to $\pm 2$ estimated standard deviations before being incorporated. Clipping prevents a single outlier year from overriding the smoothed estimate.
+
+The smoothing gain $\alpha$ is estimated from historical data for each (sc, gr) pair:
+
+$$
+\alpha = \text{clip}\!\left(1 - \frac{\sigma}{\mu},\ 0.5,\ 0.95\right)
+$$
+
+A grade with a stable survival rate (small $\sigma/\mu$) gets a high $\alpha$. This places more weight on historical observations (i.e., the smoothed level) and barely adjusts for new observations. A grade whose rate has fluctuated gets a lower $\alpha$. This allows the model to adapt more quickly to recent data. Clamping $\alpha$ to $[0.5, 0.95]$ keeps the estimator from both freezing (never adapting) and overreacting.
+
+Alongside the smoothed level, the filter tracks an **innovation variance** $\hat{\sigma}^2_t$ — an exponentially smoothed estimate of how much the survival rate has been deviating from its smoothed estimate:
+
+$$
+\hat{\sigma}^2_t = \gamma \cdot \min\!\left(\left(r_t - \hat{x}_{t-1}\right)^2,\ 4\hat{\sigma}^2_{t-1}\right) + (1 - \gamma)\, \hat{\sigma}^2_{t-1}
+$$
+
+where $\gamma = \min(\alpha, 0.35)$. Capping the squared innovation at $4\hat{\sigma}^2_{t-1}$ prevents a single extreme observation from permanently inflating the variance estimate.
+
+The SQL implementation uses `WITH RECURSIVE` to process years in chronological order. Each row in the recursive step requires the previous year's smoothed state and innovation variance, which DuckDB cannot fetch from a sibling CTE. The workaround is to materialize the intermediates as `TEMP TABLE` before the `WITH RECURSIVE` block:
+
+```sql {title="Recursive Exponential Smoothing on Survival Rates"}
+-- Pre-materialize smoothing parameters and ordered annual rates
+CREATE OR REPLACE TEMP TABLE survival_params AS
+SELECT sc, gr,
+  GREATEST(0.5, LEAST(0.95,
+    1.0 - STDDEV_POP(avg_survival_rate) / NULLIF(AVG(avg_survival_rate), 0)
+  )) AS alpha
+FROM survival_long
+GROUP BY sc, gr;
+
+CREATE OR REPLACE TEMP TABLE survival_ordered AS
+SELECT yr, sc, gr, avg_survival_rate,
+  ROW_NUMBER() OVER (PARTITION BY sc, gr ORDER BY yr) AS rn
+FROM survival_long;
+
+-- Recursive EMA pass
+WITH RECURSIVE
+survival_smoothing AS (
+  -- Seed: initialize with the first observed year
+  SELECT sc, gr, rn, yr, avg_survival_rate AS x, NULL::double AS innovation_var
+  FROM survival_ordered
+  WHERE rn = 1
+
+  UNION ALL
+
+  SELECT
+    o.sc, o.gr, o.rn, o.yr,
+    -- Winsorized EMA update
+    prev.x + p.alpha * GREATEST(
+      -2.0 * SQRT(COALESCE(prev.innovation_var, hist_sd * hist_sd)),
+      LEAST(
+         2.0 * SQRT(COALESCE(prev.innovation_var, hist_sd * hist_sd)),
+         o.avg_survival_rate - prev.x
+      )
+    ) AS x,
+    -- Innovation variance update
+    LEAST(p.alpha, 0.35) * LEAST(
+      4.0 * COALESCE(prev.innovation_var, hist_sd * hist_sd),
+      POWER(o.avg_survival_rate - prev.x, 2)
+    ) + (1.0 - LEAST(p.alpha, 0.35))
+        * COALESCE(prev.innovation_var, hist_sd * hist_sd) AS innovation_var
+  FROM survival_ordered o
+    JOIN survival_smoothing  prev ON prev.sc = o.sc AND prev.gr = o.gr AND prev.rn = o.rn - 1
+    JOIN survival_params     p    ON p.sc = o.sc AND p.gr = o.gr
+    JOIN survival_winsor     wp   ON wp.sc = o.sc AND wp.gr = o.gr
+)
+SELECT sc, gr, x AS smoothing_survival_rate, innovation_var AS smoothing_innovation_var
+FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY sc, gr ORDER BY rn DESC) AS rn_desc FROM survival_smoothing)
+WHERE rn_desc = 1;
+```
+
+The final smoothed value $\hat{x}_T$ (or the estimate at the last historical year) becomes the mean survival rate fed into the beta distribution in the Monte Carlo simulations. The spread of that beta distribution uses a **blended variance**: with little data (fewer than two years), the raw historical variance dominates; with more data, the smoothing innovation variance contributes up to half the weight. This prevents the smoothed variance from over-riding the data when the history is short.
 
 ## New Student Generation Rates
 
@@ -347,13 +426,11 @@ order by generation.sc, generation.gr
 ;
 ```
 
-This table provides three different estimates of new student generation: a regression-based estimate (`N_reg`), an average-based estimate (`N_avg`), and a maximum-based estimate (`N_max`). 
+The table retains three reference columns: a regression-based trend estimate (`N_reg`), a simple historical average (`N_avg`), and the observed maximum (`N_max`). The regression trend is useful for detecting structural growth or decline; the average and maximum bound the plausible range. However, the simulation uses a fourth estimate, `N_gen`, produced by the same adaptive exponential smoothing applied to survival rates.
 
-The regression-based estimate uses simple linear regression to project the number of new students based on historical trends, while the average-based and maximum-based estimates provide alternative projections based on historical averages and maximums, respectively.
+The identical `WITH RECURSIVE` structure processes annual generation counts in chronological order, producing a smoothed forecast that adapts automatically to recent trends. When the smoothed estimate is positive and the historical standard deviation is non-zero, `N_gen = N_smoothing`; otherwise it falls back to `N_avg`. This removes the need to manually choose between `N_reg`, `N_avg`, and `N_max`: the smoothed estimate tracks the historical average when generation has been stable and follows the recent trajectory when counts have been trending up or down.
 
-Each of these estimates allows us to model different scenarios and account for uncertainty in new student generation in the Monte Carlo simulations.
-
-Similar to the survival rates, the choice of aggregation method can be informed by the stability of generation rates over time and the presence of any external factors. Empirically, this choice often has limited impact on aggregate district projections, though school-level results can be more sensitive. Consider running a small sensitivity check comparing a simple average, a recent-year weight, and a regression-based forecast to verify stability for your data.
+The generation standard deviation uses the same blended approach described above for survival rates, interpolating between the raw standard error and the smoothing innovation variance based on how many years of data are available.
 
 ## Monte Carlo Simulations
 
@@ -576,6 +653,103 @@ Student survival is modeled using a beta distribution, which is appropriate for 
 
 For new student generation, the distribution is chosen based on the relationship between the mean and variance of the historical generation data. If the variance is less than the mean (underdispersion), a binomial distribution is used. If the variance is approximately equal to the mean (equidispersion), a Poisson distribution is used. If the variance is greater than the mean (overdispersion), a negative binomial distribution is used. If the standard deviation is zero or negative, the simulation defaults to using the average generation as a constant value. These distribution choices are appropriate for count data (in our case, the number of new students), which can exhibit different dispersion characteristics than continuous data.
 
+### Gamma-Poisson Mixture for Overdispersion
+
+When overdispersion is detected, the simulation uses a **gamma-Poisson mixture** rather than sampling directly from a negative binomial distribution. The two are mathematically equivalent. It is a Poisson whose rate is gamma-distributed follows a negative binomial, but the mixture form has two practical advantages.
+
+First, it avoids rounding the shape parameter $r$ to an integer, which can distort the distribution for grades with small generation counts. Second, the gamma rate is drawn once per (sc, gr, sim_idx) and shared between year-1 and year-2 Poisson draws:
+
+$$
+\lambda_{\text{sim}} \sim \text{Gamma}\!\left(\frac{\mu^2}{\sigma^2 - \mu},\; \frac{\sigma^2 - \mu}{\mu}\right)
+$$
+
+$$
+\text{Generation}_{Y1,\text{sim}} \sim \text{Poisson}(\lambda_{\text{sim}}), \quad \text{Generation}_{Y2,\text{sim}} \sim \text{Poisson}(\lambda_{\text{sim}})
+$$
+
+Sharing the same gamma rate introduces a natural positive correlation between year-1 and year-2 generation draws: simulations that happen to draw a high new-student intake rate in year 1 also have elevated intake in year 2. This reflects how real-world factors that affect generation (a new housing development, an attendance boundary change) tend to persist across consecutive years rather than reverting to baseline immediately.
+
+### Coherent Percentile Bands via Sort-Merge
+
+A subtle issue arises when aggregating simulation results into percentile bands. If survived and generated students are summed within each simulation first and percentiles taken on the total, the low-enrollment scenarios can mix draws where survival happened to be low but generation happened to be high (and vice versa). Random pairing cancels some of the variance and produces bands that are artificially narrow.
+
+The solution is a sort-merge aggregation: the survived draws and the generated draws are independently sorted by value, then paired by rank before summing. This ensures that the low percentile of the total reflects genuinely low survived *and* genuinely low generated outcomes:
+
+$$
+N_{p,\text{total}} = N_{p,\text{survived}} + N_{p,\text{generated}}
+$$
+
+The result is wider, more conservative uncertainty bands, especially at the tails, which is the appropriate behavior when planners need to prepare for downside enrollment scenarios.
+
+## Cohort Survival Baseline
+
+In addition to the Monte Carlo simulation, the model runs a traditional cohort survival ratio projection as a five-year deterministic baseline. This provides a point-estimate benchmark that is directly comparable to the current industry standard and is familiar to district planners who already use that tool.[^7]
+
+[^7]: For example, FCMAT's Projection-Pro uses a cohort survival ratio projection with linear decaying weights.
+
+The cohort survival model computes grade-to-grade ratios from historical enrollment counts:
+
+$$
+R_{g,t} = \frac{Enrollment_{g,t}}{Enrollment_{g-1,\,t-1}}
+$$
+
+These ratios are averaged across the most recent years using decaying weights. The weight assigned to each historical year is:
+
+$$
+w_{t} = \left(W - \text{age}_t\right)^{\gamma}
+$$
+
+where $W$ is the number of years in the window, $\text{age}_t = \text{year} - t$ is how far back the observation is, and $\gamma$ is a configurable exponent that controls how sharply recent years are favored:
+
+| Exponent $\gamma$ | Weight formula | Description |
+|---|---|---|
+| 0 | $1$ | Equal weights — simple average |
+| 0.5 | $\sqrt{W - \text{age}}$ | Mild recency bias |
+| 1 | $W - \text{age}$ | Linear decay (FCMAT default) |
+| 2 | $(W - \text{age})^2$ | Quadratic — stronger recency bias |
+
+At $\gamma = 0$ all years share equal weight; at any positive exponent the oldest year ($\text{age} = W$) receives weight zero and is effectively excluded. For the entry grade at each school, where there is no prior grade to supply a cohort, the model uses a weighted average of year-over-year enrollment *deltas* instead of a ratio.
+
+```sql {title="Cohort Survival Projection"}
+WITH
+enrollments AS (
+  SELECT sc, gr, yr, COUNT(id) AS enrollment
+  FROM enrollment_data
+  GROUP BY ALL
+  HAVING yr BETWEEN :year - :window AND :year - 1
+),
+enrollments_with_prev AS (
+  SELECT e.sc, e.gr, e.yr, e.enrollment,
+    ep.enrollment AS enrollment_cohort
+  FROM enrollments e
+    LEFT JOIN enrollments ep
+      ON ep.sc = e.sc AND ep.gr = e.gr - 1 AND ep.yr = e.yr - 1
+),
+weighted_ratios AS (
+  SELECT sc, gr,
+    SUM((enrollment::float / enrollment_cohort) * (:window - (:year - yr)))
+      / SUM(:window - (:year - yr)) AS weighted_ratio
+  FROM enrollments_with_prev
+  WHERE enrollment_cohort > 0
+  GROUP BY sc, gr
+),
+projection_y1 AS (
+  SELECT r.sc, r.gr,
+    CASE
+      WHEN r.gr = min_grade
+        THEN last_enrollment + weighted_delta   -- entry grade: use delta
+      ELSE weighted_ratio * prev_last_enrollment -- upper grades: apply ratio
+    END AS projected_enrollment_y1
+  FROM weighted_ratios r
+    JOIN min_grades mg ON mg.sc = r.sc
+    ...
+)
+```
+
+Because ratios chain multiplicatively across grades, the cohort survival projection is extended to five years by applying the same weighted ratios to each successive year's projected enrollment. The output reports five years of point estimates per (sc, gr) alongside the two-year Monte Carlo results with uncertainty bands.
+
+The cohort survival projection does not produce uncertainty bands, but it serves as a useful sanity check: when its point estimate and the Monte Carlo median diverge substantially, it typically signals that recent survival rates or generation counts have shifted sharply and the exponential smoothing is capturing a trend that a simple ratio average misses.
+
 ## Projection Analysis
 
 The last step in the projection process is to analyze the results of the Monte Carlo simulations. The output of the simulations will be a distribution of projected enrollment numbers for each grade and school for each year of projection.
@@ -649,96 +823,47 @@ In the first stage, we run projections at the district level and select an appro
 
 In the second stage, we adjust the school-level projections to align with the selected district-level projection. In this stage, the individual school-level projections are used to calculate the percentage share of grade-level enrollment for each school, and then we apply these shares to the selected district-level grade projections.
 
-Below, I show an example query that implements this two-stage approach. This query assumes that the district-level projections have already been calculated and stored in a csv file called `district.csv`, 
-and that the school-level projections have been calculated and stored in a csv file called `schools.csv`. These files can be replaced with temporary tables created from the previous steps in the Monte Carlo simulation process.
+The adjustment is implemented in a single SQL step that joins the school-level Monte Carlo results to the district-level Monte Carlo results and rescales each school's projection by the ratio of district total to school total at each grade:
 
 ```sql {title="Smoothing School-Level Projections"}
 WITH
-district as (
-    select
-        sc,
-        gr,
-        max(N_y0) as N_low,
-        max(N_y0) as N_med,
-        max(N_y0) as N_high,
-        percentile_cont(0.25) within group (order by N_y1) as N1_low,
-        percentile_cont(0.50) within group (order by N_y1) as N1_med,
-        percentile_cont(0.75) within group (order by N_y1) as N1_high,
-        percentile_cont(0.25) within group (order by N_y2) as N2_low,
-        percentile_cont(0.50) within group (order by N_y2) as N2_med,
-        percentile_cont(0.75) within group (order by N_y2) as N2_high
-    from 'district.csv'
-    where
-      gr between -1 and 12
-    group by sc, gr
-    order by sc, grouping_sort, gr
+district AS (
+  SELECT gr,
+    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY N_y1) AS N1_low,
+    PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY N_y1) AS N1_med,
+    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY N_y1) AS N1_high
+  FROM district_monte_carlo
+  WHERE gr BETWEEN -1 AND 12
+  GROUP BY gr
 ),
-schools as (
-    select
-        sc,
-        gr::int as gr,
-        max(N_y0) as N_low,
-        max(N_y0) as N_med,
-        max(N_y0) as N_high,
-        percentile_cont(0.25) within group (order by N_y1) as N1_low,
-        percentile_cont(0.50) within group (order by N_y1) as N1_med,
-        percentile_cont(0.75) within group (order by N_y1) as N1_high,
-        percentile_cont(0.25) within group (order by N_y2) as N2_low,
-        percentile_cont(0.50) within group (order by N_y2) as N2_med,
-        percentile_cont(0.75) within group (order by N_y2) as N2_high
-    from 'schools.csv'
-    group by sc, gr
-    order by sc, gr
+schools AS (
+  SELECT sc, gr,
+    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY N_y1) AS N1_low,
+    PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY N_y1) AS N1_med,
+    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY N_y1) AS N1_high
+  FROM school_monte_carlo
+  WHERE gr BETWEEN -1 AND 12
+  GROUP BY sc, gr
 ),
-difference as (
-    select
-        district.sc,
-        schools.grouping,
-        schools.grouping_sort,
-        schools.gr,
-        sum(schools.N_low) as school_N_low,
-        sum(schools.N_med) as school_N_med,
-        sum(schools.N_high) as school_N_high,
-        sum(schools.N1_low) as school_N1_low,
-        sum(schools.N1_med) as school_N1_med,
-        sum(schools.N1_high) as school_N1_high,
-        sum(schools.N2_low) as school_N2_low,
-        sum(schools.N2_med) as school_N2_med,
-        sum(schools.N2_high) as school_N2_high,
-        district.N_low as district_N_low,
-        district.N_med as district_N_med,
-        district.N_high as district_N_high,
-        district.N1_low as district_N1_low,
-        district.N1_med as district_N1_med,
-        district.N1_high as district_N1_high,
-        district.N2_low as district_N2_low,
-        district.N2_med as district_N2_med,
-        district.N2_high as district_N2_high
-    from schools
-        join district on schools.gr = district.gr
-    group by all
+totals AS (
+  SELECT gr,
+    SUM(N1_low) AS school_N1_low,
+    SUM(N1_med) AS school_N1_med,
+    SUM(N1_high) AS school_N1_high
+  FROM schools
+  GROUP BY gr
 )
-select
-    schools.sc,
-    schools.grouping,
-    schools.grouping_sort,
-    schools.gr,
-    -- Current Enrollment
-    round(schools.N_low * (difference.district_N_low / difference.school_N_low)) as N_low,
-    round(schools.N_med * (difference.district_N_med / difference.school_N_med)) as N_med,
-    round(schools.N_high * (difference.district_N_high / difference.school_N_high)) as N_high,
-    -- Year 1 Projection
-    round(schools.N1_low * (difference.district_N1_low / difference.school_N1_low)) as N1_low,
-    round(schools.N1_med * (difference.district_N1_med / difference.school_N1_med)) as N1_med,
-    round(schools.N1_high * (difference.district_N1_high / difference.school_N1_high)) as N1_high,
-    -- Year 2 Projection
-    round(schools.N2_low * (difference.district_N2_low / difference.school_N2_low)) as N2_low,
-    round(schools.N2_med * (difference.district_N2_med / difference.school_N2_med)) as N2_med,
-    round(schools.N2_high * (difference.district_N2_high / difference.school_N2_high)) as N2_high
-from schools
-    join difference on schools.gr = difference.gr
-;
+SELECT
+  schools.sc, schools.gr,
+  ROUND(schools.N1_low * (district.N1_low / totals.school_N1_low)) AS N1_low,
+  ROUND(schools.N1_med * (district.N1_med / totals.school_N1_med)) AS N1_med,
+  ROUND(schools.N1_high * (district.N1_high / totals.school_N1_high)) AS N1_high
+FROM schools
+  JOIN district ON district.gr = schools.gr
+  JOIN totals   ON totals.gr   = schools.gr;
 ```
+
+The key property of this adjustment is that summing the adjusted school projections across all schools recovers the district total exactly. The low-enrollment projection for each school is the district-level 25th percentile distributed across schools by each school's share of the raw low-projection total; similarly for the median and high projections. Schools do not each independently hit their own low scenario. Instead, they share the same district-wide scenario, which is more realistic than treating each school as independently volatile.
 
 # Conclusion
 
@@ -746,4 +871,13 @@ In this blog post, I described a Monte Carlo simulation approach to enrollment p
 
 The method builds on the cohort-survival ratio while fixing two of its persistent weaknesses: poor handling of external shocks and no quantification of projection uncertainty. Separating survival and generation into distinct stochastic processes means a shock that affects one (say, a new charter school drawing new students) doesn't distort the other.
 
-Built on DuckDB and student-level data, it's accessible to district staff without specialized statistical software.
+## Updates
+
+Since the original post, several improvements have made the model more robust:
+
+### June 2026 Update - Projection-Webapp
+
+- **Adaptive exponential smoothing** on both survival rates and generation counts replaces the simple historical average. The smoothing gain $\alpha$ is estimated from each grade's own coefficient of variation, so stable grades smooth strongly and volatile grades adapt quickly. Winsorized innovations prevent a single anomalous year from overriding the smoothed estimate.
+- **Gamma-Poisson mixture** sampling for overdispersed generation replaces direct negative binomial draws, avoiding integer-rounding issues and introducing natural year-to-year correlation in generation counts across the two projection years.
+- **Sort-merge aggregation** pairs independently sorted survived and generated draws by rank before summing, producing wider and more conservative uncertainty bands at the tails.
+- A **cohort survival baseline** running five years out is now included alongside the Monte Carlo results, giving planners a familiar FCMAT-comparable point estimate to anchor the probabilistic output.
