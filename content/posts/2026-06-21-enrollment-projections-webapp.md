@@ -14,15 +14,13 @@ math: false
 
 Last February, I wrote about a [Monte Carlo approach to enrollment projections](https://ebardelli.com/posts/enrollment-projections/) that separates student continuing student enrollment from new-student enrollment and quantifies uncertainty instead of producing a single projection. The methodology works, but it required running SQL queries manually. This makes the method cumbersome when compared to using a spreadsheet, limiting who could run it.
 
-So I built a tool that wraps the whole process in a browser interface. Upload your CALPADS files,[^1] click Run, and download an Excel workbook with the results.
+So I built [an online tool](https://projections.ebardelli.com) that wraps the whole process in a web application. You upload your CALPADS files,[^1] click Run, and download an Excel workbook with the results. All done in your browser and without sharing data with me or anyone else. The webapp is free to use. If you want to let me know that you used it or if you have any questions, you can reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com).
 
-The webapp is free to use. If you want to let me know that you used it or if you have any questions, you can reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com).
-
-[^1]: At the moment, the webapp accepts CALPADS 1.2 and CALPADS 1.18 reports or custom data uploaded following the [custom data format template](https://projections.ebardelli.com/enrollment-template.csv).
+[^1]: At the moment, the webapp accepts CALPADS 1.2 csv reports, CALPADS 1.18 csv reports, or custom data uploaded following the [custom data format template](https://projections.ebardelli.com/enrollment-template.csv).
 
 ## What the tool does
 
-The tool takes California CALPADS 1.2 enrollment files as input (or 1.18 demographics files if you are interested in predicting unduplicated pupils). After uploading the data, you assign each school a group[^2] which determines how the projections are segmented in the output. Then you hit Run.
+The tool takes California CALPADS student-level reports or custom-build csv data sheets. After uploading the data, you assign each school a group[^2] which determines how the projections are segmented in the output. Then you hit Run.
 
 The engine runs two models in parallel: a Monte Carlo simulation (5,000 draws by default) that produces a range of outcomes across three percentiles, and a traditional cohort survival analysis model[^3] for comparison. Everything happens client-side in the browser using DuckDB; your data never leaves your computer.
 
