@@ -8,6 +8,7 @@ lastmod: 2025-03-03T11:02:09.000Z
 slug: geospatial-analysis-in-duckdb
 tags: ["DuckDB","Geospatial"]
 
+isStarred: true
 draft: false
 ---
 
