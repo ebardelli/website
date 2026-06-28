@@ -6,7 +6,7 @@ date: 2025-01-10T11:40:09.000Z
 lastmod: 2025-03-03T11:02:09.000Z
 
 slug: geospatial-analysis-in-duckdb
-tags: ["DuckDB","Geospatial"]
+tags: ["DuckDB", "Geospatial", "School Districts", "Data Science"]
 
 isStarred: true
 draft: false

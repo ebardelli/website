@@ -5,7 +5,7 @@ description: "Ed News aggregates education publications into a single feed, but 
 date: '2025-10-19T14:37:03-07:00'
 
 slug: ed-news-update
-tags: ["Ed News", "Vibe Coding"]
+tags: ["Python", "DuckDB", "Web Application"]
 
 draft: false
 ---

@@ -6,7 +6,7 @@ date: 2025-03-29T22:31:36.000Z
 lastmod: 2025-06-12T00:04:35.000Z
 
 slug: beyond-school-boundary-chanages
-tags: ["Data Science","Policy"]
+tags: ["Policy", "School Districts", "Community Engagement"]
 
 draft: false
 

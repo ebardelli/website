@@ -11,6 +11,13 @@
                     <time datetime="{{ $ISO_time }}" itemprop="datePublished"> {{ .Format $configDateFormat }} </time>
                 </div>
                 {{ end }}
+                {{ with .Params.tags }}
+                <div class="post-tags">
+                    {{ range . }}
+                    <a href="/tags/{{ . | urlize }}/" class="post-tag">{{ . }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
             </header>
             {{ with .Params.cover }}
             <div class="post-cover">

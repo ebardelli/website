@@ -6,7 +6,7 @@ date: 2026-02-09T12:21:09.000Z
 lastmod: '2026-06-22T12:00:00.000-07:00'
 
 slug: enrollment-projections
-tags: ["Data Science","Projections","Forecasting","DuckDB","Monte Carlo Simulations"]
+tags: ["DuckDB", "Enrollment Projections", "School Districts", "Projections", "Data Science"]
 
 isStarred: true
 draft: false

@@ -2,6 +2,74 @@
   max-width: 100%;
 }
 
+// Tags cloud on /tags/ page
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0.5rem;
+
+  .tags-cloud-item {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: rgba(128, 128, 128, 0.08);
+    color: $text-base-color;
+    text-decoration: none;
+    transition: background-color 150ms ease-in, color 150ms ease-in;
+    font-size: $small-font-size;
+
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.18);
+      color: $black;
+    }
+
+    .tag-count {
+      margin-left: 4px;
+      color: $gray;
+      font-size: $small-font-size * 0.9;
+    }
+  }
+}
+
+// Tag chips on post cards and single posts
+.post-item {
+  flex-direction: column;
+  align-items: flex-start;
+
+  .post-item-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+
+  .post-tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-size: $small-font-size * 0.875;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: rgba(128, 128, 128, 0.08);
+    color: $gray;
+    text-decoration: none;
+    transition: background-color 150ms ease-in, color 150ms ease-in;
+
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.16);
+      color: $black;
+    }
+  }
+}
+
 // Homepage featured posts
 .featured-grid {
   display: grid;

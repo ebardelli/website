@@ -5,7 +5,7 @@ description: "This post introduces a browser-based tool that wraps the full proj
 date: '2026-06-21T09:00:00-07:00'
 
 slug: enrollment-projections-webapp
-tags: ["Enrollment Projections", "Tools", "School Districts", "CALPADS"]
+tags: ["Enrollment Projections", "Web Application", "School Districts", "CALPADS"]
 
 isStarred: true
 draft: false

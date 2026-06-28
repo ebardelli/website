@@ -195,6 +195,27 @@
     }
   }
 
+  // Tags cloud and tag chips
+  .tags-cloud-item {
+    color: $dark-text-base-color;
+
+    &:hover {
+      color: $dark-white;
+    }
+
+    .tag-count {
+      color: $dark-gray;
+    }
+  }
+
+  .post-tag {
+    color: $dark-gray;
+
+    &:hover {
+      color: $dark-white;
+    }
+  }
+
   // Featured Items (homepage)
   .featured-item {
     border-color: $dark-light;

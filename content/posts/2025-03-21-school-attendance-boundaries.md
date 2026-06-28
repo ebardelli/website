@@ -6,7 +6,7 @@ date: 2025-03-21T22:09:26.000Z
 lastmod: 2025-05-27T00:02:51.000Z
 
 slug: redrawing-school-attendance-boundaries
-tags: ["Data Science","Policy","Data Processing","Data Visualization","DuckDB","Geospatial"]
+tags: ["DuckDB", "Geospatial", "School Districts", "Data Science"]
 
 isStarred: true
 draft: false
