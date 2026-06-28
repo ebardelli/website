@@ -18,7 +18,7 @@ cover:
 
 Last February, I wrote about a [new approach to enrollment projections](images/enrollment-projections/) that separates student continuing student enrollment from new-student enrollment and quantifies uncertainty instead of producing a single projection. The methodology works, but it required running SQL queries manually. This makes the method cumbersome when compared to using a spreadsheet, limiting who could run it.
 
-![Enrollment Projections](/posts/enrollment-projections.png)
+![Enrollment Projections](/posts/images/enrollment-projections.png)
 
 So I built [a web application](https://projections.ebardelli.com) that automates the whole process. You upload your CALPADS files,[^1] set your parameters, click Run, and download an Excel workbook with the results. All done in your browser and without sharing data with me or anyone else. The webapp is free to use. If you want to let me know that you used it or if you have any questions, you can reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com).
 
