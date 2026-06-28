@@ -15,6 +15,7 @@
             {{ .Date.Format $configDateFormat }}
         </time>
     </div>
+    {{ with .Description }}<p class="post-item-description">{{ . }}</p>{{ end }}
     {{ with .Params.tags }}
     <div class="post-tags">
         {{ range . }}
