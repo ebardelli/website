@@ -19,7 +19,7 @@ cover:
 
 Enrollment projections drive planning and budgeting for school districts. Districts use them to anticipate long-term shifts in educational demand, which in turn shapes decisions about staffing, resources, and facilities.
 
-The most widely used method is the cohort-survival ratio (CSR), also known as the grade progression method. CSR uses historical data to estimate the share of students *surviving* from one grade to the next, while projecting incoming kindergarten classes from birth rates five years prior. Districts favor it because anyone can run it in a spreadsheet, even though more advanced methods like multiple linear regression exist.
+The most widely used method is the cohort survival ratio (CSR), also known as the grade progression method. CSR uses historical data to estimate the share of students *surviving* from one grade to the next, while projecting incoming kindergarten classes from birth rates five years prior. Districts favor it because anyone can run it in a spreadsheet, even though more advanced methods like multiple linear regression exist.
 
 Accurate projections require more than birth and enrollment trends. Administrators must also weigh migration patterns, transfers to charter or private schools, and external shocks such as policy changes that move students into or out of a district. CSR and regression-based models both struggle when conditions shift sharply year-to-year, and planners often resort to informal judgment calls to patch the gap.
 
@@ -29,48 +29,50 @@ In this blog post, I describe a new approach to enrollment projections that buil
 
 Enrollment projection models span a wide range, from simple historical trend analyses to complex econometric and computational frameworks. They fall into two broad categories: projection, which extends existing trends from historical data, and prediction, which brings in additional external variables (exogenous factors).
 
-## Cohort-Survival Ratio (CSR) / Grade Progression Method
+## Cohort Survival Ratio (CSR) / Grade Progression Method
 
-The most widely used approach in school districts is the cohort-survival ratio. School districts favor this method for its simplicity because they can compute it using standard spreadsheet software without advanced statistical capacity.
+The most widely used approach in school districts is the cohort survival ratio (CSR).[^csr] School districts favor this method for its simplicity because they can compute it using standard spreadsheet software without advanced statistical capacity.
 
 This method uses percentages of students "surviving" from one grade to the next over recent years to project future numbers. For example, if Grade 1 enrollment has historically been 102% of the previous year's kindergarten class, that ratio applies to current kindergarten numbers to project next year's first grade.
 
 However, districts rarely rely on a single year's data; instead, they often use a three-to-five-year average of ratios. Some use weighting schemes to give more influence to the most recent years.
 
-Another decision is how to project new kindergarten entries. The standard approach divides incoming kindergarten enrollment by local birth rates from five years prior. When birth rate data isn't available[^1], districts fall back to averaging year-over-year enrollment changes for that grade and carrying that average forward.
+Another decision is how to project new kindergarten entries. The standard approach divides incoming kindergarten enrollment by local birth rates from five years prior. When birth rate data isn't available[^births], districts fall back to averaging year-over-year enrollment changes for that grade and carrying that average forward.
 
-[^1]: The California Department of Public Health maintains a dataset of [annual births by zip code](https://data.chhs.ca.gov/dataset/cdph_live-birth-by-zip-code). However, zip codes do not match with elementary school districts, so this data isn't very informative when predicting Transitional Kindergarten or Kindergarten enrollment.
+[^csr]: For example, see this [New York Times article](https://www.nytimes.com/2026/05/07/nyregion/nyc-school-enrollment-declines.html) discussing the [enrollment projections](https://dnnhh5cc1.blob.core.windows.net/portals/0/Capital_Plan/Demographic_projection_Reports/Volume%202-2026.pdf?sv=2017-04-17&sr=b&si=DNNFileManagerPolicy&sig=pl1f%2BywRLsn%2BsVXvRXNIEbkxmnewwAydpZBsa%2F8kIm4%3D) for New York City Public Schools for 2025-26 to 2034-35 (the discussion of CRS methodology starts at page 109).
+
+[^births]: The California Department of Public Health maintains a dataset of [annual births by zip code](https://data.chhs.ca.gov/dataset/cdph_live-birth-by-zip-code). However, zip codes do not match with elementary school districts, so this data isn't very informative when predicting Transitional Kindergarten or Kindergarten enrollment.
 
 ### Moving Decaying Averages Models
 
-A particular set of CSR models is the weighted moving average model that uses decaying weights. In these models, the weights decline by a set amount, either decided beforehand or calculated from observed data.[^2] 
+A particular set of CSR models is the weighted moving average model that uses decaying weights. In these models, the weights decline by a set amount, either decided beforehand or calculated from observed data.[^weights] 
 
 The weighted average of historical survival rates is then calculated by multiplying each year's rate by its assigned weight, summing the results, and dividing by the total weight. This gives more influence to recent years when estimating the grade progression ratios used to project enrollment.
 
 A similar calculation can be applied to new enrollment grades using the weighted average year-to-year change instead of the survival rate.
 
-[^2]: This is what the enrollment projections in FCMAT's Projection Pro uses. In this model, weights decline by 1 for each historical year moving back from the base year, so the most recent historical year has a weight of 4, the year before that has a weight of 3, and so on.
+[^weights]: This is what the enrollment projections in FCMAT's Projection Pro uses. In this model, weights decline by 1 for each historical year moving back from the base year, so the most recent historical year has a weight of 4, the year before that has a weight of 3, and so on.
 
 
 ## Regression and Structural Models
 
 More sophisticated prediction models attempt to explain the *why* behind enrollment changes by using multiple regression or structural equations.
 
-Regression models use the correlation between historical enrollment data and external variables to project future enrollment. For example, a regression model might find that enrollment is correlated with local unemployment rates, and use projected unemployment rates to forecast enrollment. The CSR method can be seen as a special case of a regression model where the only predictor is the previous year's enrollment.[^3]
+Regression models use the correlation between historical enrollment data and external variables to project future enrollment. For example, a regression model might find that enrollment is correlated with local unemployment rates, and use projected unemployment rates to forecast enrollment. The CSR method can be seen as a special case of a regression model where the only predictor is the previous year's enrollment.[^regression]
 
 Structural equation models combine multiple regression equations to model more complex relationships between enrollment and various predictors, such as population growth, economic conditions, and policy changes. These models can capture feedback loops and interactions between variables, giving planners a richer picture of what drives enrollment shifts.
 
 One major benefit of using these more complex models is the ability to include external, new variables in the projections beyond historical enrollment data. Such external variables include population growth rates, per capita income, unemployment rates, and employment growth.
 
-[^3]: Similarly, moving decaying averages models can be parametrized in a regression framework using observation weights.
+[^regression]: Similarly, moving decaying averages models can be parametrized in a regression framework using observation weights.
 
 ## Limitations
 
 Existing enrollment projection models face several significant limitations, ranging from a heavy reliance on historical trends to difficulties in obtaining high-quality data for more complex models.
 
-### Cohort-Survival Ratio (CSR) Weaknesses
+### Cohort Survival Ratio (CSR) Weaknesses
 
-The primary drawback of the CSR method is its fundamental assumption that the future will not vary significantly from the past. While effective for stable districts, it cannot anticipate sudden shifts caused by economic factors, changes in district boundaries, or new promotion policies.[^4]
+The primary drawback of the CSR method is its fundamental assumption that the future will not vary significantly from the past. While effective for stable districts, it cannot anticipate sudden shifts caused by economic factors, changes in district boundaries, or new promotion policies.[^issue]
 
 CSR is notably less accurate for individual grades and schools than for district-wide totals. This is because of the compounding effect of small errors in grade-to-grade progression rates. Also, school-level projections are more sensitive to localized, yearly external shocks, which might lead to biased estimates when using historical averages.
 
@@ -79,13 +81,13 @@ The CSR accuracy also declines sharply as the projection period extends beyond o
 Finally, CSR models usually provide a single point estimate as the projection. While this might be sufficient for some planning purposes, it makes it difficult to account for expected external shocks or uncertainty in enrollment, 
 leaving further guesswork for the policy maker to adjust the projection based on their knowledge of local trends and conditions.
 
-[^4]: This becomes a major issue because projections are really only useful in times of sudden shifts in enrollment.
+[^issue]: This becomes a major issue because projections are really only useful in times of sudden shifts in enrollment.
 
 ### Moving Decaying Average Models
 
-The main limitation of decaying weight models is that they still assume the recent past is the best guide to the future, and they weight it more heavily. When a district experiences a structural break (e.g., a school closure, a new housing development, a sudden boundary change), the most recent years may be the least representative of what comes next, and down-weighting older data makes that worse.[^5] The models also offer no built-in way to quantify how uncertain the projection is. A single weighted average produces a single point estimate, leaving planners without a sense of the range of plausible outcomes.
+The main limitation of decaying weight models is that they still assume the recent past is the best guide to the future, and they weight it more heavily. When a district experiences a structural break (e.g., a school closure, a new housing development, a sudden boundary change), the most recent years may be the least representative of what comes next, and down-weighting older data makes that worse.[^shift] The models also offer no built-in way to quantify how uncertain the projection is. A single weighted average produces a single point estimate, leaving planners without a sense of the range of plausible outcomes.
 
-[^5]: Sometimes, this can also be a strenght of these models. For example, enrollment rates were very volatile following school re-opening after COVID. Down-weighting these years isn't a bad idea after all.
+[^shifts]: Sometimes, this can also be a strenght of these models. For example, enrollment rates were very volatile following school re-opening after COVID. Down-weighting these years isn't a bad idea after all.
 
 ### Regression and Structural Model Challenges
 
@@ -442,9 +444,9 @@ With the survival and generation tables prepared, the next step is to run the Mo
 
 Using survival and generation rates, the simulations will project future enrollment for each grade and school. We will run the simulations for a specified number of iterations (e.g., 10,000), and in each iteration, we will randomly sample the survival rates and generation rates from their respective distributions (using the average and standard deviation calculated in the previous steps).
 
-The example below illustrates how to perform two-year Monte Carlo simulations. The first part simulates survival and generation rates for year 1 and year 2. The second part combines these separate simulations into a final simulation at the district or school level. Adding more simulation and projection steps allows us to extend the code to simulate over two years of projections if needed.[^6]
+The example below illustrates how to perform two-year Monte Carlo simulations. The first part simulates survival and generation rates for year 1 and year 2. The second part combines these separate simulations into a final simulation at the district or school level. Adding more simulation and projection steps allows us to extend the code to simulate over two years of projections if needed.[^reproducibility]
 
-[^6]: **Note on reproducibility**: the simulation uses a pseudorandom seed (for example, `setseed(20260209)`) to make draws reproducible. Different seeds will produce different simulated draws; when auditing sensitivity, run the full simulation across several seeds or report results aggregated across multiple seeds to ensure results are not driven by a single random draw.
+[^reproducibility]: **Note on reproducibility**: the simulation uses a pseudorandom seed (for example, `setseed(20260209)`) to make draws reproducible. Different seeds will produce different simulated draws; when auditing sensitivity, run the full simulation across several seeds or report results aggregated across multiple seeds to ensure results are not driven by a single random draw.
 
 ```sql {title="Running Monte Carlo Simulations"}
 create or replace temp table monte_carlo as
@@ -685,11 +687,11 @@ $$
 
 The result is wider, more conservative uncertainty bands, especially at the tails, which is the appropriate behavior when planners need to prepare for downside enrollment scenarios.
 
-## Cohort Survival Baseline
+## Cohort Survival Ratio Baseline
 
-In addition to the Monte Carlo simulation, the model runs a traditional cohort survival ratio projection as a five-year deterministic baseline. This provides a point-estimate benchmark that is directly comparable to the current industry standard and is familiar to district planners who already use that tool.[^7]
+In addition to the Monte Carlo simulation, the model runs a traditional cohort survival ratio projection as a five-year deterministic baseline. This provides a point-estimate benchmark that is directly comparable to the current industry standard and is familiar to district planners who already use that tool.[^linear]
 
-[^7]: For example, FCMAT's Projection-Pro uses a cohort survival ratio projection with linear decaying weights.
+[^linear]: For example, FCMAT's Projection-Pro uses a cohort survival ratio projection with linear decaying weights.
 
 The cohort survival model computes grade-to-grade ratios from historical enrollment counts:
 
@@ -873,7 +875,7 @@ The key property of this adjustment is that summing the adjusted school projecti
 
 In this blog post, I described a Monte Carlo simulation approach to enrollment projections that models uncertainty explicitly and produces a range of outcomes rather than a single point estimate.
 
-The method builds on the cohort-survival ratio while fixing two of its persistent weaknesses: poor handling of external shocks and no quantification of projection uncertainty. Separating survival and generation into distinct stochastic processes means a shock that affects one (say, a new charter school drawing new students) doesn't distort the other.
+The method builds on the cohort survival ratio while fixing two of its persistent weaknesses: poor handling of external shocks and no quantification of projection uncertainty. Separating survival and generation into distinct stochastic processes means a shock that affects one (say, a new charter school drawing new students) doesn't distort the other.
 
 ## Updates
 
