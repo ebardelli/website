@@ -17,6 +17,10 @@ cover:
   attribution: 'Photo by <a href="https://unsplash.com/@peterbucks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">peter bucks</a> on <a href="https://unsplash.com/photos/yellow-school-bus-in-front-of-building-DQ0aOyqlvEs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
+> # June 2026 Update
+> 
+> I released a web application that implements this enrollment projection procedure. It's available at [projections.ebardelli.com](https://projections.ebardelli.com).
+
 Enrollment projections drive planning and budgeting for school districts. Districts use them to anticipate long-term shifts in educational demand, which in turn shapes decisions about staffing, resources, and facilities.
 
 The most widely used method is the cohort survival ratio (CSR), also known as the grade progression method. CSR uses historical data to estimate the share of students *surviving* from one grade to the next, while projecting incoming kindergarten classes from birth rates five years prior. Districts favor it because anyone can run it in a spreadsheet, even though more advanced methods like multiple linear regression exist.

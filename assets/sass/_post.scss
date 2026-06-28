@@ -42,6 +42,23 @@
   }
 }
 
+// Post description + tags container (below title/date, above cover image)
+.post-description {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding: 0.6rem 0.85rem;
+  border-left: 2px dashed $gray;
+  color: $gray;
+
+  p {
+    margin: 0;
+  }
+
+  .post-tags {
+    margin-top: 0.5rem;
+  }
+}
+
 // Post cover image
 .post-cover {
   position: relative;

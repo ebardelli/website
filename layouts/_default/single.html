@@ -11,6 +11,10 @@
                     <time datetime="{{ $ISO_time }}" itemprop="datePublished"> {{ .Format $configDateFormat }} </time>
                 </div>
                 {{ end }}
+            </header>
+            {{ if or .Description .Params.tags }}
+            <div class="post-description">
+                {{ with .Description }}<p>{{ . }}</p>{{ end }}
                 {{ with .Params.tags }}
                 <div class="post-tags">
                     {{ range . }}
@@ -18,7 +22,8 @@
                     {{ end }}
                 </div>
                 {{ end }}
-            </header>
+            </div>
+            {{ end }}
             {{ with .Params.cover }}
             <div class="post-cover">
                 <img src="{{ .image }}" alt="">
