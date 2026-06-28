@@ -1,6 +1,6 @@
 ---
 title: 'A New Approach to Enrollment Projections for School Districts'
-description: "Standard enrollment projection methods break down when conditions shift sharply. This post describes a Monte Carlo simulation framework that models uncertainty explicitly, treating student survival and new-student generation as separate stochastic processes implemented in DuckDB."
+description: "Standard enrollment projection methods struggle when conditions shift sharply. This post describes an approach that treats two drivers of enrollment separately: students who continue from year to year and students who are new to the district. Keeping these distinct makes projections more robust to sudden changes like new housing developments or policy shifts."
 
 date: 2026-02-09T12:21:09.000Z
 lastmod: '2026-06-22T12:00:00.000-07:00'
