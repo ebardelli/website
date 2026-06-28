@@ -25,4 +25,4 @@ I use the pronouns he/him/his.
 
 ## Consulting Services
 
-I work with educational organizations, school districts, and nonprofits on projects involving educational policy, program evaluation, data analysis, and strategic planning. If you're interested in exploring a potential collaboration, send me an email at [consulting@ebardelli.com](mailto:consulting@ebardelli.com).
+I [consult](/pages/consulting/) with educational organizations, school districts, and nonprofits on projects involving educational policy, program evaluation, data analysis, and strategic planning. If you're interested in exploring a potential collaboration, send me an email at [consulting@ebardelli.com](mailto:consulting@ebardelli.com).
