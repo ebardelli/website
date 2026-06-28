@@ -12,6 +12,14 @@
                 </div>
                 {{ end }}
             </header>
+            {{ with .Params.cover }}
+            <div class="post-cover">
+                <img src="{{ .image }}" alt="">
+                {{ with .attribution }}
+                <span class="post-cover-attribution">{{ . | safeHTML }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
             {{ partial "toc.html" .}}
             <div class="page-content">
                 {{ .Content }}

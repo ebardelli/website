@@ -6,8 +6,8 @@
 .featured-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 
   @include media-query($on-mobile) {
     grid-template-columns: 1fr;
@@ -15,59 +15,74 @@
 }
 
 .featured-item {
-  padding: 0.75rem 1rem;
-  border: 1px solid $light;
-  border-radius: 6px;
+  border: 1px solid darken($light, 6%);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 200ms ease-in, transform 200ms ease-in, border-color 200ms ease-in;
+
+  &:hover {
+    border-color: darken($light, 14%);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    transform: translateY(-2px);
+  }
+
+  .featured-item-img-wrap {
+    display: block;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      margin: 0;
+    }
+
+    .featured-item-img-attribution {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 2px 6px;
+      font-size: 10px;
+      line-height: 1.4;
+      background: rgba(0, 0, 0, 0.45);
+      color: rgba(255, 255, 255, 0.8);
+
+      a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        &:hover { color: #fff; }
+      }
+    }
+  }
+
+  .featured-item-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
 
   .featured-item-title {
-    margin: 0 0 2px;
+    margin: 0 0 0.4rem;
     font-size: $base-font-size;
     font-weight: $bold-weight;
+    line-height: 1.4;
     letter-spacing: 0.1px;
 
     a {
-      color: $text-base-color;
+      color: $black;
       transition: color 150ms ease-in;
-      &:hover { color: $black; }
+      &:hover { color: $text-link-blue; }
     }
   }
 
   .featured-item-summary {
     margin: 0;
-    line-height: 1.65;
-    opacity: 0.8;
-  }
-}
-
-.home-project-highlight {
-  margin-bottom: 2.5rem;
-  border: 1px solid $light;
-  border-radius: 6px;
-  overflow: hidden;
-
-  > a {
-    display: block;
-  }
-
-  .project-highlight-img {
-    width: 100%;
-    display: block;
-    margin: 0;
-  }
-
-  .project-highlight-caption {
-    margin: 0;
-    padding: 0.75rem 1rem;
-    line-height: 1.65;
-    opacity: 0.85;
+    font-size: $small-font-size;
+    line-height: 1.6;
+    color: $gray;
   }
 }
 
 .see-all-posts {
   margin-top: 1rem;
-}
-
-.home-consulting {
-  margin-top: 2.5rem;
 }
 

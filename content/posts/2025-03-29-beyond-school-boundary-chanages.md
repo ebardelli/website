@@ -9,6 +9,10 @@ slug: beyond-school-boundary-chanages
 tags: ["Data Science","Policy"]
 
 draft: false
+
+cover:
+    image: '/covers/change.jpg'
+    attribution: 'Photo by <a href="https://unsplash.com/@rossfindon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ross Findon</a> on <a href="https://unsplash.com/photos/change-neon-light-signage-mG28olYFgHI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
 In the [previous blog post](/posts/technical-aspects-of-redrawing-school-attendance-boundaries/), I covered the technical side of our boundary-redrawing process: data organization, geospatial analysis, and the optimization algorithms we used. This post is about what the data can't capture.

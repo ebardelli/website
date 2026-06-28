@@ -11,6 +11,10 @@ tags: ["Data Science","Projections","Forecasting","DuckDB","Monte Carlo Simulati
 isStarred: true
 draft: false
 math: true
+
+cover:
+  image: '/covers/bus.jpg'
+  attribution: 'Photo by <a href="https://unsplash.com/@peterbucks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">peter bucks</a> on <a href="https://unsplash.com/photos/yellow-school-bus-in-front-of-building-DQ0aOyqlvEs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
 Enrollment projections drive planning and budgeting for school districts. Districts use them to anticipate long-term shifts in educational demand, which in turn shapes decisions about staffing, resources, and facilities.

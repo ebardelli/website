@@ -10,6 +10,10 @@ tags: ["Data Science","Policy","Data Processing","Data Visualization","DuckDB","
 
 isStarred: true
 draft: false
+
+cover:
+  image: '/covers/maps.jpg'
+  attribution: 'Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/photos/white-and-green-state-maps-AFB6S2kibuk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
 Imagine a single line drawn on a map. That line, a school attendance boundary, prescribes more than just where a child goes to school. It shapes their friendships, influences their family's home value, and defines the character of their neighborhood. Redrawing those lines is a task with far-reaching consequences that require balancing data and human impact.

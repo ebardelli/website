@@ -44,13 +44,6 @@
         </div>
 
         <main aria-label="Content">
-            <div class="home-project-highlight">
-                <a href="https://projections.ebardelli.com">
-                    <img src="/posts/enrollment-projections.png" alt="Screenshot of the enrollment projections webapp" class="project-highlight-img">
-                </a>
-                <p class="project-highlight-caption">I built <a href="https://projections.ebardelli.com">a free browser-based tool</a> that generates K-12 enrollment projections from CALPADS files, entirely in your browser.</p>
-            </div>
-
             {{ $pagesToShow := where .Site.RegularPages "Type" "in" site.Params.mainSections }}
             {{ $posts := $pagesToShow.ByDate.Reverse }}
             {{ $featured := where $posts ".Params.isStarred" true }}
@@ -59,9 +52,20 @@
             <h3 class="posts-item-note">Featured</h3>
             <div class="featured-grid">
             {{ range $featured }}
+            {{ $cover := .Params.cover }}
             <article class="featured-item">
-                <h4 class="featured-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
-                {{ with .Params.description }}<p class="featured-item-summary">{{ . }}</p>{{ else }}{{ with .Summary }}<p class="featured-item-summary">{{ . }}</p>{{ end }}{{ end }}
+                {{ with $cover }}
+                <div class="featured-item-img-wrap">
+                    <img src="{{ .image }}" alt="">
+                    {{ with .attribution }}
+                    <span class="featured-item-img-attribution">{{ . | safeHTML }}</span>
+                    {{ end }}
+                </div>
+                {{ end }}
+                <div class="featured-item-body">
+                    <h4 class="featured-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+                    {{ with .Params.description }}<p class="featured-item-summary">{{ . }}</p>{{ else }}{{ with .Summary }}<p class="featured-item-summary">{{ . }}</p>{{ end }}{{ end }}
+                </div>
             </article>
             {{ end }}
             </div>
@@ -72,11 +76,6 @@
                 <a href="{{ $firstSection.Permalink }}">{{ T "home.see_all_posts" }}</a>
                 {{ end }}
             </p>
-
-            <div class="home-consulting">
-                <h3 class="posts-item-note">Consulting</h3>
-                <p>I help organizations in the education sector use data and strategy to achieve meaningful, equitable outcomes for students and communities. <a href="/pages/consulting/">Learn more about my work &rarr;</a></p>
-            </div>
 
         </main>
     </div>

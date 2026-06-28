@@ -195,23 +195,27 @@
     }
   }
 
-  // Project highlight card (homepage)
-  .home-project-highlight {
-    border-color: $dark-light;
-  }
-
   // Featured Items (homepage)
   .featured-item {
     border-color: $dark-light;
 
+    &:hover {
+      border-color: lighten($dark-light, 8%);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
     .featured-item-title {
       a {
-        color: $dark-text-base-color;
+        color: $dark-white;
 
         &:hover {
-          color: $dark-white;
+          color: $dark-text-link-blue;
         }
       }
+    }
+
+    .featured-item-summary {
+      color: $dark-gray;
     }
   }
 

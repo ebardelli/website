@@ -10,6 +10,10 @@ tags: ["Enrollment Projections", "Tools", "School Districts", "CALPADS"]
 isStarred: true
 draft: false
 math: false
+
+cover:
+  image: '/covers/projections.jpg'
+  attribution: 'Photo by <a href="https://unsplash.com/@chrisliverani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Liverani</a> on <a href="https://unsplash.com/photos/turned-on-flat-screen-monitor-dBI_My696Rk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
 Last February, I wrote about a [Monte Carlo approach to enrollment projections](https://ebardelli.com/posts/enrollment-projections/) that separates student continuing student enrollment from new-student enrollment and quantifies uncertainty instead of producing a single projection. The methodology works, but it required running SQL queries manually. This makes the method cumbersome when compared to using a spreadsheet, limiting who could run it.

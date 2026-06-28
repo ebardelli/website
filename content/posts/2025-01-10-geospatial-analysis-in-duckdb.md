@@ -10,6 +10,10 @@ tags: ["DuckDB","Geospatial"]
 
 isStarred: true
 draft: false
+
+cover:
+  image: '/covers/geospatial.jpg'
+  attribution: 'Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/photos/white-and-green-state-maps-AFB6S2kibuk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
 DuckDB has solid support for spatial data analysis through the `spatial` extension, an experimental add-on for geospatial data processing.
