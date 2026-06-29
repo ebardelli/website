@@ -1,6 +1,6 @@
 ---
 title: "The Policy and Community Work Behind School Boundary Changes"
-description: "Redrawing school attendance boundaries requires more than data and algorithms, demanding genuine community engagement and careful policy work. This post covers the human side of a school consolidation process: building trust with families before any proposal exists, designing inclusive outreach, accounting for equity beyond enrollment counts, and navigating legal compliance."
+description: "When school boundaries change, it's families and communities, not maps and algorithms, who bear the consequences. This post covers the human side of a school consolidation process: building trust with families before any proposal exists, designing inclusive outreach, accounting for equity beyond enrollment counts, and navigating legal compliance."
 
 date: 2025-03-29T22:31:36.000Z
 lastmod: 2025-06-12T00:04:35.000Z
