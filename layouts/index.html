@@ -52,11 +52,12 @@
             <h3 class="posts-item-note">Featured</h3>
             <div class="featured-grid">
             {{ range $featured }}
+            {{ $page := . }}
             {{ $cover := .Params.cover }}
             <article class="featured-item">
                 {{ with $cover }}
                 <div class="featured-item-img-wrap">
-                    <img src="{{ .image }}" alt="">
+                    <a href="{{ $page.RelPermalink }}"><img src="{{ .image }}" alt=""></a>
                     {{ with .attribution }}
                     <span class="featured-item-img-attribution">{{ . | safeHTML }}</span>
                     {{ end }}
