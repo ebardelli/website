@@ -1,6 +1,6 @@
 ---
 title: 'Enrollment Projections in Your Browser'
-description: "This post introduces a browser-based tool that wraps the full projection pipeline in a simple upload interface, runs all analysis client-side so no student data leaves the user's computer, and outputs an Excel workbook with forecasts, accuracy checks, and model diagnostics."
+description: "Running enrollment projections through SQL queries is more accurate than a spreadsheet but too cumbersome for most users. This post introduces a browser-based tool that wraps the full projection pipeline in a simple upload interface, runs all analysis client-side so no student data leaves the user's computer, and outputs an Excel workbook with forecasts, accuracy checks, and model diagnostics."
 
 date: '2026-06-21T09:00:00-07:00'
 
