@@ -885,9 +885,13 @@ The method builds on the cohort survival ratio while fixing two of its persisten
 
 Since the original post, several improvements have made the model more robust. I have updated this post to reflect these changes.
 
-### June 2026 Update - Projection-Webapp
+### June 2026 Update
 
 - **Adaptive exponential smoothing** on both survival rates and generation counts replaces the simple historical average. The smoothing gain $\alpha$ is estimated from each grade's own coefficient of variation, so stable grades smooth strongly and volatile grades adapt quickly. Winsorized innovations prevent a single anomalous year from overriding the smoothed estimate.
 - **Gamma-Poisson mixture** sampling for overdispersed generation replaces direct negative binomial draws, avoiding integer-rounding issues and introducing natural year-to-year correlation in generation counts across the two projection years.
 - **Sort-merge aggregation** pairs independently sorted survived and generated draws by rank before summing, producing wider and more conservative uncertainty bands at the tails.
 - A **cohort survival baseline** running five years out is now included alongside the Monte Carlo results, giving planners a familiar FCMAT-comparable point estimate to anchor the probabilistic output.
+
+### July 2026 Update
+
+- **Draw-level school adjustment** replaces the previous scalar-ratio approach. The old method computed a single percentile-level scale factor (adjusted median / raw median) and applied it uniformly to all school draws, causing the enrollment distrubutions to misalign. Now each school draw is scaled individually at its rank position so the sum of school draws equals the district draw at every rank, not just at the median. Because the join pairs school and district draws on the shared co-monotonic rank, the adjusted percentile bands are internally consistent. For example, the district-level 25th percentile of the school total exactly equals the sum of per-school 25th percentiles.

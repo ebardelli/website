@@ -57,3 +57,11 @@ These sheets are mainly useful for analysts checking whether the model's assumpt
 ## Trying it
 
 The tool is available at [projections.ebardelli.com](https://projections.ebardelli.com). It works in any modern browser. A sample custom template is available on the upload screen if you want to test it without CALPADS files.
+
+## App Updates
+
+### July 2026
+
+- **Grade exclusion and splitting** are now available in the school editor. Users can drop individual grades from a school's enrollment for specific years, for example, to account for a school closure or grade-band realignment, or split a school into two named groups by grade range (e.g., reroute grades K–5 to "Lincoln Elementary" and grades 6–8 to "Lincoln Middle"). All edits to school enrollment files are now also persisted across sessions in `localStorage`.
+- **Results preview** adds a new section to the app that lets users inspect projection outcomes without downloading the Excel file. It includes a table view (switchable between District, School, UPC, and Cohort Model variants) and a Monte Carlo histogram with Low/Med/High percentile lines. In evaluation mode, an actual enrollment line is overlaid on the histogram. The histogram bins and axis ticks are computed from the rank-sorted MC draws, so the median line aligns exactly with the summary table values.
+- **Light theme** is now available alongside the existing dark mode. The app detects the system preference on first load.
