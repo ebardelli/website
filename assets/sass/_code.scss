@@ -83,12 +83,6 @@ pre {
   margin: 0;
 }
 
-.highlight,
-.highlight .w {
-  color: #fbf1c7;
-  // background-color: #1a1b21;
-}
-
 .highlight .err {
   color: #fb4934;
   // background-color: #1a1b21;
@@ -244,10 +238,6 @@ pre {
   cursor: pointer;
   color: inherit;
 
-  @media (prefers-color-scheme: dark) {
-    background: rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 255, 255, 0.12);
-  }
 }
 
 .code-block-title {

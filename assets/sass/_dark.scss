@@ -331,6 +331,11 @@
     background-color: #303446; // catppuccin-frappe background
   }
 
+  .copy-code-button {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
   // Footnotes section (bottom of post)
   .footnotes {
     border-color: $dark-light;
