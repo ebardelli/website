@@ -326,6 +326,11 @@
     }
   }
 
+  // Code blocks (non-highlighted pre, highlighted handled by code-highlight.css)
+  pre {
+    background-color: #303446; // catppuccin-frappe background
+  }
+
   // Footnotes section (bottom of post)
   .footnotes {
     border-color: $dark-light;

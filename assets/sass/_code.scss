@@ -25,7 +25,7 @@ p > code {
 }
 // Codeblock Theme
 pre {
-  background-color: #1a1b21;
+  background-color: #eff1f5; // catppuccin-latte background (dark overridden in _dark.scss)
   border-radius: .3rem;
   padding: .5rem 1rem;
   display: block;
@@ -53,7 +53,7 @@ pre {
   }
 
   > code {
-    color: white;
+    color: inherit;
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
