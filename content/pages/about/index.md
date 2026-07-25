@@ -23,6 +23,8 @@ I grew up in Italy. I earned a Bachelor of Science in Mathematics from the Unive
 
 I use the pronouns he/him/his.
 
+For a fuller look at my education and work history, see my [résumé](/pages/resume/).
+
 ## Consulting Services
 
 I [consult](/pages/consulting/) with educational organizations, school districts, and nonprofits on projects involving educational policy, program evaluation, data analysis, and strategic planning. If you're interested in exploring a potential collaboration, send me an email at [consulting@ebardelli.com](mailto:consulting@ebardelli.com).
