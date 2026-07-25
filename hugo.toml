@@ -82,12 +82,17 @@ title = 'Emanuele Bardelli'
   TileColor = "#2d89ef" # default windows 10 blue tile color
 
 [[params.socialIcons]]
-name = "github"
-url = "https://github.com/ebardelli"
-
-[[params.socialIcons]]
 name = "email"
 url = "mailto:hello@ebardelli.com"
+
+[[params.socialIcons]]
+name = "cv"
+title = "resume"
+url = "/pages/resume/"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/ebardelli"
 
 [[params.socialIcons]]
 name = "bluesky"
