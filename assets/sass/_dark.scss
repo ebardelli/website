@@ -363,6 +363,26 @@
       }
     }
   }
+
+  // Résumé page (embedded docx export)
+  #resume-embed {
+    color: #e4e4e4;
+    background: $dark-black;
+    padding: 1.5em;
+    border-radius: 6px;
+
+    h2,
+    a,
+    [data-custom-style="NameHeading"] p {
+      color: #e4e4e4;
+      border-bottom-color: #e4e4e4;
+    }
+
+    [data-custom-style="TitleLine"] p,
+    [data-custom-style="ContactLine"] p {
+      color: #bbb;
+    }
+  }
 }
 
 // support JS disabled environment with media query
