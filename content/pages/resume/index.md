@@ -22,16 +22,16 @@ Schools</p>
 href="https://ebardelli.com">https://ebardelli.com</a></p>
 </div>
 <h2 id="summary">Summary</h2>
-<p>Executive leader in education data and policy, currently directing
-information systems, state and federal reporting, and assessment
-programs for a 14,000-student California district. Brings a rare
-combination of research rigor and practitioner experience: a PhD in
-Educational Studies from the University of Michigan, where he was a
+<p>I am an executive leader in education data and policy, currently
+directing information systems, state and federal reporting, and
+assessment programs for a 13,500-student California district. I bring a
+rare combination of research rigor and practitioner experience: a Ph.D.
+in Educational Studies from the University of Michigan, where I was a
 predoctoral fellow in the IES-funded Causal Inference in Educational
 Policy Research (CIEPR) program, followed by a postdoctoral appointment
 at Brown University's Annenberg Institute; peer-reviewed publications in
 top education journals; and years in the classroom as a mathematics
-teacher and instructional coach. Combines executive leadership and
+teacher and instructional coach. I combine executive leadership and
 policy strategy with rigorous data, research, and evaluation practice
 and hands-on technical skills, all sustained by a focus on turning data
 into equity-driven decisions.</p>
@@ -48,10 +48,10 @@ reporting cycles.</li>
 <li>Direct assessment policy across the district, from program design to
 translating results into curriculum, instructional, and
 resource-allocation decisions, resulting in increased test participation
-year-over-year.</li>
+year-over-year for both CAASPP and ELPAC tests.</li>
 <li>Lead a team of 6 and serve as executive liaison between departments,
 shaping data governance and technology investment decisions serving the
-district's 14,000 students.</li>
+district's 13,500 students.</li>
 <li>Drive a district-wide shift toward data-informed decision-making,
 establishing standards and training that anchor equity-focused resource
 allocation, launching dashboards used by all schools and
