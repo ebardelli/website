@@ -2,6 +2,26 @@
   max-width: 100%;
 }
 
+// Homepage site introduction
+.site-intro {
+  max-width: 640px;
+  margin: -3.5rem auto 3.5rem;
+
+  p {
+    color: $gray;
+    line-height: 1.688;
+    text-align: justify;
+  }
+
+  a {
+    color: $text-link-blue;
+  }
+
+  @include media-query($on-mobile) {
+    margin: -1.5rem auto 2.5rem;
+  }
+}
+
 // Tags cloud on /tags/ page
 .tags-cloud {
   display: flex;

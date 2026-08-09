@@ -43,6 +43,10 @@
             <p class="author-bio">{{ .Site.Params.description }}</p>
         </div>
 
+        <div class="site-intro">
+            {{ .Content }}
+        </div>
+
         <main aria-label="Content">
             {{ $pagesToShow := where .Site.RegularPages "Type" "in" site.Params.mainSections }}
             {{ $posts := $pagesToShow.ByDate.Reverse }}
