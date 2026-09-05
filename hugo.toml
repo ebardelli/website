@@ -7,6 +7,11 @@ title = 'Emanuele Bardelli'
     noClasses = false
   [markup.goldmark.renderer]
     unsafe = true
+  [markup.goldmark.extensions.passthrough]
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block = [['\[', '\]'], ['$$', '$$']]
+      inline = [['\(', '\)'], ['$', '$']]
   [markup.tableOfContents]
     startLevel = 2 # ToC starts from H2
     endLevel = 4 # ToC ends at H4
