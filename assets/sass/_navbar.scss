@@ -7,7 +7,7 @@
     margin-right: auto;
     margin-left: auto;
     border-bottom: 1px solid $light;
-    padding: .5rem .3rem;
+    padding: .3rem .3rem 0rem;
     @extend %clearfix;
   }
   .logo {
@@ -113,9 +113,9 @@
 
     .menu-link {
       color: $black;
-      line-height: $base-line-height + 0.4;
+      line-height: 1.5;
       text-decoration: none;
-      padding: .3rem .5rem;
+      padding: .25rem .4rem;
       opacity: 0.7;
       letter-spacing: 0.015rem;
 
@@ -135,6 +135,106 @@
     .menu-link.active {
       opacity: 1;
       font-weight: 600;
+    }
+
+    // App tray (dropdown)
+    .menu-item-parent {
+      position: relative;
+    }
+
+    button.menu-link {
+      background: none;
+      border: none;
+      font: inherit;
+      letter-spacing: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .menu-caret {
+      width: 6px;
+      height: 6px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      transition: transform .15s ease;
+      opacity: 0.7;
+    }
+
+    .menu-item-parent.tray-open .menu-caret {
+      transform: rotate(-135deg);
+    }
+
+    @media (hover: hover) {
+      .menu-item-parent:hover .menu-caret {
+        transform: rotate(-135deg);
+      }
+    }
+
+    .menu-tray {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: .2rem;
+      min-width: 170px;
+      padding: .4rem;
+      background: $white;
+      border: 1px solid $light;
+      border-radius: 8px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      z-index: 3;
+
+      li {
+        display: block;
+      }
+
+      .tray-link {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        line-height: 1.4;
+        border-radius: 5px;
+        white-space: nowrap;
+
+        &:not(:last-child) {
+          margin-right: 0;
+        }
+
+        &:hover {
+          opacity: 1;
+          background: $light;
+        }
+      }
+
+      .app-icon {
+        flex: none;
+        border-radius: 4px;
+      }
+    }
+
+    .menu-item-parent.tray-open .menu-tray {
+      display: block;
+    }
+
+    @media (hover: hover) {
+      .menu-item-parent:hover .menu-tray {
+        display: block;
+      }
+    }
+
+    @include media-query($on-mobile) {
+      .menu-tray {
+        position: static;
+        box-shadow: none;
+        border: none;
+        margin-top: 0;
+        margin-left: 1rem;
+        padding: 0;
+        background: transparent;
+      }
     }
 
     @include media-query($on-mobile) {

@@ -14,22 +14,29 @@
             <ul class="trigger-container">
                 {{ $currentPage := . }}
                 {{ range .Site.Menus.main }}
-                <li>
-                    <a class="menu-link {{ if or ($currentPage.IsMenuCurrent "main" .)
-                        ($currentPage.HasMenuCurrent "main" .) }}active{{ end }}" href="{{ .URL }}">
-                        {{ .Name }}
-                    </a>
+                <li class="{{ if .HasChildren }}menu-item-parent{{ end }}">
                     {{ if .HasChildren }}
-                    <ul>
+                    <button type="button" class="menu-link has-children" aria-haspopup="true" aria-expanded="false">
+                        {{ .Name }}
+                        <span class="menu-caret" aria-hidden="true"></span>
+                    </button>
+                    <ul class="menu-tray">
                         {{ range .Children }}
                         <li>
-                            <a class="menu-link {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}"
-                                href="{{ .URL }}">
-                                {{ .Name }}
+                            <a class="menu-link tray-link {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}"
+                                href="{{ .URL }}"
+                                {{ if strings.HasPrefix .URL "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>
+                                {{ with .Params.icon }}{{ partial (printf "svgs/%s.svg" .) (dict "width" 16 "height" 16) $currentPage }}{{ end }}
+                                <span>{{ .Name }}</span>
                             </a>
                         </li>
                         {{ end }}
                     </ul>
+                    {{ else }}
+                    <a class="menu-link {{ if or ($currentPage.IsMenuCurrent "main" .)
+                        ($currentPage.HasMenuCurrent "main" .) }}active{{ end }}" href="{{ .URL }}">
+                        {{ .Name }}
+                    </a>
                     {{ end }}
                 </li>
                 {{ end }}

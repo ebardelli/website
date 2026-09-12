@@ -38,6 +38,25 @@ title = 'Emanuele Bardelli'
     url = '/posts/'
     weight = 20
   [[Languages.en-us.menu.main]]
+    identifier = "apps"
+    name = 'Apps'
+    url = '#'
+    weight = 25
+  [[Languages.en-us.menu.main]]
+    name = 'Projections'
+    url = 'https://projections.ebardelli.com/'
+    parent = "apps"
+    weight = 10
+    [Languages.en-us.menu.main.params]
+      icon = "projections"
+  [[Languages.en-us.menu.main]]
+    name = 'Forecasts'
+    url = 'https://forecasts.ebardelli.com/'
+    parent = "apps"
+    weight = 20
+    [Languages.en-us.menu.main.params]
+      icon = "forecasts"
+  [[Languages.en-us.menu.main]]
     pageRef="about"
     name = 'About'
     url = '/about/'

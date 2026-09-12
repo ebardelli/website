@@ -167,6 +167,16 @@
         color: $dark-white;
       }
 
+      .menu-tray {
+        background: $dark-black;
+        border-color: $dark-light;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+
+        .tray-link:hover {
+          background: $dark-light;
+        }
+      }
+
       @include media-query($on-mobile) {
         background-color: $dark-black;
         border-color: $dark-light;

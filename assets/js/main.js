@@ -1,5 +1,66 @@
 'use strict';
 
+(function() {
+    var CLOSE_DELAY = 300;
+    var closeTimer = null;
+
+    function setExpanded(parent, expanded) {
+        parent.classList.toggle('tray-open', expanded);
+        var btn = parent.querySelector('.menu-link.has-children');
+        if (btn) btn.setAttribute('aria-expanded', String(expanded));
+    }
+
+    document.querySelectorAll('.menu-item-parent').forEach(function(parent) {
+        parent.addEventListener('mouseenter', function() {
+            clearTimeout(closeTimer);
+            document.querySelectorAll('.menu-item-parent.tray-open').forEach(function(open) {
+                if (open !== parent) setExpanded(open, false);
+            });
+            setExpanded(parent, true);
+        });
+        parent.addEventListener('mouseleave', function() {
+            clearTimeout(closeTimer);
+            closeTimer = setTimeout(function() { setExpanded(parent, false); }, CLOSE_DELAY);
+        });
+    });
+})();
+
+document.addEventListener('click', function(e) {
+    var trigger = e.target.closest && e.target.closest('.menu-link.has-children');
+    var openTray = document.querySelector('.menu-item-parent.tray-open');
+
+    if (trigger) {
+        var parent = trigger.closest('.menu-item-parent');
+        var isOpen = parent.classList.contains('tray-open');
+        if (openTray && openTray !== parent) {
+            openTray.classList.remove('tray-open');
+            var openBtn = openTray.querySelector('.menu-link.has-children');
+            if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+        }
+        parent.classList.toggle('tray-open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+        return;
+    }
+
+    if (openTray && !e.target.closest('.menu-item-parent')) {
+        openTray.classList.remove('tray-open');
+        var btn = openTray.querySelector('.menu-link.has-children');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+}, false);
+
+document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Escape') return;
+    var openTray = document.querySelector('.menu-item-parent.tray-open');
+    if (!openTray) return;
+    openTray.classList.remove('tray-open');
+    var btn = openTray.querySelector('.menu-link.has-children');
+    if (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+        btn.focus();
+    }
+}, false);
+
 document.addEventListener('click', function(e) {
     var btn = e.target.closest && e.target.closest('.copy-code-button');
     if (!btn) return;
