@@ -42,6 +42,16 @@ All of this runs entirely client-side. Data lives in a real [DuckDB](https://duc
 
 ## App Updates
 
+### September 2026
+
+- **Uncertainty overhaul** replaces the scattered statistical option fields on components, line items, and quantities with one shared `Uncertainty` editor: an "Add uncertainty" button opens a modal with a kind picker, that kind's parameters, and a live closed-form preview of the resulting distribution. The registry now spans seven functional forms, normal, bounded, delta (a guaranteed shift with no randomness), uniform, triangular, lognormal, and PERT, with the last two sampled through DuckDB's stochastic extension.
+- **Category-default uncertainty and a sensitivity breakdown** let a default `Uncertainty` be configured per cost category in Settings, applied automatically to Baseline and to any scenario that doesn't override a given item, so Baseline is no longer artificially risk-free. A new tornado-style breakdown ranks a project's line items by their exact closed-form contribution to variance, without any extra simulation trials.
+- **Desktop app** packages the same client-side tool as a native download for macOS, Linux, and Windows, alongside the browser version. It's not published anywhere yet; email hello@ebardelli.com if you'd like a copy.
+
+### August 2026
+
+- **Backup-reminder toast** surfaces the same overdue-backup check that previously lived only on the Settings tab as a dismissible toast visible from any tab, since app data lives only in browser-local storage with no server-side copy.
+
 ### July 2026
 
 - **Ingredients Method alignment** brings the domain model in line with the Institute of Education Sciences' *Cost Analysis: A Starter Kit* (IES 2020-001). Units now carry a cost category (personnel, materials, facilities, etc.), line items carry a payer/perspective tag (district, state, grant, family, and so on), and projects carry a participant count. A scenario report now breaks its cost down by payer and by category, and adds a cost-per-participant figure, alongside the existing distribution stats.

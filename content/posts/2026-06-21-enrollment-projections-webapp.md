@@ -16,11 +16,11 @@ cover:
   attribution: 'Photo by <a href="https://unsplash.com/@chrisliverani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Liverani</a> on <a href="https://unsplash.com/photos/turned-on-flat-screen-monitor-dBI_My696Rk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
-Last February, I wrote about a [new approach to enrollment projections](images/enrollment-projections/) that separates student continuing-student enrollment from new-student enrollment and quantifies uncertainty instead of producing a single projection. The methodology works, but it required running SQL queries manually. This makes the method cumbersome when compared to using a spreadsheet, limiting who could use it. So I built [a web application](https://projections.ebardelli.com) that automates the whole process. 
+Last February, I wrote about a [new approach to enrollment projections](/posts/enrollment-projections/) that separates continuing-student enrollment from new-student enrollment and quantifies uncertainty instead of producing a single projection. The methodology works, but it required running SQL queries manually, which made it cumbersome compared to a spreadsheet and limited who could use it. So I built [a web application](https://projections.ebardelli.com) that automates the whole process.
 
 [![Enrollment Projections](/posts/images/enrollment-projections.png)](https://projections.ebardelli.com)
 
-You upload your CALPADS files,[^1] set the model parameters,[^parameters] click Run, and download an Excel workbook with the results. All done in your browser and without sharing data with me or anyone else. The webapp is free to use. If you want to let me know that you used it or if you have any questions, you can reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com).
+You upload your CALPADS files,[^1] set the model parameters,[^parameters] click Run, and download an Excel workbook with the results. All of that runs in your browser, without sharing data with me or anyone else, and the webapp is free to use. If you have questions or want to let me know you used it, reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com).
 
 [^1]: At the moment, the webapp accepts CALPADS 1.2 csv reports, CALPADS 1.18 csv reports, or custom data uploaded following the [custom data format template](https://projections.ebardelli.com/enrollment-template.csv).
 
@@ -56,7 +56,7 @@ These sheets are mainly useful for analysts checking whether the model's assumpt
 
 ## Trying it
 
-The tool is available at [projections.ebardelli.com](https://projections.ebardelli.com). It works in any modern browser. A sample custom template is available on the upload screen if you want to test it without CALPADS files.
+The tool is available at [projections.ebardelli.com](https://projections.ebardelli.com) and works in any modern browser. A sample custom template is available on the upload screen if you want to test it without CALPADS files.
 
 ## App Updates
 
@@ -68,7 +68,7 @@ The tool is available at [projections.ebardelli.com](https://projections.ebardel
 
 ### August 2026
 
-- **Desktop app.** Projections is now also available as a native download for macOS, Linux, and Windows, in addition to the browser version. It's the same client-side tool wrapped for the desktop: no server, and no change to how your data is handled. The desktop app not published anywhere yet; reach out at [hello@ebardelli.com](mailto:hello@ebardelli.com) if you'd like a copy.
+- **Desktop app** packages the same client-side tool as a native download for macOS, Linux, and Windows, alongside the browser version. No server, no change to how your data is handled. It's not published anywhere yet; email [hello@ebardelli.com](mailto:hello@ebardelli.com) if you'd like a copy.
 - **Monte Carlo reproducibility fix.** A subtle issue in how random draws were sequenced meant that re-running the same inputs with the same seed could shuffle which draw landed on which row. Runs with a fixed seed now reproduce byte-identical output.
 
 ### July 2026
