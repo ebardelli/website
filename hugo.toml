@@ -57,6 +57,13 @@ title = 'Emanuele Bardelli'
     [Languages.en-us.menu.main.params]
       icon = "forecasts"
   [[Languages.en-us.menu.main]]
+    name = 'Boundaries'
+    url = 'https://boundaries.ebardelli.com/'
+    parent = "apps"
+    weight = 30
+    [Languages.en-us.menu.main.params]
+      icon = "boundaries"
+  [[Languages.en-us.menu.main]]
     pageRef="about"
     name = 'About'
     url = '/about/'
