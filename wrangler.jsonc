@@ -6,7 +6,10 @@
   "name": "website",
   "account_id": "13cf1744267ed04b78553facb42cad2b",
   "compatibility_date": "2026-10-18",
-  "routes": [{ "pattern": "ebardelli.com", "custom_domain": true }],
+  "routes": [
+    { "pattern": "ebardelli.com", "custom_domain": true },
+    { "pattern": "www.ebardelli.com", "custom_domain": true },
+  ],
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page",
