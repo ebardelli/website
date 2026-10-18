@@ -97,7 +97,7 @@
 
   // Post Meta
   .post-meta {
-    color: $dark-gray;
+    color: $dark-text-muted;
 
     time {
       &::after {
@@ -138,7 +138,7 @@
   }
 
   .post-description {
-    color: $dark-gray;
+    color: $dark-text-muted;
     border-color: $dark-gray;
   }
 
@@ -210,7 +210,18 @@
     }
 
     .post-item-description {
-      color: $dark-gray;
+      color: $dark-text-muted;
+    }
+  }
+
+  // Homepage site introduction
+  .site-intro {
+    p {
+      color: $dark-text-base-color;
+    }
+
+    a {
+      color: $dark-text-link-blue;
     }
   }
 
@@ -223,12 +234,12 @@
     }
 
     .tag-count {
-      color: $dark-gray;
+      color: $dark-text-muted;
     }
   }
 
   .post-tag {
-    color: $dark-gray;
+    color: $dark-text-muted;
 
     &:hover {
       color: $dark-white;
@@ -237,10 +248,7 @@
 
   // Featured Items (homepage)
   .featured-item {
-    border-color: $dark-light;
-
     &:hover {
-      border-color: lighten($dark-light, 8%);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
 
@@ -255,7 +263,7 @@
     }
 
     .featured-item-summary {
-      color: $dark-gray;
+      color: $dark-text-muted;
     }
   }
 
@@ -268,7 +276,6 @@
 
       .post-title {
         color: $dark-white;
-        opacity: 0.9;
       }
 
       &:hover,
@@ -279,7 +286,7 @@
       }
 
       .nav-arrow {
-        color: $dark-gray;
+        color: $dark-text-muted;
       }
     }
 
@@ -301,7 +308,7 @@
     }
 
     .footer_copyright {
-      color: $dark-gray;
+      color: $dark-text-muted;
       opacity: 1;
     }
   }
