@@ -46,40 +46,29 @@ jobs:
           path: ./public
           retention-days: 1
 
-  s3_sync:
-    name: S3 sync to garage
+  deploy:
+    name: Deploy to Cloudflare Workers
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # wrangler 4 requires Node >= 22
+          node-version: '22'
+
       - name: Download public artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: build
-          path: build
+          path: public
 
-      - name: Set-up s5cmd
-        uses: peak/action-setup-s5cmd@main
-        with:
-          version: v2.3.0
-
-      - name: Sync to S3
-        run: s5cmd --endpoint-url $AWS_ENDPOINT sync --delete build/ s3://homepage/
+      - name: Deploy
+        run: npx --yes wrangler@4.151.1 deploy
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.GARAGE_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.GARAGE_SECRET_KEY }}
-          AWS_ENDPOINT: ${{ secrets.GARAGE_ENDPOINT }}
-          AWS_DEFAULT_REGION: ${{ secrets.GARAGE_DEFAULT_REGION }}
-
-      - name: Purge Cloudflare cache
-        run: |
-          curl -fsS -X POST \
-            "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE/purge_cache" \
-            -H "Authorization: Bearer $CLOUDFLARE_TOKEN" \
-            -H "Content-Type: application/json" \
-            --data '{"purge_everything":true}'
-        env:
-          CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE_IDENTIFIER }}
-          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
 
   github_pages:
     name: Deploy to GitHub Pages

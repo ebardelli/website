@@ -1,0 +1,14 @@
+// Cloudflare Worker serving the static Hugo build (public/) — no Worker script, just
+// static assets. Missing paths get Hugo's 404.html with a 404 status.
+// Deploy: `hugo -e production --gc --minify && npx pagefind --site public && npx wrangler deploy`
+// (CI does this on every push to main).
+{
+  "name": "website",
+  "account_id": "13cf1744267ed04b78553facb42cad2b",
+  "compatibility_date": "2026-10-18",
+  "routes": [{ "pattern": "ebardelli.com", "custom_domain": true }],
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page",
+  },
+}

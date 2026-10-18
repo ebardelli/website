@@ -3,3 +3,6 @@
 /public/
 /resources/
 .hugo_build.lock
+
+# Cloudflare Workers (wrangler)
+.wrangler/
