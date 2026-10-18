@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @mixin dark-mode {
   body {
     color: $dark-white;
@@ -248,7 +250,10 @@
 
   // Featured Items (homepage)
   .featured-item {
+    border-color: $dark-light;
+
     &:hover {
+      border-color: color.adjust($dark-light, $lightness: 8%);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
 

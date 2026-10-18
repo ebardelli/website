@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .author .author-bio {
   max-width: 100%;
 }
@@ -109,11 +111,13 @@
 }
 
 .featured-item {
+  border: 1px solid color.adjust($light, $lightness: -6%);
   border-radius: 8px;
   overflow: hidden;
-  transition: box-shadow 200ms ease-in, transform 200ms ease-in;
+  transition: box-shadow 200ms ease-in, transform 200ms ease-in, border-color 200ms ease-in;
 
   &:hover {
+    border-color: color.adjust($light, $lightness: -14%);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
     transform: translateY(-2px);
   }
