@@ -140,7 +140,7 @@
   }
 
   .post-description {
-    color: $dark-text-muted;
+    color: $dark-text-base-color;
     border-color: $dark-gray;
   }
 
@@ -212,7 +212,7 @@
     }
 
     .post-item-description {
-      color: $dark-text-muted;
+      color: $dark-text-base-color;
     }
   }
 
@@ -268,7 +268,7 @@
     }
 
     .featured-item-summary {
-      color: $dark-text-muted;
+      color: $dark-text-base-color;
     }
   }
 
@@ -314,7 +314,14 @@
 
     .footer_copyright {
       color: $dark-text-muted;
-      opacity: 1;
+    }
+
+    .footer_social-icons svg {
+      color: $dark-text-muted;
+
+      &:hover {
+        color: $dark-white;
+      }
     }
   }
 
@@ -343,7 +350,7 @@
       color: $dark-text-base-color;
 
       &::-webkit-input-placeholder {
-        color: rgba(128, 128, 128, 0.8);
+        color: #8f949c;
       }
     }
   }

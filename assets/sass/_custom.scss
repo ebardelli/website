@@ -10,7 +10,7 @@
   margin: -3.5rem auto 3.5rem;
 
   p {
-    color: $gray;
+    color: $text-muted;
     line-height: 1.688;
     text-align: justify;
   }
@@ -49,7 +49,7 @@
 
     .tag-count {
       margin-left: 4px;
-      color: $gray;
+      color: $text-muted;
       font-size: $small-font-size * 0.9;
     }
   }
@@ -69,7 +69,7 @@
 
   .post-item-description {
     margin: 0.25rem 0 0;
-    color: $gray;
+    color: $text-base-color;
     font-size: $small-font-size;
   }
 }
@@ -87,7 +87,7 @@
     font-size: $small-font-size * 0.875;
     border: 1px solid rgba(128, 128, 128, 0.2);
     background-color: rgba(128, 128, 128, 0.08);
-    color: $gray;
+    color: $text-muted;
     text-decoration: none;
     transition: background-color 150ms ease-in, color 150ms ease-in;
 
@@ -174,7 +174,7 @@
     margin: 0;
     font-size: $small-font-size;
     line-height: 1.6;
-    color: $gray;
+    color: $text-base-color;
   }
 }
 

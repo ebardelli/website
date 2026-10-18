@@ -8,7 +8,7 @@ $sidenote-gap: 24px;
   padding-top: 1em;
   border-top: 1px solid $light;
   font-size: $small-font-size;
-  color: $gray;
+  color: $text-muted;
   line-height: 1.5;
 
   ol {
@@ -42,7 +42,7 @@ a.footnote-ref {
     width: $sidenote-width;
     font-size: 0.8em;
     line-height: 1.45;
-    color: $gray;
+    color: $text-muted;
     border-left: 2px solid $light;
     padding-left: 0.6em;
 
