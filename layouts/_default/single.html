@@ -26,7 +26,7 @@
             {{ end }}
             {{ with .Params.cover }}
             <div class="post-cover">
-                <img src="{{ .image }}" alt="">
+                {{ partial "coverImage.html" (dict "image" .image "widths" (slice 800 1200 1600) "sizes" "(max-width: 768px) 100vw, 720px" "eager" true) }}
                 {{ with .attribution }}
                 <span class="post-cover-attribution">{{ . | safeHTML }}</span>
                 {{ end }}

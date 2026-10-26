@@ -1,0 +1,26 @@
+{{/*
+  Responsive cover image. Covers live in assets/covers/ so Hugo can resize
+  them into WebP variants; front matter keeps referencing '/covers/<name>.jpg'.
+  Falls back to a plain <img> if the path isn't a processable resource.
+
+  Params: image (front matter path), widths (slice of ints), sizes (string),
+          height (display height in px, used for crop aspect), eager (bool)
+*/}}
+{{- $src := .image -}}
+{{- $loading := cond (default false .eager) "eager" "lazy" -}}
+{{- with resources.Get (strings.TrimPrefix "/" $src) -}}
+{{- $img := . -}}
+{{- $srcset := slice -}}
+{{- $fallback := "" -}}
+{{- range $.widths -}}
+{{- if le . $img.Width -}}
+{{- $r := $img.Resize (printf "%dx webp q75" .) -}}
+{{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink $r.Width) -}}
+{{- $fallback = $r -}}
+{{- end -}}
+{{- end -}}
+{{- if not $fallback -}}{{- $fallback = $img.Resize (printf "%dx webp q75" $img.Width) -}}{{- end -}}
+<img src="{{ $fallback.RelPermalink }}"{{ with $srcset }} srcset="{{ delimit . ", " }}"{{ end }} sizes="{{ $.sizes }}" width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" loading="{{ $loading }}" decoding="async" alt="">
+{{- else -}}
+<img src="{{ $src }}" loading="{{ $loading }}" decoding="async" alt="">
+{{- end -}}

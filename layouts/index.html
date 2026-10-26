@@ -55,13 +55,14 @@
             {{ if $featured }}
             <h3 class="posts-item-note">Featured</h3>
             <div class="featured-grid">
-            {{ range $featured }}
+            {{ range $i, $_ := $featured }}
             {{ $page := . }}
             {{ $cover := .Params.cover }}
             <article class="featured-item">
                 {{ with $cover }}
                 <div class="featured-item-img-wrap">
-                    <a href="{{ $page.RelPermalink }}"><img src="{{ .image }}" alt=""></a>
+                    {{/* Decorative duplicate of the title link: hidden from assistive tech and tab order */}}
+                    <a href="{{ $page.RelPermalink }}" aria-hidden="true" tabindex="-1">{{ partial "coverImage.html" (dict "image" .image "widths" (slice 400 800) "sizes" "(max-width: 768px) 100vw, 360px" "eager" (lt $i 2)) }}</a>
                     {{ with .attribution }}
                     <span class="featured-item-img-attribution">{{ . | safeHTML }}</span>
                     {{ end }}
