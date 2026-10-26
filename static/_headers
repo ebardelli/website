@@ -1,0 +1,22 @@
+# Cloudflare Workers static-asset headers. Everything not listed here (HTML, feeds,
+# sitemap, pagefind index) keeps the default revalidate-every-request caching.
+
+# Fingerprinted by Hugo: the URL changes whenever the content does.
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+/style.min.*
+  Cache-Control: public, max-age=31536000, immutable
+/code-highlight.min.*
+  Cache-Control: public, max-age=31536000, immutable
+/covers/*
+  Cache-Control: public, max-age=31536000, immutable
+/avatar_hu_*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Stable names but rarely change.
+/fonts/*
+  Cache-Control: public, max-age=2592000
+/icons/*
+  Cache-Control: public, max-age=604800
+/favicon.ico
+  Cache-Control: public, max-age=604800
