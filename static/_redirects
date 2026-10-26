@@ -1,0 +1,6 @@
+# Cloudflare Workers static-asset redirects: old URLs that Google still crawls.
+/about/ /pages/about/ 301
+/posts/beyond-maps-and-data-the-human-side-of-school-boundary-decisions/ /posts/beyond-school-boundary-changes/ 301
+/posts/beyond-school-boundary-chanages/ /posts/beyond-school-boundary-changes/ 301
+/posts/technical-aspects-of-redrawing-school-attendance-boundaries/ /posts/redrawing-school-attendance-boundaries/ 301
+/posts/2025-08-enrollment-projections/ /posts/enrollment-projections/ 301

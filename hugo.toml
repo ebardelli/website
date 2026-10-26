@@ -17,6 +17,21 @@ title = 'Emanuele Bardelli'
     endLevel = 4 # ToC ends at H4
     ordered = false # generates <ul> instead of <ol>
 
+# Keep thin listing pages (tags, categories, the /pages/ index, search) out of
+# Google: noindex them (see meta/standard.html) and leave them out of the sitemap.
+[[cascade]]
+  noindex = true
+  [cascade.sitemap]
+    disable = true
+  [cascade.target]
+    kind = '{taxonomy,term}'
+[[cascade]]
+  noindex = true
+  [cascade.sitemap]
+    disable = true
+  [cascade.target]
+    path = '{/pages,/pages/search}'
+
 # Setup
 [Languages.en-us]
   label = "English"
