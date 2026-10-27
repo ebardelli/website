@@ -40,6 +40,9 @@
                     {{ end }}
                 </li>
                 {{ end }}
+                <li>
+                    <button type="button" class="menu-link search-link" aria-haspopup="dialog">Search</button>
+                </li>
                 <li class="menu-separator">
                     <span>|</span>
                 </li>
@@ -75,5 +78,6 @@
                 {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-moon" "title" "DARK") . }}
             </a>
         </div>
+        <pagefind-modal></pagefind-modal>
     </nav>
 </div>

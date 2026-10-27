@@ -1,6 +1,21 @@
 @use "sass:color";
 
 @mixin dark-mode {
+  // Pagefind component UI (it ignores prefers-color-scheme on its own).
+  --pf-text: #{$dark-text-base-color};
+  --pf-text-secondary: #{$dark-text-muted};
+  --pf-text-muted: #{$dark-text-muted};
+  --pf-background: #{$dark-black};
+  --pf-border: #{$dark-smoke};
+  --pf-border-focus: #{$dark-gray};
+  --pf-skeleton: #{$dark-light};
+  --pf-skeleton-shine: #{$dark-smoke};
+  --pf-hover: #{$dark-light};
+  --pf-mark: #{$dark-white};
+  --pf-scroll-shadow: rgba(0, 0, 0, 0.4);
+  --pf-modal-backdrop: rgba(0, 0, 0, 0.7);
+  --pf-outline-focus: #{$dark-text-link-blue};
+
   body {
     color: $dark-white;
     background-color: $dark-black;
@@ -342,16 +357,6 @@
 
     .solution:hover {
       color: $dark-text-link-blue-active;
-    }
-  }
-
-  .search-article {
-    input[type="search"] {
-      color: $dark-text-base-color;
-
-      &::-webkit-input-placeholder {
-        color: #8f949c;
-      }
     }
   }
 

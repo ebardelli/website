@@ -43,7 +43,9 @@ figure {
 // Basic styling
 body {
   min-height: 100vh;
-  overflow-x: hidden;
+  // clip, not hidden: hidden makes body its own scroll container, and anything that
+  // pokes past its bottom (e.g. Pagefind's 1px live regions) adds a second scrollbar.
+  overflow-x: clip;
   position: relative;
   color: $text-base-color;
   background-color: $white;

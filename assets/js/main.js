@@ -97,3 +97,29 @@ document.addEventListener('click', function(e) {
         document.body.removeChild(ta);
     }
 }, false);
+
+// Search: the "Search" menu link (and Cmd/Ctrl+K) opens the Pagefind modal.
+(function() {
+    function openSearch() {
+        var modal = document.querySelector('pagefind-modal');
+        if (!modal || typeof modal.open !== 'function') return;
+        var menu = document.getElementById('menu-trigger');
+        if (menu && menu.checked) {
+            menu.checked = false;
+            menu.dispatchEvent(new Event('change'));
+        }
+        modal.open();
+    }
+
+    document.querySelectorAll('.search-link').forEach(function(link) {
+        link.addEventListener('click', openSearch);
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key.toLowerCase() !== 'k' || !(e.metaKey || e.ctrlKey)) return;
+        var el = document.activeElement;
+        if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)) return;
+        e.preventDefault();
+        openSearch();
+    });
+})();

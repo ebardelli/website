@@ -18,6 +18,11 @@
 
     {{- /* Styles */ -}}
 
+    {{- /* Pagefind search (generated into public/pagefind/ after the Hugo build). Loaded
+         before style.css so the site's --pf-* overrides win. */}}
+    <link href="/pagefind/pagefind-component-ui.css" rel="stylesheet">
+    <script src="/pagefind/pagefind-component-ui.js" type="module"></script>
+
     {{- $style := resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS (dict "transpiler" "dartsass" "silenceDeprecations" (slice "import") "targetPath" "style.css") | minify | fingerprint }}
     <link href="{{ $style.RelPermalink }}" rel="stylesheet">
     {{- $code_syntax_highlight_css := resources.Get "code-highlight.css" | minify | fingerprint }}

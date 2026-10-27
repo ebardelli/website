@@ -1,7 +1,7 @@
 // Cloudflare Worker serving the static Hugo build (public/). src/worker.js runs first to
 // redirect www to the apex, then hands off to the assets. Missing paths get Hugo's
 // 404.html with a 404 status.
-// Deploy: `hugo -e production --gc --minify && npx pagefind --site public && npx wrangler deploy`
+// Deploy: `hugo -e production --gc --minify && npx -y pagefind@1.5.2 --site public && npx wrangler deploy`
 // (CI does this on every push to main).
 {
   "name": "website",
