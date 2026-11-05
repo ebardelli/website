@@ -193,7 +193,7 @@ Choosing the right distribution based on observed dispersion is what makes the s
 
 The Monte Carlo framework combines the two separate survival and generation simulations into a single enrollment estimate. The overall enrollment estimate predicts enrollment by summing the number of students surviving from the previous grade and the number of new students generated for that grade. Repeating this process for each grade and school over many simulation runs enables us to generate a distribution of projected enrollment outcomes for each grade and school. These repeated simulations, each one separate from the others, allow us to capture the uncertainty in enrollment projections and provide a range of potential outcomes rather than a single point estimate.
 
-As a final step, these separate simulation runs are combined to determine the overall distribution of possible enrollment outcomes for each grade and school. By analyzing this distribution, we can understand the range of potential enrollment outcomes and their likelihood when compared to other predictions, which can inform decision-making and help districts prepare for a variety of future scenarios. Usually, the midpoint of this distribution (i.e., the median or 50th percentile) is used as the point estimate for enrollment projections. Other percentiles (e.g., the 25th percentile and the 75th percentile) can provide a more conservative or optimistic projection based on local knowledge of trends and conditions.
+As a final step, these separate simulation runs are combined to determine the overall distribution of possible enrollment outcomes for each grade and school. By analyzing this distribution, we can understand the range of potential enrollment outcomes and their likelihood when compared to other predictions, which can inform decision-making and help districts prepare for a variety of future scenarios. Usually, the midpoint of this distribution (i.e., the median or 50th percentile) is used as the point estimate for enrollment projections. Other percentiles (e.g., the 30th percentile and the 70th percentile) can provide a more conservative or optimistic projection based on local knowledge of trends and conditions.
 
 The intuition behind using different percentiles is that they quantify the uncertainty in enrollment projections and give a sense of the range of outcomes. This gives policy makers the tools to make informed decisions based on their specific circumstances and risk tolerance. For example, if a district is facing significant uncertainty because of potential external factors (e.g., a new charter school opening, a change in promotion policies) or has experienced an unexpected decline in enrollment year-over-year, they might choose to use a more conservative percentile (e.g., the 40th percentile) to account for the possibility of lower enrollment than historically observed. Conversely, if a district is expecting strong growth trends and wants to plan for higher enrollment, it might choose to use a more optimistic percentile (e.g., the 60th percentile).
 
@@ -786,7 +786,7 @@ provides the average projected enrollment for the base year (`N_y0`), the median
 
 The median projection is used in Monte Carlo simulations to represent the middle-of-the-road scenario. This projection sits in the middle of all simulated outcomes, meaning that there is an equal probability of the actual enrollment being above or below this value.
 
-Different percentiles can also be calculated to represent more optimistic or pessimistic scenarios. For example, the `0.25` quantile would represent a more pessimistic scenario (where enrollment is lower than the median), while the `0.75` quantile would represent a more optimistic scenario (where enrollment is higher than the median)
+Different percentiles can also be calculated to represent more optimistic or pessimistic scenarios. For example, the `0.30` quantile would represent a more pessimistic scenario (where enrollment is lower than the median), while the `0.70` quantile would represent a more optimistic scenario (where enrollment is higher than the median)
 
 For example, the query below calculates all deciles for the year 1 projections. These deciles can help understand the range of outcomes and their associated probabilities by school and grade level, which are then aggregated to the district level by summing across schools.
 
@@ -839,18 +839,18 @@ The adjustment is implemented in a single SQL step that joins the school-level M
 WITH
 district AS (
   SELECT gr,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY N_y1) AS N1_low,
+    PERCENTILE_CONT(0.30) WITHIN GROUP (ORDER BY N_y1) AS N1_low,
     PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY N_y1) AS N1_med,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY N_y1) AS N1_high
+    PERCENTILE_CONT(0.70) WITHIN GROUP (ORDER BY N_y1) AS N1_high
   FROM district_monte_carlo
   WHERE gr BETWEEN -1 AND 12
   GROUP BY gr
 ),
 schools AS (
   SELECT sc, gr,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY N_y1) AS N1_low,
+    PERCENTILE_CONT(0.30) WITHIN GROUP (ORDER BY N_y1) AS N1_low,
     PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY N_y1) AS N1_med,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY N_y1) AS N1_high
+    PERCENTILE_CONT(0.70) WITHIN GROUP (ORDER BY N_y1) AS N1_high
   FROM school_monte_carlo
   WHERE gr BETWEEN -1 AND 12
   GROUP BY sc, gr
@@ -873,7 +873,7 @@ FROM schools
   JOIN totals   ON totals.gr   = schools.gr;
 ```
 
-The key property of this adjustment is that summing the adjusted school projections across all schools recovers the district total exactly. The low-enrollment projection for each school is the district-level 25th percentile distributed across schools by each school's share of the raw low-projection total; similarly for the median and high projections. Schools do not each independently hit their own low scenario. Instead, they share the same district-wide scenario, which is more realistic than treating each school as independently volatile.
+The key property of this adjustment is that summing the adjusted school projections across all schools recovers the district total exactly. The low-enrollment projection for each school is the district-level 30th percentile distributed across schools by each school's share of the raw low-projection total; similarly for the median and high projections. Schools do not each independently hit their own low scenario. Instead, they share the same district-wide scenario, which is more realistic than treating each school as independently volatile.
 
 # Conclusion
 
