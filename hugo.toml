@@ -91,6 +91,8 @@ title = 'Emanuele Bardelli'
   # the default value is set to 'auto'.
   # You can take a look at layouts/index.html for more information.
   description = "Writing about data, schools, and the decisions that shape them."
+  ogimage = "/og-image.png" # social/Safari preview card (meta/standard.html)
+  images = ["/og-image.png"] # same card for Hugo's internal opengraph/twitter templates
   mainSections = ['posts']
   toc = false # set to false to disable table of contents 'globally'
   tocOpen = false # set to true to open table of contents by default
