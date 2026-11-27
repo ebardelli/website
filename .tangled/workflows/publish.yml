@@ -1,0 +1,39 @@
+# Build the Hugo site and deploy it to Cloudflare Workers.
+# Runs on the self-hosted spindle (spindle.ebardelli.com), selected in the
+# repo's Settings → Pipelines. Needs the CLOUDFLARE_API_TOKEN secret there.
+when:
+  - event: ["push"]
+    branch: ["main"]
+  - event: ["manual"]
+
+engine: nixery
+
+# Each step runs in a fresh container; only /tangled/workspace carries over,
+# which is where Hugo writes public/. Hugo and Dart Sass come from
+# nixpkgs-unstable to track recent releases.
+dependencies:
+  nixpkgs/nixpkgs-unstable:
+    - hugo
+    - dart-sass
+  nixpkgs:
+    - nodejs_22
+
+clone:
+  depth: 1
+  submodules: false
+
+steps:
+  - name: Show tool versions
+    command: |
+      hugo version
+      sass --version
+      node --version
+
+  - name: Build site
+    command: hugo -e production --gc --minify --cleanDestinationDir
+
+  - name: Build search index
+    command: npx -y pagefind@1.5.2 --site public
+
+  - name: Deploy to Cloudflare Workers
+    command: npx --yes wrangler@4.151.1 deploy
